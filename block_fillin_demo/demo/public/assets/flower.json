@@ -1,0 +1,327 @@
+{
+  "name": "Minimalist Flower",
+  "description": "Simple flower using gestalt principles - brain fills in the details",
+  "parts": [
+    {
+      "type": "sphere",
+      "name": "flower_center",
+      "sphereOptions": {
+        "diameter": 0.3,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.95,
+          0.8,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.6
+      },
+      "transform": {
+        "position": [
+          0,
+          1.2,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          0.6,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_1",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [
+          0.95,
+          0.3,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          1.2,
+          0.35
+        ],
+        "rotation": [
+          0.3,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_2",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [
+          0.95,
+          0.3,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.5
+      },
+      "transform": {
+        "position": [
+          0.35,
+          1.2,
+          0
+        ],
+        "rotation": [
+          0.3,
+          0,
+          1.57
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_3",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [
+          0.95,
+          0.3,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          1.2,
+          -0.35
+        ],
+        "rotation": [
+          -0.3,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_4",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [
+          0.95,
+          0.3,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.5
+      },
+      "transform": {
+        "position": [
+          -0.35,
+          1.2,
+          0
+        ],
+        "rotation": [
+          0.3,
+          0,
+          -1.57
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "stem",
+      "cylinderOptions": {
+        "height": 1.2,
+        "diameterTop": 0.08,
+        "diameterBottom": 0.1,
+        "tessellation": 6,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.3,
+          0.65,
+          0.3
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "transform": {
+        "position": [
+          0,
+          0.6,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_1",
+      "softboxOptions": {
+        "width": 0.4,
+        "height": 0.04,
+        "depth": 0.15,
+        "widthLeft": 0.25,
+        "widthRight": 0.4,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 2
+      },
+      "material": {
+        "albedoColor": [
+          0.25,
+          0.6,
+          0.25
+        ],
+        "metallic": 0,
+        "roughness": 0.6
+      },
+      "transform": {
+        "position": [
+          -0.25,
+          0.5,
+          0.1
+        ],
+        "rotation": [
+          0.2,
+          0.3,
+          -0.8
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_2",
+      "softboxOptions": {
+        "width": 0.35,
+        "height": 0.04,
+        "depth": 0.14,
+        "widthLeft": 0.35,
+        "widthRight": 0.22,
+        "radius": 0.1,
+        "stretch": true,
+        "arcSegments": 2
+      },
+      "material": {
+        "albedoColor": [
+          0.25,
+          0.6,
+          0.25
+        ],
+        "metallic": 0,
+        "roughness": 0.6
+      },
+      "transform": {
+        "position": [
+          0.2,
+          0.3,
+          -0.08
+        ],
+        "rotation": [
+          -0.15,
+          -0.2,
+          0.6
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+@use 'sass:color';
+
+// Import handwriting font
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+$text-primary: #1a1a1a;
+$accent: #007aff;
+$spacing-lg: 12px;
+
+.cohesive-narrative-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.transition-sentence {
+  font-family: 'Sour Gummy', cursive;
+  font-size: 16px;
+  font-weight: 500;
+  color: $accent;
+  text-align: center;
+  padding: 8px $spacing-lg;
+  margin: 0 $spacing-lg;
+  border-radius: 12px;
+  background: rgba($accent, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba($accent, 0.2);
+  opacity: 0.9;
+  animation: fadeInSlide 0.5s ease-out;
+  
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+}
+
+.cohesive-narrative {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px $spacing-lg;
+  border-radius: 16px;
+  margin: 0 $spacing-lg 8px;
+  flex-shrink: 0;
+
+  .narrative-text {
+    font-family: 'Sour Gummy', cursive;
+    font-size: 20px;
+    font-weight: 400;
+    color: $text-primary;
+    opacity: 0.85;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .narrative-slot {
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    box-shadow:
+      0px 1px 0px rgba(255, 255, 255, 0.5) inset,
+      0px 1px 6px rgba(255, 255, 255, 0.1) inset;
+    font-weight: 500;
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    white-space: nowrap;
+
+    &:hover,
+    &.highlighted {
+      background: rgba($accent, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: color.adjust($accent, $lightness: -15%);
+      transform: translateY(-2px);
+      box-shadow:
+        0px 1px 0px rgba(255, 255, 255, 0.5) inset,
+        0px 4px 16px rgba($accent, 0.2);
+    }
+  }
+}
+

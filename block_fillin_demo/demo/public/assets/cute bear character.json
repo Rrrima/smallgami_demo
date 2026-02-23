@@ -1,0 +1,578 @@
+{
+  "name": "Cute Bear Character",
+  "description": "Adorable round bear with soft features",
+  "parts": [
+    {
+      "type": "softbox",
+      "name": "body",
+      "softboxOptions": {
+        "width": 0.6,
+        "height": 0.7,
+        "depth": 0.5,
+        "radius": 0.4,
+        "stretch": true,
+        "arcSegments": 10
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          0,
+          0.7,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "head",
+      "softboxOptions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.45,
+        "radius": 0.35,
+        "stretch": true,
+        "arcSegments": 10
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          0,
+          1.55,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "ear_left",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.18,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          -0.4,
+          1.95,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.3
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "ear_right",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.18,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          0.4,
+          1.95,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0.3
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "inner_ear_left",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.85,
+          0.7,
+          0.55
+        ],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [
+          -0.4,
+          1.95,
+          0.1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          0.8,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "inner_ear_right",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.85,
+          0.7,
+          0.55
+        ],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [
+          0.4,
+          1.95,
+          0.1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          0.8,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "snout",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.2,
+        "depth": 0.18,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [
+          0.85,
+          0.7,
+          0.55
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          0,
+          1.4,
+          0.45
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "nose",
+      "sphereOptions": {
+        "diameter": 0.12,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.15,
+          0.1,
+          0.08
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "transform": {
+        "position": [
+          0,
+          1.42,
+          0.6
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          0.8,
+          1
+        ]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_left",
+      "sphereOptions": {
+        "diameter": 0.1,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [
+          -0.18,
+          1.6,
+          0.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_right",
+      "sphereOptions": {
+        "diameter": 0.1,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [
+          0.18,
+          1.6,
+          0.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "arm_left",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.35,
+        "depth": 0.14,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          -0.55,
+          0.8,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.2
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "arm_right",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.35,
+        "depth": 0.14,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          0.55,
+          0.8,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0.2
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "foot_left",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.12,
+        "depth": 0.22,
+        "radius": 0.1,
+        "stretch": true,
+        "arcSegments": 6
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          -0.25,
+          0.08,
+          0.1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "foot_right",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.12,
+        "depth": 0.22,
+        "radius": 0.1,
+        "stretch": true,
+        "arcSegments": 6
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [
+          0.25,
+          0.08,
+          0.1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "belly",
+      "softboxOptions": {
+        "width": 0.35,
+        "height": 0.4,
+        "depth": 0.2,
+        "radius": 0.25,
+        "stretch": true,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [
+          0.85,
+          0.7,
+          0.55
+        ],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0.65,
+          0.35
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  }
+}

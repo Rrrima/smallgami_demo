@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-08-15T03:23:16.180409",
+  "data": {
+    "world": {
+      "physics": "Objects move through buoyant underwater currents.",
+      "visualStyle": "Nature underwater ocean glowing",
+      "visualType": "cartoon",
+      "worldDescripiton": "A magical underwater scene with coral reefs, glowing marine life, and gentle ocean currents."
+    },
+    "player": {
+      "render": "A glowing blue fish with a bright, magical aura.",
+      "controls": [
+        {
+          "action": "move",
+          "inputModality": "keyboard"
+        },
+        {
+          "action": "interact",
+          "inputModality": "keyboard"
+        }
+      ],
+      "emissions": {
+        "render": "A beautiful, shining bubble that sparkles in the sunlight."
+      }
+    },
+    "objects": [
+      {
+        "name": "Seahorse",
+        "behavior": "Swims slowly in a random wavy pattern.",
+        "metadata": {
+          "opacity": 1,
+          "scale": 1,
+          "color": "#FFD700",
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "interactionType": "changeProperty",
+        "interactionDescription": "The bubble interacts with the seahorse, making it invisible (adjust opacity)."
+      },
+      {
+        "name": "Jellyfish",
+        "behavior": "Floats upward steadily, glowing softly.",
+        "metadata": {
+          "opacity": 1,
+          "scale": 1.2,
+          "color": "#FF69B4",
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "interactionType": "changeProperty",
+        "interactionDescription": "The bubble interacts with the jellyfish, making it invisible (reducing opacity)."
+      },
+      {
+        "name": "fish",
+        "behavior": "Floats upward steadily, glowing softly.",
+        "metadata": {
+          "opacity": 1,
+          "scale": 1.2,
+          "color": "#FF69B4",
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "interactionType": "changeProperty",
+        "interactionDescription": "The bubble interacts with the fish, making it invisible (reducing opacity)."
+      }
+    ],
+    "possibleNext": [
+      {
+        "Operation": "next",
+        "change": "Save more marine creatures!"
+      },
+      {
+        "Operation": "modify",
+        "change": "Aliens change tactics!"
+      }
+    ]
+  }
+}

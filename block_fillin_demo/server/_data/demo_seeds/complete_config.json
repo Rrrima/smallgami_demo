@@ -1,0 +1,215 @@
+{
+  "id": "9963bf31-e3a5-41c4-8371-fdbd5bbbf89e",
+  "name": "Forest Bloom",
+  "camera": "fixed",
+  "player": {
+    "movement": {
+      "speed": 1.0,
+      "momentum": {
+        "acceleration": 0.15,
+        "friction": 1.5,
+        "maxVelocity": 1.8
+      },
+      "smoothing": 0.85
+    },
+    "bullets": {
+      "speed": 1.1,
+      "maxCount": 35,
+      "cooldown": 150,
+      "shape": {
+        "width": 0.5,
+        "height": 3,
+        "depth": 0.5
+      },
+      "maxDistance": 120,
+      "color": {
+        "r": 0.2,
+        "g": 0.9,
+        "b": 0.2
+      },
+      "opacity": 0.9
+    },
+    "physics": {
+      "mass": 0.9,
+      "restitution": 0.2,
+      "damping": 0.97
+    },
+    "visual": {
+      "scale": 0.7,
+      "rotationEffect": 0.8,
+      "bobbing": true,
+      "material": "standard",
+      "color": {
+        "r": 0.6,
+        "g": 0.9,
+        "b": 0.5
+      },
+      "glow": {
+        "r": 0.1,
+        "g": 0.7,
+        "b": 0.1
+      }
+    }
+  },
+  "aliens": {
+    "collisionBehavior": {
+      "onBulletHit": "reduceOpacity",
+      "dialogue": null
+    },
+    "movement": {
+      "pattern": "formation"
+    },
+    "animation": {
+      "idleAnimation": {
+        "enabled": true,
+        "type": "bob",
+        "speed": 0.02,
+        "intensity": 0.3
+      }
+    },
+    "types": {
+      "forestBloomSpot": {
+        "lives": 0,
+        "scoreValue": 50,
+        "scale": {
+          "base": 1.0,
+          "reduction": 0.1,
+          "variation": {
+            "enabled": false,
+            "range": 0,
+            "type": "uniform"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "pulse",
+            "speed": 0.5,
+            "intensity": 0.3
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.368,
+              "g": 0.498,
+              "b": 0.306
+            },
+            "emissiveColor": {
+              "r": 0.1,
+              "g": 0.9,
+              "b": 0.2
+            },
+            "alpha": 0.9
+          }
+        },
+        "movementModifier": null
+      },
+      "mischievousSprite": {
+        "lives": 1,
+        "scoreValue": 75,
+        "scale": {
+          "base": 0.7,
+          "reduction": 0.05,
+          "variation": {
+            "enabled": true,
+            "range": 0.05,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "breathe",
+            "speed": 1.0,
+            "intensity": 0.2
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.678,
+              "g": 0.847,
+              "b": 0.902
+            },
+            "emissiveColor": {
+              "r": 0.2,
+              "g": 0.4,
+              "b": 0.9
+            },
+            "alpha": 1
+          }
+        },
+        "movementModifier": 1.2
+      }
+    }
+  },
+  "starfield": {
+    "maxStars": 120,
+    "ratioOfBlinkers": 0.4,
+    "positioning": {
+      "minY": -80,
+      "maxY": 120,
+      "z": 15
+    },
+    "size": {
+      "min": 0.3,
+      "max": 1.2
+    },
+    "colors": [
+      [0.2, 0.5, 0.2, 1],
+      [0.1, 0.7, 0.3, 0.8],
+      [0.3, 0.6, 0.4, 0.9],
+      [0.5, 0.8, 0.3, 1],
+      [0.4, 0.7, 0.3, 0.85]
+    ],
+    "movement": {
+      "direction": "up",
+      "speed": 0.05,
+      "oscillation": {
+        "amplitude": 0.4,
+        "frequency": 0.2
+      },
+      "drift": {
+        "horizontalVariation": 0.03,
+        "verticalVariation": 0.02
+      }
+    },
+    "blinking": {
+      "minInterval": 2000,
+      "maxInterval": 6000
+    },
+    "texture": {
+      "path": "/assets/images/star.png",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      }
+    },
+    "theme": {
+      "particleType": "fairies",
+      "name": "Enchanted Glow"
+    }
+  },
+  "atmosphere": {
+    "background": {
+      "type": "skybox",
+      "clearColor": null,
+      "skybox": {
+        "texture": "/texture/bg-ms.png"
+      }
+    },
+    "fog": {
+      "enabled": true,
+      "color": [0.2, 0.6, 0.3],
+      "start": 80,
+      "end": 900,
+      "mode": "linear"
+    },
+    "lighting": {
+      "intensity": 1.2,
+      "direction": [0.2, 1, 0.3],
+      "position": [0, 60, 20],
+      "diffuse": [0.8, 0.7, 0.5],
+      "specular": [0.9, 0.8, 0.6]
+    }
+  }
+}

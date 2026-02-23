@@ -1,0 +1,76 @@
+{
+  "timestamp": "2025-08-13T15:56:39.124167",
+  "game_id": "demo_forest",
+  "data": {
+    "world": {
+      "physics": "Enchanted forest physics with gentle floating and magical sparkles. Magical projectiles travel gracefully through the air.",
+      "visualStyle": "Mystical enchanted forest with glowing fairy lights, ancient trees, and magical atmosphere with soft lighting.",
+      "visualType": "cartoon",
+      "worldDescripiton": "A magical enchanted forest filled with ancient towering trees, glowing fairy lights, mystical creatures, and an atmosphere of wonder and magic."
+    },
+    "player": {
+      "render": "A young magical girl with flowing robes, holding a glowing magic wand that sparkles with golden light.",
+      "controls": [
+        {
+          "action": "move",
+          "inputModality": "keyboard"
+        },
+        {
+          "action": "interact",
+          "inputModality": "keyboard"
+        }
+      ],
+      "emissions": {
+        "render": "Golden magical sparkles that float gracefully from the wand, creating shimmering trails of light and magical effects."
+      }
+    },
+    "objects": [
+      {
+        "name": "ForestFairy",
+        "behavior": "Floats gently through the forest, moving in graceful patterns while exploring and interacting with the magical environment.",
+        "metadata": {
+          "opacity": 1,
+          "scale": 6.0,
+          "color": "#FFD700",
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "interactionType": "dialogue",
+        "interactionDescription": "Engages in friendly conversation, sharing forest wisdom and magical knowledge when approached with kindness."
+      },
+      {
+        "name": "WiseFairy",
+        "behavior": "Moves slowly and majestically through the forest, occasionally pausing to tend to magical plants and observe the forest.",
+        "metadata": {
+          "opacity": 1,
+          "scale": 4.0,
+          "color": "#98FB98",
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "interactionType": "dialogue",
+        "interactionDescription": "Offers ancient wisdom and magical guidance, teaching about the mysteries of the enchanted forest."
+      }
+    ],
+    "possibleNext": [
+      {
+        "Operation": "next",
+        "change": "Discover hidden fairy village"
+      },
+      {
+        "Operation": "next",
+        "change": "Meet the forest guardian"
+      },
+      {
+        "Operation": "next",
+        "change": "Find magical moonbeam crystals"
+      }
+    ]
+  }
+}

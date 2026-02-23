@@ -1,0 +1,22 @@
+Generate a detailed world configuration for a jumping/platformer game based on the following context:
+
+**Game Description:**
+{game_description}
+
+**World Description:** {world_description}
+
+**Visual Style:** {visual_style}
+
+Based on this context, generate a complete WorldConfig with the following considerations:
+
+1. **Lighting Configuration**:
+   - Light direction should enhance the 3D depth and platform visibility
+   - Light color should match the world's atmosphere and visual style
+   - Light intensity should provide good visibility without being too harsh (0.6-1.0)
+
+2. **Atmospheric Considerations**:
+   - The lighting should support the narrative mood
+   - Colors should complement the visual style described
+   - The overall lighting should make platforms and collectables clearly visible
+
+Ensure the lighting creates an immersive atmosphere that matches the world description while maintaining excellent gameplay visibility for platforming mechanics.

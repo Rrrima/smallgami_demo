@@ -1,0 +1,265 @@
+{
+  "id": "ocean-bubbles",
+  "name": "Ocean Depths",
+  "camera": "fixed",
+  "assets": {
+    "models": {
+      "player": "fish.glb",
+      "aliens": ["fish.glb", "seahorse.glb", "jellyfish.glb"]
+    },
+    "sounds": {
+      "ambient": "/assets/sounds/ambient-ocean.wav",
+      "lazer": "/assets/sounds/drop.wav",
+      "alienMove": "/assets/sounds/bubble-exp.wav",
+      "alienExplosion": "/assets/sounds/bubble-magic.wav"
+    }
+  },
+  "player": {
+    "movement": {
+      "speed": 0.7,
+      "momentum": {
+        "acceleration": 0.12,
+        "friction": 1.6,
+        "maxVelocity": 1.2
+      },
+      "smoothing": 0.9
+    },
+    "bullets": {
+      "speed": 0.8,
+      "maxCount": 30,
+      "cooldown": 200,
+      "shape": {
+        "width": 2.2,
+        "height": 2.2,
+        "depth": 1.2
+      },
+      "maxDistance": 100,
+      "color": {
+        "r": 0.6,
+        "g": 0.9,
+        "b": 1.0
+      },
+      "opacity": 0.8
+    },
+    "physics": {
+      "mass": 0.8,
+      "restitution": 0.4,
+      "damping": 0.95
+    },
+    "visual": {
+      "scale": 0.8,
+      "rotationEffect": 1,
+      "bobbing": true,
+      "material": "standard",
+      "color": {
+        "r": 0.3,
+        "g": 0.6,
+        "b": 0.9
+      },
+      "glow": {
+        "r": 0.1,
+        "g": 0.3,
+        "b": 0.5
+      }
+    }
+  },
+  "aliens": {
+    "collisionBehavior": {
+      "onBulletHit": "reduceOpacity",
+      "dialogue": {
+        "messages": [
+          "Fish: Oh no! The aliens are coming!",
+          "Fish: Help me pop the bubbles!",
+          "Fish: The aliens are trying to eat us!"
+        ],
+        "likelyHood": 0.6
+      }
+    },
+    "movement": {
+      "pattern": "freeSwim"
+    },
+    "animation": {
+      "idleAnimation": {
+        "enabled": true,
+        "type": "undulate",
+        "speed": 0.015,
+        "intensity": 0.8
+      }
+    },
+    "types": {
+      "fish": {
+        "lives": 0,
+        "scoreValue": 15,
+        "scale": {
+          "base": 8,
+          "reduction": 0.1,
+          "variation": {
+            "enabled": true,
+            "range": 0.25,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "pulse",
+            "speed": 2.5,
+            "intensity": 0.15
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.8,
+              "g": 0.5,
+              "b": 0.2
+            },
+            "emissiveColor": {
+              "r": 0.2,
+              "g": 0.3,
+              "b": 0.4
+            },
+            "alpha": 0.95
+          }
+        },
+        "movementModifier": 1.2
+      },
+      "seahorse": {
+        "lives": 1,
+        "scoreValue": 25,
+        "scale": {
+          "base": 10,
+          "reduction": 0.1,
+          "variation": {
+            "enabled": true,
+            "range": 0.2,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "wobble",
+            "speed": 1.2,
+            "intensity": 0.12
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.6,
+              "g": 0.8,
+              "b": 0.4
+            },
+            "emissiveColor": {
+              "r": 0.1,
+              "g": 0.4,
+              "b": 0.2
+            },
+            "alpha": 0.95
+          }
+        },
+        "movementModifier": 0.9
+      },
+      "jellyfish": {
+        "lives": 0,
+        "scoreValue": 35,
+        "scale": {
+          "base": 9,
+          "reduction": 0.1,
+          "variation": {
+            "enabled": true,
+            "range": 0.15,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "breathe",
+            "speed": 0.7,
+            "intensity": 0.3
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.5,
+              "g": 0.3,
+              "b": 0.9
+            },
+            "emissiveColor": {
+              "r": 0.3,
+              "g": 0.2,
+              "b": 0.6
+            },
+            "alpha": 0.95
+          }
+        },
+        "movementModifier": 0.8
+      }
+    }
+  },
+  "starfield": {
+    "maxStars": 80,
+    "ratioOfBlinkers": 0.2,
+    "positioning": {
+      "minY": -60,
+      "maxY": 120,
+      "z": 8
+    },
+    "size": {
+      "min": 0.2,
+      "max": 1.5
+    },
+    "colors": [
+      [0.7, 0.9, 1, 0.6],
+      [0.8, 1, 1, 0.5],
+      [1, 1, 1, 0.4],
+      [0.6, 0.8, 0.9, 0.7]
+    ],
+    "movement": {
+      "pattern": "float",
+      "direction": "up",
+      "speed": 0.08,
+      "drift": {
+        "horizontalVariation": 0.02,
+        "verticalVariation": 0.01
+      }
+    },
+    "blinking": {
+      "minInterval": 3000,
+      "maxInterval": 8000
+    },
+    "texture": {
+      "path": "/assets/images/star.png",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      }
+    },
+    "theme": {
+      "particleType": "bubbles",
+      "name": "Ocean Bubbles"
+    }
+  },
+  "atmosphere": {
+    "background": {
+      "type": "skybox",
+      "skybox": {
+        "texture": "/texture/deepocean2.png"
+      }
+    },
+    "fog": {
+      "enabled": true,
+      "color": [0.2, 0.5, 0.7],
+      "start": 50,
+      "end": 1000,
+      "mode": "linear"
+    },
+    "lighting": {
+      "intensity": 2,
+      "direction": [0, 1, 0.2],
+      "position": [0, 80, 10],
+      "diffuse": [0.4, 0.7, 1],
+      "specular": [0.6, 0.9, 1]
+    }
+  }
+}

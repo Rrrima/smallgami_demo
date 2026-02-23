@@ -1,0 +1,91 @@
+// ── Wrapper — positions the whole pip (controls + panel) ─────────────────────
+
+.pip-wrapper {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition:
+    opacity   0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &.is-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// ── Controls row (above the panel) ───────────────────────────────────────────
+
+.pip-controls {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.pip-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  color: rgba(0, 0, 0, 0.50);
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.80);
+    color: rgba(0, 0, 0, 0.85);
+  }
+}
+
+// ── Glass panel — exactly the game size ──────────────────────────────────────
+
+.pip-panel {
+  width: 560px;
+  padding: 10px;
+  border-radius: 22px;
+
+  // Liquid glass
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.24),
+    0  6px 20px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+// ── Game canvas ───────────────────────────────────────────────────────────────
+
+.pip-game {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}

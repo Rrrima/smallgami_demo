@@ -1,0 +1,21 @@
+An object in the game has been modified. Please update the spawn configurations to ensure they work well with the new object properties.
+
+## Modified Object:
+____MODIFIED_OBJECT____
+
+## Object Change Summary:
+____OBJECT_CHANGE_SUMMARY____
+
+## Current Spawn Configurations:
+____SPAWN_CONFIGS____
+
+## World Context:
+____WORLD_DESCRIPTION____
+
+Please analyze how the object changes affect spawn behavior and update the spawn configurations accordingly. Consider:
+- Does the spawn frequency need adjustment based on new size/speed/role?
+- Are the position ranges still appropriate?
+- Should the spawn likelihood change?
+- Do scale variation ranges make sense with the new object size?
+
+Return the COMPLETE list of all spawn configurations with appropriate modifications. Preserve spawn controllers that don't reference this object unchanged.

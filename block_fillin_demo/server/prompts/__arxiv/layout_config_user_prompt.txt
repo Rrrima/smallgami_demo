@@ -1,0 +1,32 @@
+Given the GameDSL specification, generate a GameLayoutConfig that specifies the exact positions and sizes for all game objects described in the DSL.
+
+**CRITICAL CONSTRAINTS:**
+- The ground is exactly 100 x 100 units in size (X and Z axes from -50 to +50)
+- All object positions must be WITHIN this boundary
+- Y-axis position determines height above ground (Y=0 is ground level)
+- Consider real-world physics and proportions
+- Match the number of objects specified in the DSL for each object type
+
+**Layout Design Principles:**
+- **Spatial Relationships**: Objects should be positioned to create engaging gameplay flows
+- **Real-World Proportions**: Sizes should be realistic relative to each other and the player
+- **Player Movement**: Ensure adequate space for player navigation and interaction
+- **Game Balance**: Position objects to create appropriate challenge and progression
+- **Visual Composition**: Create aesthetically pleasing and logical spatial arrangements
+- **Story Integration**: Position objects to support the narrative and gameplay described in the DSL
+
+**Sizing Guidelines:**
+- **Platforms**: Width 5-15 units, height 1-3 units, depth 5-15 units (depending on function)
+- **Collectibles**: Small objects 0.5-2 units in all dimensions
+- **NPCs**: Human-scale around 1.5-2 units tall, proportional width/depth
+- **Enemies**: Vary based on type, but consider threat level and gameplay balance
+
+**Positioning Guidelines:**
+- **Platforms**: Strategic placement for jumping/navigation, consider gaps and heights
+- **Collectibles**: Accessible but potentially challenging positions
+- **NPCs**: Logical placement based on their role and patrol patterns
+- **Enemies**: Positioned to create interesting encounters without being unfair
+- **Physical Realism**: Consider how objects would naturally be placed in the real world scenario described in the DSL
+
+**Input DSL:**
+__DSL__ 

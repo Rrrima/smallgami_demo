@@ -1,0 +1,139 @@
+Generate a detailed starfield configuration for a space invader-style game based on the following context:
+
+**Game Context:**
+- Game Name: __GAME_NAME__
+- Game ID: __GAME_ID__
+- Narrative Theme: __NARRATIVE_THEME__
+
+**World Information:**
+- Visual Style: __VISUAL_STYLE__
+- Visual Type: __VISUAL_TYPE__
+- World Description: __WORLD_DESCRIPTION__
+
+Based on this context, generate a complete GameStarfieldConfig with the following considerations:
+
+1. **Particle Count & Density**:
+   - Calm narratives: 30-60 particles with low blinker ratio (0.1-0.3)
+   - Intense narratives: 150-300 particles with high blinker ratio (0.6-0.8)
+   - Medium narratives: 80-120 particles with moderate blinker ratio (0.4-0.6)
+
+2. **Positioning**:
+   - Set appropriate Y range based on world scale and visual style
+   - Z positioning should create good depth without interfering with gameplay
+
+3. **Size Range**:
+   - Subtle effects: 0.1-0.6 size range
+   - Prominent effects: 0.3-1.5 size range
+   - Fantasy themes may use larger sizes for magical effects
+
+4. **Colors**:
+   - Choose colors that match the visual style and world description
+   - Use 3-6 colors as RGBA arrays [r, g, b, a] with values 0-1
+   - Consider the overall mood and atmosphere of the narrative
+
+5. **Movement Pattern**:
+   - 'scroll': Classic space invader feel, specify direction and speed
+   - 'float': Gentle drifting with horizontal/vertical variation
+   - 'oscillate': Side-to-side movement with amplitude and frequency
+   - 'drift': Slow, organic movement
+   - Match speed to narrative energy (0.02-0.1 for calm, 0.1-0.4 for intense)
+
+6. **Blinking Intervals**:
+   - Fast/energetic: 100-1000ms intervals
+   - Medium: 1000-4000ms intervals  
+   - Slow/ambient: 2000-8000ms intervals
+
+7. **Texture & Theme**:
+   - Use '/assets/images/star.png' for most environments
+   - Use '/assets/images/star_glow.png' for magical/ethereal effects
+   - Set appropriate particle type: 'stars', 'bubbles', 'fairies', 'particles'
+   - Create a name that fits the narrative and world description
+
+Ensure the starfield enhances the environmental storytelling and creates the right atmospheric mood for the narrative context.
+
+examples:
+this is starfield for stars in the space
+ "starfield": {
+    "maxStars": 100,
+    "ratioOfBlinkers": 0.3,
+    "positioning": {
+      "minY": -50,
+      "maxY": 100,
+      "z": 10
+    },
+    "size": {
+      "min": 0.1,
+      "max": 0.6
+    },
+    "colors": [
+      [1, 1, 0, 1],
+      [0, 1, 0, 1],
+      [1, 0, 0, 1],
+      [1, 0, 1, 1],
+      [1, 1, 1, 1]
+    ],
+    "movement": {
+      "pattern": "scroll",
+      "direction": "down",
+      "speed": 0.1
+    },
+    "blinking": {
+      "minInterval": 500,
+      "maxInterval": 2500
+    },
+    "texture": {
+      "path": "/assets/images/star.png",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      }
+    },
+    "theme": {
+      "particleType": "stars",
+      "name": "Space Battle"
+    }
+  },
+  this is for bubbles in the ocean:
+  "starfield": {
+    "maxStars": 80,
+    "ratioOfBlinkers": 0.2,
+    "positioning": {
+      "minY": -60,
+      "maxY": 120,
+      "z": 8
+    },
+    "size": {
+      "min": 0.2,
+      "max": 1.5
+    },
+    "colors": [
+      [0.7, 0.9, 1, 0.6],
+      [0.8, 1, 1, 0.5],
+      [1, 1, 1, 0.4],
+      [0.6, 0.8, 0.9, 0.7]
+    ],
+    "movement": {
+      "pattern": "float",
+      "direction": "up",
+      "speed": 0.08,
+      "drift": {
+        "horizontalVariation": 0.02,
+        "verticalVariation": 0.01
+      }
+    },
+    "blinking": {
+      "minInterval": 3000,
+      "maxInterval": 8000
+    },
+    "texture": {
+      "path": "/assets/images/star.png",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      }
+    },
+    "theme": {
+      "particleType": "bubbles",
+      "name": "Ocean Bubbles"
+    }
+  },

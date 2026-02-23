@@ -1,0 +1,51 @@
+# Game Mechanism Constraints
+
+Each game mechanism has specific object role requirements that MUST be followed.
+
+## christmas (Dodge & Catch)
+**Description**: Player must dodge falling hazards and catch falling collectibles.
+**Object Role Constraints**:
+- **box1**: MUST be a hazard. Player MUST die when hit.
+  - onPlayerCollision.player MUST be "die"
+  - Typically small and fast-falling
+  - Visual: Dangerous/harmful objects (spikes, bombs, obstacles)
+- **box2**: MUST be a collectible. Player MUST gain score when caught.
+  - onPlayerCollision.player MUST be "score"
+  - Typically medium-sized and moderate-speed
+  - Visual: Valuable/desirable objects (gifts, coins, stars)
+
+## running_christmas (Run & Catch)
+**Description**: Player runs forward while dodging and catching objects that move toward them.
+**Object Role Constraints**:
+- **box1**: MUST be a hazard. Player MUST die when hit.
+  - onPlayerCollision.player MUST be "die"
+  - Objects move horizontally (negative X velocity)
+  - Visual: Obstacles in the path
+- **box2**: MUST be a collectible. Player MUST gain score when caught.
+  - onPlayerCollision.player MUST be "score"
+  - Objects move horizontally (negative X velocity)
+  - Visual: Collectible items in the path
+
+## flappy_bird (Flappy Bird)
+**Description**: Player flies through gaps between obstacles by tapping to flap.
+**Object Role Constraints**:
+- Pipes/obstacles spawn in pairs (top and bottom)
+- Player MUST avoid hitting pipes (die on collision)
+- Objects are typically static or slowly moving
+- Score is gained by passing through gaps, not by collision
+
+## platform_forest (Platform Jump)
+**Description**: Player jumps on platforms to reach higher ground.
+**Object Role Constraints**:
+- Platforms allow player to jump (onPlayerCollision.player = "jump")
+- Some objects may be collectibles (score on touch)
+- Some objects may be hazards (die on touch)
+- Platforms are typically static (motionType = 0) or moving horizontally (motionType = 2)
+
+## General Constraint Rules:
+1. When user modifies object description, the core ROLE must remain consistent with mechanism
+2. Visual appearance can change (e.g., "spike ball" → "falling meteor") but collision behavior MUST stay aligned with mechanism
+3. If mechanism is "Dodge & Catch" and object is box1, it MUST remain a hazard regardless of description
+4. If mechanism is "Dodge & Catch" and object is box2, it MUST remain a collectible regardless of description
+5. Size, speed, and visual style can be adjusted freely within role constraints
+

@@ -1,0 +1,48 @@
+Please analyze this image and provide comprehensive game design recommendations. 
+
+**Current Game Context:**
+{game_context}
+
+**Current Game Objects:**
+{game_objects}
+
+Based on the image and the current game state, please provide a JSON response with the following structure:
+
+```json
+{{
+  "message": "SUCCESS",
+  "description": "Brief description of what you see in the image",
+  "render_type": "skybox|ground|object",
+  "confidence": 0.0-1.0,
+  "game_type": "Specific mini-game concept that fits WarioWare style",
+  "game_scale": "small|medium|large",
+  "game_mechanics": ["list", "of", "suggested", "mechanics"],
+  "game_duration": "e.g., 5-10 seconds",
+  "camera_type": "THIRD_PERSON|SIDE_VIEW|TOP_DOWN|CHASE",
+  "camera_reasoning": "Brief explanation for the camera choice",
+  "object_style_updates": [
+    {{
+      "object_name": "Name of object to update",
+      "color": "Color from available palette",
+      "reasoning": "Why this color harmonizes with the image"
+    }}
+  ]
+}}
+```
+
+**Requirements:**
+
+1. **render_type**: Determine if this image should be used as:
+   - "skybox" (background environment)
+   - "ground" (floor/terrain texture) 
+   - "object" (individual game asset texture)
+
+2. **WarioWare Game**: Fast-paced mini-game concept (5-15 seconds)
+
+3. **Camera Type**: Best perspective for this game style
+
+4. **Object Style Updates**: For each existing game object, suggest color changes from available palette
+
+**Available colors:** #CDC3C5, #E0D8D8, #9898A8, #A7C46E, #51B07A, #154D39, #C9415A, #8B7464, #DEBE7B, #E2B835, #C27F2A, #84C2C7, #60ABC6, #18668E
+
+Please ensure all recommendations work together to create a cohesive, engaging gaming experience that maintains the accessibility and fun factor of WarioWare games. 

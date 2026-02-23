@@ -1,0 +1,333 @@
+{
+  "description": "Classic red and white striped candy cane with curved hook",
+  "name": "Candy Cane",
+  "overallTransform": null,
+  "parts": [
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.2,
+        "diameterTop": 0.2,
+        "height": 2,
+        "tessellation": 16,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.95,
+          0.95,
+          0.95
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "cane_stick",
+      "transform": {
+        "position": [
+          0,
+          1,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.95,
+          0.95,
+          0.95
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "cane_hook",
+      "softboxOptions": {
+        "arcSegments": 8,
+        "depth": 0.4,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.1,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.4,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.4,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          0,
+          2.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.22,
+        "diameterTop": 0.22,
+        "height": 0.35,
+        "tessellation": 16,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.15,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "stripe_red_1",
+      "transform": {
+        "position": [
+          0,
+          0.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.22,
+        "diameterTop": 0.22,
+        "height": 0.35,
+        "tessellation": 16,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.15,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "stripe_red_2",
+      "transform": {
+        "position": [
+          0,
+          0.9,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.22,
+        "diameterTop": 0.22,
+        "height": 0.35,
+        "tessellation": 16,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.15,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "stripe_red_3",
+      "transform": {
+        "position": [
+          0,
+          1.5,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.15,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "stripe_red_hook_top",
+      "softboxOptions": {
+        "arcSegments": 8,
+        "depth": 0.2,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.11,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.2,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.2,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          0.2,
+          2.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.15,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "stripe_red_hook_left",
+      "softboxOptions": {
+        "arcSegments": 8,
+        "depth": 0.2,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.11,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.2,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.2,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          -0.2,
+          2.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.15,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "tip_cap",
+      "sphereOptions": {
+        "diameter": 0.22,
+        "segments": 12,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0,
+          0.05,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          0.6,
+          1
+        ]
+      },
+      "type": "sphere"
+    }
+  ]
+}

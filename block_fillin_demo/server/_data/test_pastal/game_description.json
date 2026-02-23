@@ -1,0 +1,108 @@
+[
+  {
+    "id": "initialize:give me a cute game with the rabbit as the player",
+    "content": {
+      "player": {
+        "description": "A small black rabbit-like creature with glossy fur, agile and energetic.",
+        "asset_ref": "file-1756947712623",
+        "need_update": true
+      },
+      "world": {
+        "description": "A whimsical, pastel field with flowers, colorful clouds, and a dreamy sky.",
+        "asset_ref": "N/A",
+        "need_update": true
+      },
+      "platforms": [
+        {
+          "name": "Cloud Platform",
+          "description": "A fluffy white cloud with a smiling face, serving as a bouncy platform.",
+          "behavior": "Floats gently in place, occasionally shifting slightly.",
+          "effect": "Propels the player upward with a soft bounce.",
+          "asset_ref": "file-1756947712623",
+          "need_update": true
+        },
+        {
+          "name": "Flower Platform",
+          "description": "A colorful flower platform that remains static.",
+          "behavior": "Stationary and stable.",
+          "effect": "Provides a solid surface for the player to jump on.",
+          "asset_ref": "file-1756947712623",
+          "need_update": true
+        }
+      ],
+      "collectables": [
+        {
+          "name": "Smiley Badge",
+          "description": "A yellow smiley face badge that can be collected.",
+          "behavior": "Floats gently in the air.",
+          "effect": "Grants the player bonus points upon collection.",
+          "asset_ref": "file-1756947712623",
+          "need_update": true
+        },
+        {
+          "name": "Straw Hat",
+          "description": "A yellow straw hat with a wide brim that can be collected.",
+          "behavior": "Spins slowly in place.",
+          "effect": "Unlocks a decorative accessory for the player.",
+          "asset_ref": "file-1756947712623",
+          "need_update": true
+        }
+      ],
+      "narrative": {
+        "transition": "The player enters the whimsical field, drawn by its vibrant colors and dreamy atmosphere.",
+        "current_story": "The rabbit begins its journey, hopping upwards to explore the enchanting sky.",
+        "next_story": "As the rabbit ascends, it discovers a hidden realm above the clouds, teeming with magical creatures and treasures."
+      },
+      "visual_style": "Whimsical impressionistic painting with vibrant pastel colors and soft, textured brushstrokes."
+    }
+  },
+  {
+    "id": "regenerate:add file-1756881061680 and specify the tag as object",
+    "content": {
+      "player": {
+        "description": "A small black rabbit-like creature with glossy fur, agile and energetic, now adorned with a colorful flower crown.",
+        "asset_ref": "file-1756947712623",
+        "need_update": false
+      },
+      "world": {
+        "description": "An indoor setting featuring a cozy bed with a tufted fabric headboard, surrounded by warm lighting and soft textures.",
+        "asset_ref": "file-1756881061680",
+        "need_update": false
+      },
+      "platforms": [
+        {
+          "name": "Pillow Platform",
+          "description": "A soft, fluffy pillow",
+          "behavior": "Stationary and stable.",
+          "effect": "Provides a solid surface for the player to jump on.",
+          "asset_ref": "N/A",
+          "need_update": true
+        }
+      ],
+      "collectables": [
+        {
+          "name": "Green Dinosaur Toy",
+          "description": "A green plush dinosaur toy with a rounded body and a light yellow belly patch and with a straw hat",
+          "behavior": "Sits still, inviting the player to interact.",
+          "effect": "Unlocks a decorative accessory for the player.",
+          "asset_ref": "file-1756881061680",
+          "need_update": false
+        },
+        {
+          "name": "Smiley Badge",
+          "description": "A yellow smiley face badge that can be collected.",
+          "behavior": "Floats gently in the air.",
+          "effect": "Grants the player bonus points upon collection.",
+          "asset_ref": "file-1756947712623",
+          "need_update": false
+        }
+      ],
+      "narrative": {
+        "transition": "The rabbit hops through a shimmering portal of light, finding itself in a cozy indoor space.",
+        "current_story": "The rabbit explores this new setting, jumping on soft pillows and discovering hidden treasures.",
+        "next_story": "As the rabbit ascends, it notices a glowing pathway leading to an even more mysterious and enchanting realm."
+      },
+      "visual_style": "Whimsical impressionistic painting with vibrant pastel colors and soft, textured brushstrokes."
+    }
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-09-04T00:55:54.597Z",
+  "mechanism": "jump",
+  "factory_store": [
+    {
+      "id": "doodle-jump-1756947018829",
+      "content": null,
+      "dataType": "category",
+      "fileUrl": "/baseGames/doodle-jump.png",
+      "tags": [
+        "mechanism"
+      ]
+    },
+    {
+      "id": "file-1756947022563",
+      "content": {
+        "worlds": "A colorful meadow under a blue sky, filled with blooming flowers and cheerful clouds.",
+        "objects": [
+          "A green cartoon dinosaur with a long neck adorned with colorful flowers and a cheerful yellow badge",
+          "A fluffy white cartoon cloud with a smiling face",
+          "A straw hat with a wide brim and brown tones",
+          "A small black cartoon bug with a rounded body and stubby limbs"
+        ],
+        "events": "The dinosaur is standing in the flower-filled meadow, surrounded by cheerful clouds, bugs, and objects like a straw hat.",
+        "style": "Whimsical and painterly illustration with vibrant colors and a dreamy atmosphere."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/daec77cd28464d71a5d54427d12ab91c.jpg",
+      "tags": []
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+Generate detailed object configurations for a jumping/platformer game based on the following context:
+
+**Game Description:**
+{game_description}
+
+**Platform Descriptions:**
+{platform_descriptions}
+
+**Collectable Descriptions:**
+{collectable_descriptions}
+
+**Visual Style:** {visual_style}
+
+Based on this context, generate a complete ObjectConfig with the following considerations:
+
+1. **Platform Configurations**:
+   - Sizes should vary to create interesting level layouts (typically 1-4 units wide)
+   - Movement ranges should create dynamic but fair challenges
+   - Movement speeds should be predictable and learnable (0.5-3.0)
+   - Disappear mechanics should add tension without being unfair
+   - Bounce multipliers should enhance gameplay flow (1.0-2.0)
+
+2. **Collectable Configurations**:
+   - Sizes should be visible but not overwhelming (0.3-0.8)
+   - Float animations should be appealing and noticeable
+   - Emissive intensity should make them attractive to collect (0.5-2.0)
+   - Effects should provide meaningful gameplay benefits
+   - Dialogue chances should balance story with gameplay flow (0.1-0.4)
+
+3. **Gameplay Balance**:
+   - Objects should support the narrative and visual style
+   - Difficulty should progress appropriately
+   - All values should create engaging and fair gameplay
+
+Ensure all configurations create a cohesive gameplay experience that matches the game's story and visual aesthetic.

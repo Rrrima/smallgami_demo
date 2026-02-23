@@ -1,0 +1,884 @@
+# Game Asset Generation Task
+
+You are a 3D game asset designer creating cute, minimalist objects using composite parts. Your job is to generate JSON configurations for assets composed of basic shapes (softbox, cylinder, sphere, box).
+
+
+Create a CompositeObject that represents this. The object should be built from basic geometric primitives:
+- Boxes (for cubic/rectangular shapes)
+- Spheres (for round shapes)
+- Cylinders (for cylindrical shapes)
+- Softboxes (for rounded boxes with beveled edges)
+
+Guidelines:
+1. Break down the object into simple parts
+2. Use appropriate materials (colors, metallic, roughness) to make it visually distinct
+3. Position and scale parts correctly to form a cohesive object
+4. Use the coordinate system: Y is up, X is right, Z is forward
+5. Keep transforms relative to a centered origin (0,0,0)
+6. Use realistic proportions and scales (typical object size: 1-5 units)
+7. The rotation is applied as an rotation transformation to the object
+8. you should make sure you generate a SINGLE, STANDALONE object, do not attach any platform to it!! no ground!!!
+
+When you specify softbox parameters:
+- `width`, `height`, `depth` are the HALF-dimensions from the center
+- The actual mesh extends from `-dimension` to `+dimension` in each direction
+- `radius` is ADDED to create rounded corners (in normal mode) or stretches the shape (in stretch mode)
+
+**Example:**
+  width: 0.5,    // Mesh extends from -0.5 to +0.5 on X-axis (total width ≈ 1.0)
+  height: 0.6,   // Mesh extends from -0.6 to +0.6 on Y-axis (total height ≈ 1.2)
+  radius: 0.3    // Adds rounding, making it slightly larger
+
+**For Asymmetric dimensions:**
+- `heightTop` and `heightBottom` control the top and bottom halves separately
+- Total height span = heightTop (upward) + heightBottom (downward)
+
+
+## Examples
+
+### Example 1: Mushroom Character
+
+**Input:** "Create a cute mushroom character"
+
+**Output:**
+{
+  "name": "Cute Mushroom Character",
+  "description": "Adorable mushroom with big cap and small body",
+  "parts": [
+    {
+      "type": "softbox",
+      "name": "cap",
+      "softboxOptions": {
+        "width": 1.1,
+        "height": 1,
+        "depth": 1.1,
+        "radius": 0.5,
+        "heightTop": 0.8,
+        "heightBottom": 0.4,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.95, 0.5, 0.4],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 1.35, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "spot_1",
+      "sphereOptions": {
+        "diameter": 0.35,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.98, 0.96, 0.93],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [-0.25, 2, 0.3],
+        "rotation": [0, 0, 0],
+        "scale": [1.2, 0.4, 1]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "body",
+      "softboxOptions": {
+        "width": 0.4,
+        "height": 0.45,
+        "depth": 0.35,
+        "radius": 0.5,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.98, 0.95, 0.9],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0, 0.6, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_left",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.1, 0.1],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [-0.18, 0.75, 0.38],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_right",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.1, 0.1],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0.18, 0.75, 0.38],
+        "rotation": [0, 0, 0]
+      }
+    }
+  ]
+}
+
+
+### Example 2: Bear Character
+
+**Input:** "Create a cute bear character"
+
+**Output:**
+{
+  "name": "Cute Bear Character",
+  "description": "Adorable round bear with soft features",
+  "parts": [
+    {
+      "type": "softbox",
+      "name": "body",
+      "softboxOptions": {
+        "width": 0.6,
+        "height": 0.7,
+        "depth": 0.5,
+        "radius": 0.4,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.7, 0.5, 0.35],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0, 0.7, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "head",
+      "softboxOptions": {
+        "width": 0.5,
+        "height": 0.5,
+        "depth": 0.45,
+        "radius": 0.35,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.7, 0.5, 0.35],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0, 1.55, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "ear_left",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.18,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.7, 0.5, 0.35],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [-0.4, 1.95, 0],
+        "rotation": [0, 0, -0.3]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "ear_right",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.18,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.7, 0.5, 0.35],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0.4, 1.95, 0],
+        "rotation": [0, 0, 0.3]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "snout",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.2,
+        "depth": 0.18,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.85, 0.7, 0.55],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0, 1.4, 0.45],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "nose",
+      "sphereOptions": {
+        "diameter": 0.12,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.15, 0.1, 0.08],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "transform": {
+        "position": [0, 1.42, 0.6],
+        "rotation": [0, 0, 0],
+        "scale": [1, 0.8, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_left",
+      "sphereOptions": {
+        "diameter": 0.1,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.1, 0.1],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [-0.18, 1.6, 0.4],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_right",
+      "sphereOptions": {
+        "diameter": 0.1,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.1, 0.1],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0.18, 1.6, 0.4],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "arm_left",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.35,
+        "depth": 0.14,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.7, 0.5, 0.35],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [-0.55, 0.8, 0],
+        "rotation": [0, 0, -0.2]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "arm_right",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.35,
+        "depth": 0.14,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.7, 0.5, 0.35],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0.55, 0.8, 0],
+        "rotation": [0, 0, 0.2]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "belly",
+      "softboxOptions": {
+        "width": 0.35,
+        "height": 0.4,
+        "depth": 0.2,
+        "radius": 0.25,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.85, 0.7, 0.55],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0, 0.65, 0.35],
+        "rotation": [0, 0, 0]
+      }
+    }
+  ]
+}
+
+
+### Example 3: Cactus in Pot
+
+**Input:** "Create a cactus in a pot with a flower on top"
+
+**Output:**
+{
+  "name": "Cute Cactus in Pot",
+  "description": "Round cactus with flower in terracotta pot",
+  "parts": [
+    {
+      "type": "cylinder",
+      "name": "pot",
+      "cylinderOptions": {
+        "height": 0.6,
+        "diameterTop": 1.2,
+        "diameterBottom": 0.8,
+        "tessellation": 20
+      },
+      "material": {
+        "albedoColor": [0.85, 0.55, 0.4],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0, 0.3, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "pot_rim",
+      "cylinderOptions": {
+        "height": 0.1,
+        "diameterTop": 1.2,
+        "diameterBottom": 1.2,
+        "tessellation": 20
+      },
+      "material": {
+        "albedoColor": [0.85, 0.55, 0.4],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0, 0.64, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "cactus_body",
+      "softboxOptions": {
+        "width": 0.65,
+        "height": 0.7,
+        "depth": 0.65,
+        "heightTop": 0.65,
+        "heightBottom": 0.7,
+        "radius": 0.45,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.5, 0.75, 0.55],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0, 1.1, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "spine_1",
+      "sphereOptions": {
+        "diameter": 0.12,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.5, 0.75, 0.55],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [-0.45, 1.3, 0],
+        "rotation": [0, 0, 0],
+        "scale": [0.7, 0.7, 1.2]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "flower_center",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.95, 0.85, 0.5],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "transform": {
+        "position": [0, 1.72, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 0.6, 1]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_1",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.05,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.95, 0.6, 0.5],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [0, 1.72, 0.22],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_2",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.05,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.95, 0.6, 0.5],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [0.21, 1.72, 0.07],
+        "rotation": [0, 1.256, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_3",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.05,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.95, 0.6, 0.5],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [0.13, 1.72, -0.18],
+        "rotation": [0, 2.512, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_4",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.05,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.95, 0.6, 0.5],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [-0.13, 1.72, -0.18],
+        "rotation": [0, 3.768, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "petal_5",
+      "softboxOptions": {
+        "width": 0.15,
+        "height": 0.05,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [0.95, 0.6, 0.5],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [-0.21, 1.72, 0.07],
+        "rotation": [0, 5.024, 0]
+      }
+    }
+  ]
+}
+
+### Example 4: Succulent in Pot
+
+**Input:** "Create a succulent plant in a pot"
+
+**Output:**
+  "name": "Cute Succulent in Pot",
+  "description": "Layered succulent with rosette leaves in terracotta pot",
+  "parts": [
+    {
+      "type": "cylinder",
+      "name": "pot",
+      "cylinderOptions": {
+        "height": 0.5,
+        "diameterTop": 1.0,
+        "diameterBottom": 0.7,
+        "tessellation": 20
+      },
+      "material": {
+        "albedoColor": [0.88, 0.6, 0.45],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0, 0.25, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "pot_rim",
+      "cylinderOptions": {
+        "height": 0.08,
+        "diameterTop": 1.05,
+        "diameterBottom": 1.0,
+        "tessellation": 20
+      },
+      "material": {
+        "albedoColor": [0.88, 0.6, 0.45],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0, 0.54, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_1",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.45, 0.65, 0.5],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 0.62, 0.35],
+        "rotation": [-0.2, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_2",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.45, 0.65, 0.5],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0.3, 0.62, 0.17],
+        "rotation": [-0.2, 1.047, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_3",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.45, 0.65, 0.5],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0.3, 0.62, -0.17],
+        "rotation": [-0.2, 2.094, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_4",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.45, 0.65, 0.5],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 0.62, -0.35],
+        "rotation": [-0.2, 3.14, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_5",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.45, 0.65, 0.5],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [-0.3, 0.62, -0.17],
+        "rotation": [-0.2, 4.188, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_6",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.45, 0.65, 0.5],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [-0.3, 0.62, 0.17],
+        "rotation": [-0.2, 5.236, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_1",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.55, 0.75, 0.6],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 0.78, 0.22],
+        "rotation": [-0.4, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_2",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.55, 0.75, 0.6],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0.21, 0.78, 0.11],
+        "rotation": [-0.4, 1.256, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_3",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.55, 0.75, 0.6],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0.13, 0.78, -0.18],
+        "rotation": [-0.4, 2.512, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_top_1",
+      "softboxOptions": {
+        "width": 0.16,
+        "height": 0.12,
+        "depth": 0.28,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.65, 0.82, 0.7],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 0.95, 0.12],
+        "rotation": [-0.6, 0, 0]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_top_2",
+      "softboxOptions": {
+        "width": 0.16,
+        "height": 0.12,
+        "depth": 0.28,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [0.65, 0.82, 0.7],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0.12, 0.95, 0],
+        "rotation": [-0.6, 1.57, 0]
+      }
+    }
+  ]
+
+
+## Your Task
+
+Generate a complete CompositeObject JSON configuration for: ____USER_MESSAGE____
+
+Remember:
+1. Calculate all positions carefully - features must be ON surfaces, not floating
+2. Keep it minimal - fewer parts with gestalt principles
+3. If you can use basic shapes, use basic shape, Use softbox only when needed!
+4. The rotation is applied directly as Euler angles to the mesh, not as quaternions or axis-angle rotations
+5. you should make sure you generate a SINGLE, STANDALONE object, do NOT attach any platform to it!! NO ground!!!

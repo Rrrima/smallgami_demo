@@ -1,0 +1,635 @@
+// Light minimalist theme
+$bg-primary: #ffffff;
+$bg-secondary: #f8f9fa;
+$bg-tertiary: #f1f3f5;
+$text-primary: #1a1a1a;
+$text-secondary: #6c757d;
+$accent: #007aff;
+$accent-hover: #0051d5;
+$border: #e9ecef;
+
+$spacing-xs: 4px;
+$spacing-sm: 6px;
+$spacing-md: 8px;
+$spacing-lg: 12px;
+$spacing-xl: 16px;
+
+$radius-sm: 4px;
+$radius-md: 6px;
+
+.chat-panel-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: $spacing-md;
+  align-items: center;
+  justify-content: center;
+}
+.preview-window {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.183);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 800px;
+  max-width: 80%;
+  margin-bottom: 20px;
+
+  background: rgba(255, 255, 255, 0.183);
+  border-radius: 12px;
+
+  .chat-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: $spacing-lg;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    h3 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: $text-primary;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .chat-status {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      font-size: 10px;
+      color: $text-secondary;
+
+      .status-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #34c759;
+        animation: pulse 2s ease-in-out infinite;
+      }
+    }
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: $spacing-lg;
+    overflow-y: auto;
+    min-height: 0;
+
+    .empty-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      p {
+        color: $text-secondary;
+        font-size: 11px;
+        text-align: center;
+        margin: 0;
+      }
+    }
+
+    .message {
+      margin-bottom: $spacing-md;
+      max-width: 85%;
+      animation: messageSlideIn 0.2s ease-out;
+      transition: transform 0.15s ease;
+
+      &.has-asset {
+        &:hover {
+          transform: translateX(-2px);
+
+          .message-content {
+            box-shadow:
+              0 4px 12px rgba(0, 122, 255, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          }
+        }
+
+        &:active {
+          transform: translateX(-1px);
+        }
+      }
+
+      &.user {
+        margin-left: auto;
+
+        .message-content {
+          background: linear-gradient(135deg, #ffffff 0%, #efefef 100%);
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 20px 20px 4px 20px;
+        }
+      }
+
+      &.assistant {
+        .message-content {
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(240, 248, 255, 0.95) 100%
+          );
+          border: 1px solid rgba(147, 197, 253, 0.3);
+          border-radius: 20px 20px 20px 4px;
+          box-shadow:
+            0 4px 8px rgba(170, 202, 255, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            inset 0 0 20px rgba(147, 197, 253, 0.05);
+        }
+      }
+
+      &.system {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90%;
+        text-align: center;
+
+        .message-content {
+          background: rgba(108, 117, 125, 0.1);
+          border: 1px solid rgba(108, 117, 125, 0.2);
+          border-radius: 12px;
+          color: $text-secondary;
+          font-size: 10px;
+          font-style: italic;
+          padding: $spacing-sm $spacing-md;
+        }
+      }
+
+      .message-content {
+        padding: $spacing-md $spacing-lg;
+        font-size: 11px;
+        line-height: 1.5;
+        word-wrap: break-word;
+
+        // Markdown styling
+        p {
+          margin: 0 0 $spacing-md 0;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin: $spacing-lg 0 $spacing-md 0;
+          font-weight: 600;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+        h1 {
+          font-size: 16px;
+        }
+        h2 {
+          font-size: 14px;
+        }
+        h3 {
+          font-size: 13px;
+        }
+        h4,
+        h5,
+        h6 {
+          font-size: 12px;
+        }
+
+        ul,
+        ol {
+          margin: $spacing-md 0;
+          padding-left: 20px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        li {
+          margin: $spacing-xs 0;
+        }
+
+        strong,
+        b {
+          font-weight: 600;
+          color: $text-primary;
+        }
+
+        em,
+        i {
+          font-style: italic;
+        }
+
+        code {
+          background: rgba(0, 0, 0, 0.05);
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 3px;
+          padding: 1px 4px;
+          font-family: 'Monaco', 'Courier New', monospace;
+          font-size: 10px;
+        }
+
+        pre {
+          background: rgba(0, 0, 0, 0.05);
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: $radius-sm;
+          padding: $spacing-md;
+          margin: $spacing-md 0;
+          overflow-x: auto;
+
+          code {
+            background: none;
+            border: none;
+            padding: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        blockquote {
+          border-left: 3px solid rgba(0, 122, 255, 0.3);
+          padding-left: $spacing-md;
+          margin: $spacing-md 0;
+          color: $text-secondary;
+          font-style: italic;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        a {
+          color: $accent;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        hr {
+          border: none;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          margin: $spacing-lg 0;
+        }
+
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          margin: $spacing-md 0;
+          font-size: 10px;
+
+          th,
+          td {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: $spacing-sm $spacing-md;
+            text-align: left;
+          }
+
+          th {
+            background: rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .chat-input-container {
+    display: flex;
+    padding: $spacing-lg;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    align-items: flex-end;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.4);
+    margin: 6px 10px;
+    border-radius: 12px;
+    gap: $spacing-sm;
+    position: relative;
+
+    .uploaded-image-preview {
+      width: 100%;
+      max-width: 150px;
+      position: relative;
+      margin-bottom: $spacing-sm;
+      border-radius: $radius-sm;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+
+      .preview-img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .remove-image-btn {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 2;
+
+        &:hover {
+          background: rgba(255, 0, 0, 0.8);
+          transform: scale(1.1);
+        }
+      }
+
+      .interpreting-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 11px;
+        font-weight: 500;
+      }
+    }
+
+    .chat-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: $radius-sm;
+      color: $text-primary;
+      font-family:
+        'Barlow',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+      scrollbar-width: none;
+      resize: none;
+      outline: none;
+      transition: border-color 0.15s ease;
+      max-height: 80px;
+      min-height: 60px;
+
+      &:focus {
+        border-color: rgba(0, 122, 255, 0);
+        // background: rgba(255, 255, 255, 0.6);
+      }
+
+      &::placeholder {
+        color: $text-secondary;
+      }
+    }
+
+    .input-controls {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+    }
+
+    .upload-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: $text-secondary;
+      cursor: pointer;
+      flex-shrink: 0;
+      border-radius: $radius-sm;
+      transition: all 0.2s ease;
+
+      &:hover:not(:disabled) {
+        background: rgba(0, 122, 255, 0.1);
+        color: $accent;
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+    }
+
+    .history-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: $text-secondary;
+      padding: 4px 6px;
+      cursor: pointer;
+      flex-shrink: 0;
+      border-radius: $radius-sm;
+      outline: none;
+
+      &:hover:not(:disabled) {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      &.active {
+        color: $accent;
+
+        &:hover:not(:disabled) {
+          background: rgba($accent, 0.1);
+        }
+      }
+    }
+
+    .model-selector {
+      position: relative;
+      flex: 0 0 auto;
+
+      .model-selector-trigger {
+        background: transparent;
+        border: none;
+        border-radius: $radius-sm;
+        color: $text-secondary;
+        font-family:
+          'Barlow',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        font-size: 11px;
+        padding: 4px 6px;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.2s ease;
+        height: 28px;
+
+        &:hover:not(:disabled) {
+          color: $text-primary;
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+      }
+
+      .model-dropdown {
+        position: absolute;
+        bottom: calc(100% + 4px);
+        left: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: $radius-md;
+        box-shadow:
+          0 4px 24px rgba(0, 0, 0, 0.08),
+          0 0 0 1px rgba(255, 255, 255, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        padding: 4px;
+        min-width: 140px;
+        z-index: 1000;
+        animation: dropdownSlideUp 0.15s ease-out;
+
+        .model-option {
+          width: 100%;
+          background: transparent;
+          border: none;
+          border-radius: $radius-sm;
+          color: $text-primary;
+          font-family:
+            'Barlow',
+            -apple-system,
+            BlinkMacSystemFont,
+            'Segoe UI',
+            Roboto,
+            sans-serif;
+          font-size: 11px;
+          padding: 6px 8px;
+          cursor: pointer;
+          outline: none;
+          text-align: left;
+          transition: all 0.15s ease;
+
+          &:hover:not(:disabled) {
+            background: rgba(0, 122, 255, 0.08);
+            color: $accent;
+          }
+
+          &.selected {
+            color: $accent;
+            font-weight: 500;
+          }
+
+          &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .send-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: $accent;
+      cursor: pointer;
+      flex-shrink: 0;
+      border-radius: $radius-sm;
+
+      &:hover:not(:disabled) {
+        background: rgba($accent, 0.1);
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      svg {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+
+@keyframes dropdownSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

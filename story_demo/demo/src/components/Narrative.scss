@@ -1,0 +1,83 @@
+@use 'sass:color';
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+// Black & white paper
+$ink: #333;
+$ink-light: #aaa;
+$border: #333;
+$border-w: 2px;
+
+.cohesive-narrative-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.transition-sentence {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  font-weight: 500;
+  color: $ink;
+  text-align: center;
+  padding: 8px 12px;
+  margin: 0 12px;
+  border-radius: 2px;
+  background: transparent;
+  border: 1.5px dashed rgba(0, 0, 0, 0.12);
+  opacity: 0.9;
+  animation: fadeInSlide 0.5s ease-out;
+
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+}
+
+.cohesive-narrative {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 2px;
+  margin: 0 12px 8px;
+  flex-shrink: 0;
+
+  .narrative-text {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 500;
+    color: $ink;
+    opacity: 0.85;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .narrative-slot {
+    padding: 1px 6px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.03);
+    border: none;
+    border-bottom: $border-w solid $border;
+    font-weight: 600;
+    color: $ink;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    white-space: nowrap;
+
+    &:hover,
+    &.highlighted {
+      background: rgba(0, 0, 0, 0.07);
+      transform: translateY(-1px);
+    }
+  }
+}

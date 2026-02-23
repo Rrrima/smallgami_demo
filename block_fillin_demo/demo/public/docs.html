@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmallGami DSL Reference</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          'Barlow',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+        background: #f8f9fa;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .navbar {
+        padding: 16px 32px;
+        z-index: 100;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
+      }
+
+      .navbar-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+      }
+
+      .navbar-subtitle {
+        font-size: 13px;
+        color: #6c757d;
+        margin-top: 2px;
+      }
+
+      .main-container {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        /* align-items: center; */
+        justify-content: center;
+        padding-bottom: 40px;
+      }
+
+      .sidebar {
+        width: 160px;
+
+        overflow-y: auto;
+        padding: 24px 0;
+        flex-shrink: 0;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+      }
+
+      .sidebar-title {
+        font-size: 11px;
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 0 20px;
+        margin-bottom: 12px;
+      }
+
+      .nav-section {
+        margin-bottom: 4px;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 8px 20px;
+        color: #1a1a1a;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.15s ease;
+        border-left: 2px solid transparent;
+      }
+
+      .nav-link:hover {
+        background: #f1f3f5;
+        color: #007aff;
+      }
+
+      .nav-link.active {
+        color: #007aff;
+        background: rgba(0, 122, 255, 0.08);
+        border-left-color: #007aff;
+        font-weight: 500;
+      }
+
+      .nav-sublink {
+        display: block;
+        padding: 6px 20px 6px 36px;
+        color: #6c757d;
+        text-decoration: none;
+        font-size: 13px;
+        transition: all 0.15s ease;
+      }
+
+      .nav-sublink:hover {
+        color: #007aff;
+        background: #f8f9fa;
+      }
+
+      .container {
+        flex: 1;
+        overflow-y: auto;
+        background: transparent;
+        padding: 40px;
+        text-align: left;
+      }
+
+      .container::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .container::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+      }
+
+      #content {
+        text-align: left;
+        /* background: white; */
+        border-radius: 8px;
+        /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */
+        max-width: 900px;
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        color: #1a1a1a;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 12px;
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-top: 32px;
+        margin-bottom: 16px;
+        color: #1a1a1a;
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 24px;
+        margin-bottom: 12px;
+        color: #1a1a1a;
+      }
+
+      h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 20px;
+        margin-bottom: 8px;
+        color: #007aff;
+      }
+
+      p {
+        margin-bottom: 16px;
+        color: #1a1a1a;
+      }
+
+      code {
+        background: #f1f3f5;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family:
+          'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+        font-size: 13px;
+        color: #d63384;
+      }
+
+      pre {
+        background: #1a1a1a;
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+
+      pre code {
+        background: transparent;
+        color: #a9b7c6;
+        padding: 0;
+      }
+
+      ul,
+      ol {
+        margin-left: 24px;
+        margin-bottom: 16px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid #e9ecef;
+        margin: 24px 0;
+      }
+
+      strong {
+        font-weight: 600;
+        color: #0762d1;
+      }
+
+      blockquote {
+        border-left: 4px solid #007aff;
+        padding-left: 16px;
+        margin: 16px 0;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 16px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      th {
+        background: #f1f3f5;
+        font-weight: 600;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-title">SmallGami DSL Reference</div>
+      <div class="navbar-subtitle">Game Configuration Documentation</div>
+    </nav>
+    <div class="main-container">
+      <aside class="sidebar">
+        <div class="sidebar-title">Contents</div>
+        <nav id="toc"></nav>
+      </aside>
+      <div class="container">
+        <div id="content" class="loading">Loading documentation...</div>
+      </div>
+    </div>
+
+    <script>
+      async function loadMarkdown() {
+        try {
+          const response = await fetch('/GAME_DSL_CONFIG_REFERENCE.md');
+          const text = await response.text();
+          const html = marked.parse(text);
+          document.getElementById('content').innerHTML = html;
+
+          // Generate table of contents
+          generateTOC();
+
+          // Add smooth scrolling
+          setupScrolling();
+        } catch (error) {
+          document.getElementById('content').innerHTML =
+            '<p style="color: #cf222e;">Error loading documentation: ' +
+            error.message +
+            '</p>';
+        }
+      }
+
+      function generateTOC() {
+        const content = document.getElementById('content');
+        const headings = content.querySelectorAll('h1, h2');
+        const toc = document.getElementById('toc');
+
+        let currentH1 = null;
+
+        headings.forEach((heading, index) => {
+          // Add ID to heading for anchor links
+          const id = 'section-' + index;
+          heading.id = id;
+
+          const link = document.createElement('a');
+          link.href = '#' + id;
+          link.textContent = heading.textContent;
+
+          if (heading.tagName === 'H1') {
+            link.className = 'nav-link';
+            currentH1 = document.createElement('div');
+            currentH1.className = 'nav-section';
+            currentH1.appendChild(link);
+            toc.appendChild(currentH1);
+          } else if (heading.tagName === 'H2' && currentH1) {
+            link.className = 'nav-sublink';
+            currentH1.appendChild(link);
+          }
+        });
+      }
+
+      function setupScrolling() {
+        const links = document.querySelectorAll('.nav-link, .nav-sublink');
+        const container = document.querySelector('.container');
+
+        links.forEach(link => {
+          link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+
+            if (target) {
+              // Remove active class from all links
+              links.forEach(l => l.classList.remove('active'));
+              // Add active class to clicked link
+              link.classList.add('active');
+
+              // Scroll to target
+              const containerRect = container.getBoundingClientRect();
+              const targetRect = target.getBoundingClientRect();
+              const scrollTop = container.scrollTop;
+              const offset =
+                targetRect.top - containerRect.top + scrollTop - 20;
+
+              container.scrollTo({
+                top: offset,
+                behavior: 'smooth',
+              });
+            }
+          });
+        });
+
+        // Highlight active section on scroll
+        container.addEventListener('scroll', () => {
+          const headings = document.querySelectorAll(
+            '#content h1, #content h2'
+          );
+          let activeHeading = null;
+
+          headings.forEach(heading => {
+            const rect = heading.getBoundingClientRect();
+            if (rect.top <= 100 && rect.top >= -100) {
+              activeHeading = heading;
+            }
+          });
+
+          if (activeHeading) {
+            links.forEach(l => l.classList.remove('active'));
+            const activeLink = document.querySelector(
+              `a[href="#${activeHeading.id}"]`
+            );
+            if (activeLink) activeLink.classList.add('active');
+          }
+        });
+      }
+
+      loadMarkdown();
+    </script>
+  </body>
+</html>

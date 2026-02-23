@@ -1,0 +1,385 @@
+// Light minimalist theme with Barlow font
+$bg-primary: #e7e7e7;
+$bg-secondary: #f8f9fa;
+$bg-tertiary: #f1f3f5;
+$text-primary: #1a1a1a;
+$text-secondary: #6c757d;
+$accent: #007aff;
+$accent-hover: #0051d5;
+$border: #e9ecef;
+$border-light: #dee2e6;
+$shadow: rgba(0, 0, 0, 0.05);
+
+// Compact spacing
+$spacing-xs: 4px;
+$spacing-sm: 6px;
+$spacing-md: 8px;
+$spacing-lg: 12px;
+$spacing-xl: 16px;
+
+// Minimal border radius
+$radius-sm: 4px;
+$radius-md: 12px;
+$radius-lg: 20px;
+
+.app-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: $bg-primary;
+  color: $text-primary;
+  font-family:
+    'Barlow',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  overflow: hidden;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  box-sizing: border-box;
+
+  // Left Panel - 25% width (narrower)
+  .left-panel {
+    width: 400px;
+    max-width: 20vw;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    min-height: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  .right-panel {
+    width: 400px;
+    max-width: 20vw;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    min-height: 0;
+    box-sizing: border-box;
+
+    .dsl-editor-section {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      pointer-events: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chat-section {
+      height: 240px;
+      background: $bg-secondary;
+      border-radius: $radius-md;
+      overflow: hidden;
+      border: 1px solid $border;
+    }
+  }
+
+  // Middle Panel - 75% width
+  .middle-panel {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+
+    gap: $spacing-md;
+    box-sizing: border-box;
+
+    .game-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: $spacing-lg;
+
+      select {
+        background: rgba(255, 255, 255, 0.183);
+        backdrop-filter: blur(3px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: $radius-lg;
+        padding: 10px 20px;
+        font-family:
+          'Barlow',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: $text-primary;
+        cursor: pointer;
+        box-shadow:
+          0px 1px 0px rgba(255, 255, 255, 0.182) inset,
+          0px 1.5px 10px rgba(237, 237, 237, 0.1) inset,
+          0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.15s ease;
+        outline: none;
+        appearance: none;
+        padding-right: 36px;
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.25);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        &:focus {
+          border-color: rgba($accent, 0.5);
+          background: rgba(255, 255, 255, 0.3);
+          box-shadow:
+            0px 1px 0px rgba(255, 255, 255, 0.182) inset,
+            0px 1.5px 10px rgba(237, 237, 237, 0.1) inset,
+            0px 0px 10px rgba(0, 0, 0, 0.1),
+            0 0 0 3px rgba($accent, 0.1);
+        }
+
+        option {
+          background: #ffffff;
+          color: $text-primary;
+          padding: 8px;
+        }
+      }
+    }
+
+    .game-canvas-section {
+      flex: 1;
+      min-height: 0;
+      padding: 60px 150px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-window-section {
+      flex-shrink: 0;
+      border-radius: $radius-md;
+      overflow: hidden;
+      border: 1px solid $border;
+    }
+
+    @media (max-width: 2000px) {
+      .game-canvas-section {
+        padding: 60px 100px;
+      }
+    }
+
+    .toolbar-section {
+      padding-bottom: 1vh;
+    }
+  }
+}
+
+.game-container {
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 4/3;
+  max-height: 720px;
+  margin: $spacing-lg;
+  border-radius: $radius-md;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid $border;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  .game-over-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(60, 60, 60, 0.299);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border-radius: $radius-md;
+    color: white;
+    .game-over-text {
+      font-family:
+        'Barlow',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: $text-primary;
+      margin-bottom: $spacing-sm;
+    }
+    .game-over-score {
+      font-family:
+        'Barlow',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: black;
+      margin-bottom: $spacing-lg;
+    }
+    .game-over-restart-button {
+      background: black;
+      color: white;
+      border: 1px solid transparent;
+      border-radius: $radius-sm;
+      padding: $spacing-sm $spacing-md;
+      font-family:
+        'Barlow',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 2px 4px $shadow;
+      transition: all 0.15s ease;
+      &:hover {
+        box-shadow: 0 2px 8px rgba($accent, 0.8);
+      }
+    }
+  }
+
+  .game-controls-container {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    z-index: 10;
+
+    .game-control-button {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.183);
+      backdrop-filter: blur(3px);
+      border-radius: 8px;
+      cursor: pointer;
+      color: rgb(215, 215, 215);
+      transition: all 0.2s ease;
+      box-shadow:
+        0px 1px 0px rgba(255, 255, 255, 0.182) inset,
+        0px 1.5px 10px rgba(237, 237, 237, 0.1) inset,
+        0px 0px 10px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        box-shadow:
+          0px 1px 0px rgba(255, 255, 255, 0.3) inset,
+          0px 2px 12px rgba(237, 237, 237, 0.15) inset,
+          0px 2px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0px);
+        background: rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+
+  .gamedata-container {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    gap: 3px;
+    border-radius: 10px;
+    min-width: 60px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: rgb(215, 215, 215);
+    background: rgba(255, 255, 255, 0.183);
+    backdrop-filter: blur(3px);
+    box-shadow:
+      0px 1px 0px rgba(255, 255, 255, 0.182) inset,
+      0px 1.5px 10px rgba(237, 237, 237, 0.1) inset,
+      0px 0px 10px rgba(0, 0, 0, 0.1);
+    .gamedata-lives,
+    .gamedata-score {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      justify-content: center;
+      align-items: center;
+    }
+    .gamedata-score-value {
+      font-weight: 600;
+      color: #ffe598;
+    }
+    .gamedata-lives-value {
+      font-weight: 600;
+      color: #6fa7fc;
+    }
+    .gamedata-lives {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  // Ensure it scales down on smaller screens while maintaining aspect ratio
+  @media (max-width: 1440px) {
+    width: 95%;
+    max-width: 1280px;
+  }
+
+  @media (max-width: 1024px) {
+    width: 90%;
+    max-width: 900px;
+  }
+
+  @media (max-width: 768px) {
+    width: 95%;
+    max-width: 700px;
+  }
+
+  @media (max-width: 480px) {
+    width: 98%;
+    margin: $spacing-sm;
+  }
+}
+
+// Minimal scrollbar styling
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $border-light;
+  border-radius: 3px;
+
+  &:hover {
+    background: $text-secondary;
+  }
+}

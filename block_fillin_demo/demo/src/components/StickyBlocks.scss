@@ -1,0 +1,657 @@
+// Import variables from main styles
+@use 'sass:color';
+
+$bg-primary: #e7e7e7;
+$bg-secondary: #f8f9fa;
+$text-primary: #1a1a1a;
+$text-secondary: #6c757d;
+$accent: #007aff;
+$border: #e9ecef;
+$radius-md: 12px;
+$spacing-sm: 6px;
+$spacing-md: 8px;
+$spacing-lg: 12px;
+
+// Import handwriting font
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+.sticky-blocks-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.change-everything-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: $spacing-lg;
+  padding-top: $spacing-md;
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0px 1px 0px rgba(255, 255, 255, 0.4) inset,
+    0px 2px 12px rgba(255, 255, 255, 0.15) inset,
+    0px 2px 8px rgba(0, 0, 0, 0.05);
+  outline: none;
+
+  span {
+    font-family:
+      'Barlow',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-primary;
+    opacity: 0.7;
+    letter-spacing: 0.3px;
+  }
+
+  svg {
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow:
+      0px 2px 0px rgba(255, 255, 255, 0.5) inset,
+      0px 3px 15px rgba(255, 255, 255, 0.2) inset,
+      0px 6px 24px rgba(0, 0, 0, 0.1);
+
+    span {
+      opacity: 0.9;
+    }
+
+    svg {
+      opacity: 0.8;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+  }
+
+  &.active {
+    background: rgba($accent, 0.2);
+    border-color: rgba($accent, 0.4);
+
+    span {
+      color: $accent;
+      opacity: 1;
+    }
+
+    svg {
+      color: $accent;
+      opacity: 1;
+    }
+
+    &:hover {
+      background: rgba($accent, 0.3);
+      border-color: rgba($accent, 0.5);
+    }
+  }
+}
+
+.sticky-blocks-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  padding-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+
+.sticky-block {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0px 1px 0px rgba(255, 255, 255, 0.4) inset,
+    0px 2px 12px rgba(255, 255, 255, 0.15) inset,
+    0px 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 120px;
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow:
+      0px 2px 0px rgba(255, 255, 255, 0.5) inset,
+      0px 3px 15px rgba(255, 255, 255, 0.2) inset,
+      0px 6px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+  }
+
+  &.narrative-highlighted {
+    background: rgba($accent, 0.15);
+
+    border: none;
+    border-color: transparent;
+    transform: translateY(-4px);
+    box-shadow:
+      0px 1px 0px rgba(255, 255, 255, 0.1) inset,
+      0px 4px 16px rgba($accent, 0.2);
+
+    .sticky-block-title,
+    .sticky-block-content,
+    .sticky-block-textarea {
+      color: color.adjust($accent, $lightness: -15%);
+    }
+  }
+
+  &.locked {
+    cursor: not-allowed;
+    opacity: 0.75;
+    background: rgba(255, 255, 255, 0.026);
+
+    .sticky-block-content-wrapper {
+      pointer-events: none;
+    }
+  }
+
+  &.generating {
+    pointer-events: none;
+    position: relative;
+    animation: bob 1.2s ease-in-out infinite;
+
+    .sticky-block-content-wrapper,
+    .sticky-block-title {
+      opacity: 0.5;
+    }
+
+    .sticky-block-actions {
+      opacity: 0;
+    }
+  }
+}
+
+.generating-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: $radius-md;
+  z-index: 10;
+
+  // Subtle pulsing glow effect
+  animation: pulse-glow 1.2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0px 1px 0px rgba(255, 255, 255, 0.4) inset,
+      0px 2px 12px rgba(255, 255, 255, 0.15) inset,
+      0px 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    box-shadow:
+      0px 2px 0px rgba(255, 255, 255, 0.6) inset,
+      0px 4px 20px rgba(255, 255, 255, 0.3) inset,
+      0px 4px 16px rgba($accent, 0.15);
+  }
+}
+
+.sticky-block-title {
+  font-family:
+    'Barlow',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.object-counter {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.6;
+  letter-spacing: 0.3px;
+}
+
+.sticky-block-content-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.sticky-block-content {
+  font-family:
+    'Barlow',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: $text-primary;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: center;
+  opacity: 0.8;
+  max-width: 100%;
+
+  .uploaded-image-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .remove-image-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+      padding: 0;
+
+      &:hover {
+        background: rgba(220, 38, 38, 0.9);
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    &:hover .remove-image-btn {
+      opacity: 1;
+    }
+
+    .uploaded-image {
+      max-width: 100%;
+      max-height: 120px;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .image-loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+  }
+
+  &.handwriting {
+    font-family: 'Sour Gummy', cursive;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  &:empty::before {
+    content: 'Double click to edit...';
+    color: $text-secondary;
+    opacity: 0.5;
+    font-style: italic;
+  }
+}
+
+.sticky-block-textarea {
+  font-family:
+    'Barlow',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: $text-primary;
+  line-height: 1.5;
+  background: transparent;
+  border: none;
+  padding: 0;
+  resize: none;
+  outline: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  opacity: 0.8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+
+  &.handwriting {
+    font-family: 'Sour Gummy';
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  &::placeholder {
+    color: $text-secondary;
+    opacity: 0.5;
+    font-style: italic;
+  }
+
+  // Add subtle cursor styling
+  &:focus {
+    opacity: 1;
+  }
+}
+
+// Select dropdown styling
+.sticky-block-select {
+  font-family:
+    'Barlow',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: $text-primary;
+  line-height: 1.5;
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  opacity: 0.8;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &.handwriting {
+    font-family: 'Sour Gummy';
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  &:focus {
+    opacity: 1;
+  }
+
+  option {
+    background: rgba(255, 255, 255, 0.95);
+    color: $text-primary;
+    padding: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+  }
+}
+
+// Navigation buttons for object block
+.sticky-block-navigation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 5;
+  padding: 0 8px;
+}
+
+.nav-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: $text-primary;
+  transition: all 0.2s ease;
+  outline: none;
+  padding: 0;
+  pointer-events: all;
+
+  svg {
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+
+    svg {
+      opacity: 0.8;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition: all 0.1s ease;
+  }
+}
+
+// Action buttons that appear on hover
+.sticky-block-actions {
+  position: absolute;
+  bottom: $spacing-md;
+  right: $spacing-md;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.action-btn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.088);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  color: $text-primary;
+  transition: all 0.2s ease;
+  box-shadow:
+    0px 1px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 2px 8px rgba(255, 255, 255, 0.15) inset,
+    0px 2px 6px rgba(0, 0, 0, 0.08);
+  outline: none;
+  padding: 0;
+
+  svg {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.639);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow:
+      0px 2px 0px rgba(255, 255, 255, 0.6) inset,
+      0px 3px 10px rgba(255, 255, 255, 0.2) inset,
+      0px 4px 12px rgba(0, 0, 0, 0.12);
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    transition: all 0.1s ease;
+  }
+
+  &.active {
+    background: rgba($accent, 0.25);
+    border-color: rgba($accent, 0.5);
+    color: $accent;
+
+    svg {
+      opacity: 1;
+    }
+
+    &:hover {
+      background: rgba($accent, 0.35);
+      border-color: rgba($accent, 0.6);
+    }
+  }
+}
+
+// Custom scrollbar for content
+.sticky-block-content-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sticky-block-content-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sticky-block-content-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Responsive layout
+@media (max-width: 1440px) {
+  .sticky-blocks-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .sticky-blocks-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

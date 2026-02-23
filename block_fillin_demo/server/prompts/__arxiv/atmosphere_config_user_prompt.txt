@@ -1,0 +1,97 @@
+Generate a detailed atmosphere configuration for a space invader-style game based on the following context:
+
+**Game Context:**
+- Game Name: __GAME_NAME__
+- Game ID: __GAME_ID__
+- Narrative Theme: __NARRATIVE_THEME__
+
+**World Information:**
+- Visual Style: __VISUAL_STYLE__
+- Visual Type: __VISUAL_TYPE__
+- World Description: __WORLD_DESCRIPTION__
+
+Based on this context, generate a complete GameAtmosphereConfig with the following considerations:
+
+1. **Background Configuration**:
+   - Use 'clearColor' for most space and abstract environments
+   - Use 'skybox' for rich environmental settings (forest, underwater, etc.)
+   - ALWAYS provide clearColor as fallback, even when using skybox
+   - For clearColor: provide RGBA array [r, g, b, a] with values 0-1
+   - For skybox: use 'bg-ms.png' as the texture path
+
+2. **Background Color Guidelines**:
+   - Choose colors that match the visual style and world description
+   - Consider the narrative mood (calm, intense, mysterious, etc.)
+   - Use appropriate contrast for gameplay visibility
+
+3. **Fog Configuration**:
+   - Enable fog to enhance depth and atmosphere
+   - Fog color should complement the background (RGB values 0-1)
+   - Start distance: 50-200 (closer for intimate settings, farther for open spaces)
+   - End distance: 600-1200 (shorter for mysterious/claustrophobic, longer for open)
+   - Mode: typically 'linear' for consistent effects
+
+4. **Fog Color Guidelines**:
+   - Choose fog colors that complement the world atmosphere
+   - Consider the visual style and narrative mood
+   - Use RGB values 0-1 that enhance depth without overwhelming gameplay
+
+5. **Lighting Configuration**:
+   - Intensity: 0.4-0.7 for moody, 0.8-1.5 for clear, 1.5-2.8 for bright/magical
+   - Direction: Typically [0, 1, 0] to [0.3, 1, 0.5] for natural top-down lighting
+   - Position: [0, 40-80, 0-30] for overhead positioning
+   - Diffuse color: RGB values that enhance the theme
+   - Specular color: Usually similar to diffuse but can be different for special effects
+
+6. **Lighting Color Guidelines**:
+   - Choose lighting colors that match the world description and visual style
+   - Consider the narrative mood and atmosphere
+   - Balance illumination with atmospheric immersion
+
+Ensure the atmosphere creates immersive environmental context that supports both the narrative mood and gameplay visibility.
+
+examples:
+this is the atmosphere config for the sky:
+ "atmosphere": {
+    "background": {
+      "type": "clearColor",
+      "clearColor": [0.05, 0.05, 0.15, 1]
+    },
+    "fog": {
+      "enabled": true,
+      "color": [0.95, 0.05, 0.15],
+      "start": 100,
+      "end": 1000,
+      "mode": "linear"
+    },
+    "lighting": {
+      "intensity": 1,
+      "direction": [0, 1, 0],
+      "position": [0, 50, 0],
+      "diffuse": [1, 1, 1],
+      "specular": [1, 1, 1]
+    }
+  }
+  this is for the ocean:
+  "atmosphere": {
+    "background": {
+      "type": "skybox",
+      "skybox": {
+        "texture": "/texture/mc-deepocean2.png"
+      }
+    },
+    "fog": {
+      "enabled": true,
+      "color": [0.2, 0.5, 0.7],
+      "start": 50,
+      "end": 1000,
+      "mode": "linear"
+    },
+    "lighting": {
+      "intensity": 2,
+      "direction": [0, 1, 0.2],
+      "position": [0, 80, 10],
+      "diffuse": [0.4, 0.7, 1],
+      "specular": [0.6, 0.9, 1]
+    }
+  }

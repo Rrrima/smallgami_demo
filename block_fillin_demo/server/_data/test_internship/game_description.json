@@ -1,0 +1,140 @@
+[
+  {
+    "id": "initialize",
+    "content": {
+      "player": {
+        "description": "A green plush dinosaur toy with a rounded body, stubby arms and legs, and a light yellow belly patch.",
+        "asset_ref": "file-1756881061680",
+        "need_update": true
+      },
+      "world": {
+        "description": "A modern office setting with desks, chairs, and various office supplies.",
+        "asset_ref": "file-1756881070744",
+        "need_update": true
+      },
+      "platforms": [
+        {
+          "description": "A black ergonomic office chair with a high back and padding.",
+          "behavior": "Static platform, providing stable footing.",
+          "effect": "Allows the player to jump higher.",
+          "asset_ref": "file-1756881070744",
+          "need_update": true
+        },
+        {
+          "description": "A plain white ceramic coffee mug.",
+          "behavior": "Wobbly platform, tilts when landed upon.",
+          "effect": "Adds a slight bounce to the jump.",
+          "asset_ref": "file-1756881070744",
+          "need_update": true
+        }
+      ],
+      "collectables": [
+        {
+          "description": "A rolled cake slice with a golden brown outer layer and a ripe red strawberry on top.",
+          "behavior": "Idle, floating slightly in the air.",
+          "effect": "Collecting increases score and provides a small jump boost.",
+          "asset_ref": "file-1756881042783",
+          "need_update": true
+        }
+      ],
+      "narrative": {
+        "transition": "The green plush dinosaur finds itself transported from its cozy bed to an office setting.",
+        "current_story": "The dinosaur explores the office, jumping between furniture and collecting items.",
+        "next_story": "The dinosaur discovers a hidden passage leading to a whimsical meadow filled with colorful flowers."
+      },
+      "visual_style": "Realist photographic style with natural lighting."
+    }
+  },
+  {
+    "id": "change tag",
+    "content": {
+      "player": {
+        "description": "A green plush dinosaur toy with a rounded body, stubby arms and legs, and a light yellow belly patch.",
+        "asset_ref": "file-1756881061680",
+        "need_update": false
+      },
+      "world": {
+        "description": "A vibrant, fantastical meadow filled with colorful flowers and whimsical elements, under a bright blue sky with fluffy clouds.",
+        "asset_ref": "file-1756881055720",
+        "need_update": true
+      },
+      "platforms": [
+        {
+          "description": "A fluffy white cloud with two black dot eyes and a round shape.",
+          "behavior": "Disappears after a short time when stepped on.",
+          "effect": "Provides a high bounce before vanishing.",
+          "asset_ref": "file-1756881046517",
+          "need_update": true
+        },
+        {
+          "description": "A black spherical creature with stubby legs and a shiny surface.",
+          "behavior": "Moves horizontally back and forth.",
+          "effect": "Grants a speed boost upon jumping off.",
+          "asset_ref": "file-1756881055720",
+          "need_update": true
+        }
+      ],
+      "collectables": [
+        {
+          "description": "A flying straw hat with a wide brim and a sunflower decoration.",
+          "behavior": "Floats gently up and down.",
+          "effect": "Collecting grants a temporary glide ability.",
+          "asset_ref": "file-1756881055720",
+          "need_update": true
+        }
+      ],
+      "narrative": {
+        "transition": "The green plush dinosaur, after exploring the office setting, discovers a hidden door that opens to a vibrant meadow.",
+        "current_story": "The dinosaur navigates through the fantastical meadow, jumping on clouds and interacting with whimsical creatures.",
+        "next_story": "The dinosaur spots a distant shimmering portal at the edge of the meadow, hinting at another adventure."
+      },
+      "visual_style": "Whimsical, painterly illustration with soft brush strokes and bright, pastel colors."
+    }
+  },
+  {
+    "id": "user asked",
+    "content": {
+      "player": {
+        "description": "A green plush dinosaur toy with a rounded body, stubby arms and legs, and a light yellow belly patch, now holding a small pinwheel that spins in the wind.",
+        "asset_ref": "file-1756881061680",
+        "need_update": true
+      },
+      "world": {
+        "description": "A vibrant, fantastical meadow filled with colorful flowers and whimsical elements, under a bright blue sky with fluffy clouds. The wind gently sways the flowers and trees.",
+        "asset_ref": "file-1756881055720",
+        "need_update": true
+      },
+      "platforms": [
+        {
+          "description": "A fluffy white cloud with two black dot eyes and a round shape.",
+          "behavior": "Drifts slowly with the wind, disappearing after a short time when stepped on.",
+          "effect": "Provides a high bounce before vanishing.",
+          "asset_ref": "file-1756881046517",
+          "need_update": false
+        },
+        {
+          "description": "A black spherical creature with stubby legs and a shiny surface.",
+          "behavior": "Moves horizontally back and forth, now slightly faster due to the wind.",
+          "effect": "Grants a speed boost upon jumping off.",
+          "asset_ref": "file-1756881055720",
+          "need_update": false
+        }
+      ],
+      "collectables": [
+        {
+          "description": "A flying straw hat with a wide brim and a sunflower decoration.",
+          "behavior": "Floats gently up and down, occasionally carried by the wind.",
+          "effect": "Collecting grants a temporary glide ability.",
+          "asset_ref": "file-1756881055720",
+          "need_update": false
+        }
+      ],
+      "narrative": {
+        "transition": "A sudden gust of wind sweeps through the meadow, stirring the flowers and clouds.",
+        "current_story": "The green plush dinosaur enjoys the breezy meadow, jumping on drifting clouds and interacting with whimsical creatures.",
+        "next_story": "The dinosaur notices a group of flying umbrellas in the distance, carried by the wind, and decides to follow them to see where they lead."
+      },
+      "visual_style": "Whimsical, painterly illustration with soft brush strokes and bright, pastel colors."
+    }
+  }
+]

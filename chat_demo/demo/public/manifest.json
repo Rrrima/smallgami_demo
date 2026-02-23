@@ -1,0 +1,10 @@
+{
+  "short_name": "Vibe Gaming",
+  "name": "2025 MSR internship project - Vibe Gaming",
+  "icons": [
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

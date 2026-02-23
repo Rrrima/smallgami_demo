@@ -1,0 +1,142 @@
+{
+  "timestamp": "2025-09-03T07:18:46.850Z",
+  "mechanism": "jump",
+  "factory_store": [
+    {
+      "id": "file-1756881034741",
+      "content": {
+        "worlds": "An outdoor grassy area with picnic items scattered around.",
+        "objects": [
+          "A large fluffy white dog with a light cream coat, wearing a green harness, and lying on a blue and white striped blanket"
+        ],
+        "events": "N/A",
+        "style": "Realistic photographic style with natural outdoor lighting."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/ca316e90eb574777a5400b6896120bca.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881039000",
+      "content": {
+        "worlds": "N/A",
+        "objects": [
+          "A small orange fluffy creature with blue highlights, large round blue eyes, a cream-colored belly, small arms, and a curious expression"
+        ],
+        "events": "N/A",
+        "style": "Whimsical fantasy illustration with detailed rendering and soft shading"
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/51b50910245848e4a17c39ccdef4c2f8.png",
+      "tags": []
+    },
+    {
+      "id": "file-1756881042783",
+      "content": {
+        "worlds": "N/A",
+        "objects": [
+          "A rolled cake slice with a golden brown outer layer, light cream-colored inner spirals, topped with a dollop of light beige whipped cream and a ripe red strawberry with green leaves and yellow seeds."
+        ],
+        "events": "N/A",
+        "style": "Flat vector-style illustration with bold outlines and smooth color fills."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/5d87e415172e4169a54cbb6ad96ae96f.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881046517",
+      "content": {
+        "worlds": "N/A",
+        "objects": [
+          "A small blue flying saucer with a dome top, a red antenna, and a single occupant visible inside",
+          "A fluffy white cloud with two black dot eyes and a round shape"
+        ],
+        "events": "The saucer is beaming up the cloud with its yellow light.",
+        "style": "Minimalist doodle illustration with soft pastel crayon texture."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/4f64620eb80e4e72a5dfaaaa53869e6f.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881050699",
+      "content": {
+        "worlds": "A simplistic cartoon blue sky with a few white clouds and a calm water surface.",
+        "objects": [
+          "A green cartoon dinosaur with a simple rounded body, small circular eyes, and a friendly smile",
+          "A large white paper boat with sharp folds"
+        ],
+        "events": "The green dinosaur is riding in the white paper boat, which is floating on the water.",
+        "style": "Minimalist, cartoon illustration with clean lines and flat colors."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/12da45a6c0554368bb2b07d8aeb02a70.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881055720",
+      "content": {
+        "worlds": "A vibrant, fantastical meadow filled with colorful flowers and whimsical elements, under a bright blue sky with fluffy clouds.",
+        "objects": [
+          "A large blue dinosaur with a long neck, decorated with colorful flowers and a yellow smiley face badge",
+          "A white fluffy bear-like creature with a small orange nose and rounded ears",
+          "A flying straw hat with a wide brim and a sunflower decoration",
+          "A black spherical creature with stubby legs and a shiny surface",
+          "A fluffy cloud with a smiling face and soft edges"
+        ],
+        "events": "N/A",
+        "style": "Whimsical, painterly illustration with soft brush strokes and bright, pastel colors."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/847a04089d4d407582f6de8923b10344.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881061680",
+      "content": {
+        "worlds": "Indoor setting with a tufted fabric headboard and a bed.",
+        "objects": [
+          "A green plush dinosaur toy with a rounded body, stubby arms and legs, a light yellow belly patch with a green rectangular design, yellow circular feet pads, and a large yellow triangular horn with white spikes."
+        ],
+        "events": "N/A",
+        "style": "Soft light, realist photographic style."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/979a04d3844842fbb9fb29211cd70001.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881070744",
+      "content": {
+        "worlds": "Modern office setting with desks, chairs, and various office supplies.",
+        "objects": [
+          "A black ergonomic office chair with a high back and padding",
+          "A black computer monitor with a rectangular stand",
+          "A plain white ceramic coffee mug"
+        ],
+        "events": "N/A",
+        "style": "Realistic photographic style with natural lighting."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/1b42545d6e504b4f893fb7f342438d05.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881078246",
+      "content": {
+        "worlds": "A modern living room with white walls, beige carpet, and minimalistic furnishing.",
+        "objects": [
+          "A modern brown leather sofa with tufted backrest",
+          "A stationary black exercise bike with a digital display",
+          "A tall, black, three-light floor lamp with a curved design"
+        ],
+        "events": "N/A",
+        "style": "Realist photographic style with natural indoor lighting."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/e78aac851b4e4cfc82f3ad157ad21525.jpg",
+      "tags": []
+    }
+  ]
+}

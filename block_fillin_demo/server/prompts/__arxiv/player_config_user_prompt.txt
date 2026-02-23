@@ -1,0 +1,144 @@
+Generate a detailed player configuration for a space invader-style game based on the following context:
+
+**World Information:**
+- Visual Style: __VISUAL_STYLE__
+- Visual Type: __VISUAL_TYPE__
+- World Description: __WORLD_DESCRIPTION__
+
+**Player Information:**
+- Player Description: __PLAYER_DESCRIPTION__
+- Player Controls: __PLAYER_CONTROLS__
+
+**Emission Information:**
+- Emission Description: __EMISSION_DESCRIPTION__
+
+Based on this context, generate a complete GamePlayerConfig with the following considerations:
+
+1. **Movement Configuration**: 
+   - Speed should match the character type and narrative context
+   - Momentum and friction should feel appropriate for the world setting
+   - Boundaries should fit a space invader-style gameplay area
+   - Smoothing should enhance responsiveness
+
+2. **Bullet Configuration**:
+   - Speed and cooldown based on emission description and gameplay balance
+   - Shape and color that match the emission type and visual style
+   - Maximum count and distance appropriate for gameplay balance
+
+3. **Physics Configuration**:
+   - Mass, restitution, and damping that feel right for the character
+
+4. **Visual Configuration**:
+   - Scale appropriate for the visual style
+   - Rotation effects that enhance movement feedback
+   - Optional bobbing if it fits the character
+
+5. **Material Configuration**:
+   - Choose 'none' for model-based materials or 'standard' with appropriate colors
+
+6. **Audio Configuration**:
+   - Volume levels that complement the world atmosphere
+
+Ensure all numeric values are realistic and create engaging gameplay that matches the narrative context.
+
+examples:
+here is the config for the spaceship in the space invaders game:
+  "player": {
+    "movement": {
+      "speed": 1.0,
+      "momentum": {
+        "acceleration": 0.2,
+        "friction": 1.4,
+        "maxVelocity": 2.0
+      },
+      "smoothing": 0.8
+    },
+    "bullets": {
+      "speed": 1.25,
+      "maxCount": 50,
+      "cooldown": 100,
+      "shape": {
+        "width": 0.7,
+        "height": 4,
+        "depth": 1
+      },
+      "maxDistance": 120,
+      "color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "opacity": 1.0
+    },
+    "physics": {
+      "mass": 1.0,
+      "restitution": 0.1,
+      "damping": 0.98
+    },
+    "visual": {
+      "scale": 0.05,
+      "rotationEffect": 1.0,
+      "bobbing": true,
+      "material": "none",
+      "color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "glow": {
+        "r": 0.1,
+        "g": 0.3,
+        "b": 0.5
+      }
+    }
+  },
+this is for a fish pop bubbles:
+"player": {
+    "movement": {
+      "speed": 0.7,
+      "momentum": {
+        "acceleration": 0.12,
+        "friction": 1.6,
+        "maxVelocity": 1.2
+      },
+      "smoothing": 0.9
+    },
+    "bullets": {
+      "speed": 0.8,
+      "maxCount": 30,
+      "cooldown": 200,
+      "shape": {
+        "width": 2.2,
+        "height": 2.2,
+        "depth": 1.2
+      },
+      "maxDistance": 100,
+      "color": {
+        "r": 0.6,
+        "g": 0.9,
+        "b": 1.0
+      },
+      "opacity": 0.8
+    },
+    "physics": {
+      "mass": 0.8,
+      "restitution": 0.4,
+      "damping": 0.95
+    },
+    "visual": {
+      "scale": 0.8,
+      "rotationEffect": 1,
+      "bobbing": true,
+      "material": "standard",
+      "color": {
+        "r": 0.3,
+        "g": 0.6,
+        "b": 0.9
+      },
+      "glow": {
+        "r": 0.1,
+        "g": 0.3,
+        "b": 0.5
+      }
+    }
+  },

@@ -1,0 +1,82 @@
+$ink: #333;
+$ink-light: #aaa;
+$border: #333;
+
+.page-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 20px 14px;
+  flex-shrink: 0;
+  filter: url(#sketch);
+}
+
+.page-nav-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid $border;
+  border-radius: 2px;
+  cursor: pointer;
+  color: $ink;
+  transition: all 0.2s ease;
+  outline: none;
+  padding: 0;
+
+  svg {
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.04);
+
+    svg {
+      opacity: 0.9;
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+}
+
+.page-indicator {
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  font-size: 15px;
+  color: $ink-light;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.page-delete-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  color: $ink-light;
+  transition: all 0.2s ease;
+  outline: none;
+  padding: 0;
+  opacity: 0.4;
+
+  &:hover {
+    color: $ink;
+    background: rgba(0, 0, 0, 0.04);
+    opacity: 1;
+  }
+}

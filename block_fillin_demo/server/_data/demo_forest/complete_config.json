@@ -1,0 +1,266 @@
+{
+  "id": "demo_forest",
+  "name": "Enchanted Forest",
+  "camera": "action",
+  "assets": {
+    "models": {
+      "player": "girl.glb",
+      "aliens": ["fairy_cute.glb", "fairy_elegant.glb", "fairy_elegant.glb"]
+    },
+    "sounds": {
+      "ambient": "ambient-grass.wav",
+      "lazer": "wand.wav",
+      "alienMove": "alien-move-sfx.wav",
+      "alienExplosion": "alien-explosion-sfx.wav"
+    }
+  },
+
+  "player": {
+    "movement": {
+      "speed": 1.1,
+      "momentum": {
+        "acceleration": 0.12,
+        "friction": 1.6,
+        "maxVelocity": 1.3
+      },
+      "smoothing": 0.95
+    },
+    "bullets": {
+      "speed": 1.0,
+      "maxCount": 35,
+      "cooldown": 150,
+      "shape": {
+        "width": 0.8,
+        "height": 0.8,
+        "depth": 0.8
+      },
+      "maxDistance": 110,
+      "color": {
+        "r": 1.0,
+        "g": 0.9,
+        "b": 0.3
+      },
+      "opacity": 0.9
+    },
+    "physics": {
+      "mass": 0.6,
+      "restitution": 0.3,
+      "damping": 0.96
+    },
+    "visual": {
+      "scale": 0.9,
+      "rotationEffect": 0.8,
+      "bobbing": true,
+      "material": "none",
+      "color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "glow": {
+        "r": 0.1,
+        "g": 0.3,
+        "b": 0.5
+      }
+    }
+  },
+  "aliens": {
+    "collisionBehavior": {
+      "onBulletHit": "pokemonInteraction",
+      "dialogue": {
+        "messages": [
+          "Fairy: Oh my! You startled me!",
+          "Fairy: I'm just collecting moonbeams...",
+          "Fairy: Please don't hurt the forest!",
+          "Fairy: Would you like to be friends?",
+          "Fairy: The ancient trees are watching...",
+          "Fairy: Magic flows through these woods!"
+        ],
+        "likelyHood": 0.6
+      }
+    },
+    "formation": {
+      "columns": 4,
+      "rows": 4,
+      "spacing": {
+        "x": 12,
+        "y": 10
+      },
+      "useFormation": false
+    },
+    "movement": {
+      "pattern": "freeSwim",
+      "freeMovement": {
+        "speed": 0.3,
+        "wanderRadius": 15,
+        "directionChangeInterval": 4000,
+        "smoothness": 0.85,
+        "pauseChance": 0.3,
+        "pauseDuration": 2000,
+        "randomizeInterval": true
+      },
+      "oscillation": {
+        "amplitude": {
+          "x": 1,
+          "y": 0.5
+        },
+        "frequency": {
+          "x": 0.005,
+          "y": 0.008
+        },
+        "phaseOffset": true
+      },
+      "boundaries": {
+        "minX": -55,
+        "maxX": 55,
+        "minY": -5,
+        "maxY": 100
+      }
+    },
+    "animation": {
+      "idleAnimation": {
+        "enabled": false,
+        "type": "undulate",
+        "speed": 0.02,
+        "intensity": 0
+      }
+    },
+    "types": {
+      "fairy1": {
+        "lives": 0,
+        "scoreValue": 20,
+        "scale": {
+          "base": 6,
+          "reduction": 0.05,
+          "variation": {
+            "enabled": true,
+            "range": 0.7,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "breathe",
+            "speed": 0.8,
+            "intensity": 0
+          }
+        },
+        "material": {
+          "type": "none"
+        },
+        "movementModifier": 1.2
+      },
+      "fairy2": {
+        "lives": 9,
+        "scoreValue": 30,
+        "scale": {
+          "base": 6,
+          "reduction": 0.05,
+          "variation": {
+            "enabled": true,
+            "range": 0,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "pulse",
+            "speed": 0.6,
+            "intensity": 0
+          }
+        },
+        "material": {
+          "type": "none"
+        },
+        "movementModifier": 1.0
+      },
+      "fairy3": {
+        "lives": 0,
+        "scoreValue": 40,
+        "scale": {
+          "base": 4,
+          "reduction": 0.05,
+          "variation": {
+            "enabled": true,
+            "range": 0.2,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "wobble",
+            "speed": 0.9,
+            "intensity": 0
+          }
+        },
+        "material": {
+          "type": "none"
+        },
+        "movementModifier": 0.9
+      }
+    }
+  },
+  "starfield": {
+    "maxStars": 50,
+    "ratioOfBlinkers": 0.7,
+    "positioning": {
+      "minY": -40,
+      "maxY": 90,
+      "z": 12
+    },
+    "size": {
+      "min": 0.15,
+      "max": 0.8
+    },
+    "colors": [
+      [1, 1, 0.7, 0.8],
+      [0.7, 1, 0.8, 0.7],
+      [1, 0.8, 1, 0.6],
+      [0.8, 0.9, 1, 0.8],
+      [1, 0.9, 0.7, 0.9]
+    ],
+    "movement": {
+      "pattern": "oscillate",
+      "direction": "up",
+      "speed": 0.02,
+      "oscillation": {
+        "amplitude": 8,
+        "frequency": 0.03
+      }
+    },
+    "blinking": {
+      "minInterval": 800,
+      "maxInterval": 3000
+    },
+    "texture": {
+      "path": "/assets/images/star.png",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      }
+    },
+    "theme": {
+      "particleType": "fairies",
+      "name": "Forest Sprites"
+    }
+  },
+  "atmosphere": {
+    "background": {
+      "type": "skybox",
+      "skybox": {
+        "texture": "bg-ms.png"
+      }
+    },
+    "fog": {
+      "enabled": true,
+      "color": [0.4, 0.6, 0.5],
+      "start": 100,
+      "end": 600,
+      "mode": "linear"
+    },
+    "lighting": {
+      "intensity": 2.8,
+      "direction": [0.3, 1, 0.5],
+      "position": [20, 60, 30],
+      "diffuse": [0.7, 0.9, 0.6],
+      "specular": [0.8, 1, 0.7]
+    }
+  }
+}

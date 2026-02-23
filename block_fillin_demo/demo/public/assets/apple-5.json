@@ -1,0 +1,200 @@
+{
+  "name": "Apple",
+  "description": "A low poly apple with stem and leaf",
+  "parts": [
+    {
+      "type": "softbox",
+      "name": "appleBody",
+      "softboxOptions": {
+        "width": 0.9,
+        "height": 1,
+        "depth": 0.9,
+        "heightTop": 0.8,
+        "heightBottom": 1,
+        "radius": 0.5,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.8,
+          0.2,
+          0.1
+        ],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "bottom_indent",
+      "sphereOptions": {
+        "diameter": 0.3,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.4,
+          0.25,
+          0.1
+        ],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          -1,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          0.5,
+          1
+        ]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "stem",
+      "cylinderOptions": {
+        "height": 0.4,
+        "diameterTop": 0.08,
+        "diameterBottom": 0.12,
+        "tessellation": 6,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.35,
+          0.2,
+          0.1
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.9,
+          0
+        ],
+        "rotation": [
+          0.1,
+          0,
+          0.15
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf",
+      "softboxOptions": {
+        "width": 0.5,
+        "height": 0.05,
+        "depth": 0.25,
+        "widthLeft": 0.3,
+        "widthRight": 0.5,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 3
+      },
+      "material": {
+        "albedoColor": [
+          0.2,
+          0.6,
+          0.15
+        ],
+        "metallic": 0,
+        "roughness": 0.6
+      },
+      "transform": {
+        "position": [
+          0.15,
+          1.1,
+          0.1
+        ],
+        "rotation": [
+          0.3,
+          0.5,
+          -0.4
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "highlight",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 6,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          1,
+          0.8,
+          0.8
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [
+          -0.3,
+          0.3,
+          0.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.2,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [
+      0,
+      0.8,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  }
+}

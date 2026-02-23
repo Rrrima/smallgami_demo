@@ -1,0 +1,76 @@
+{
+  "timestamp": "2025-08-13T15:56:39.124167",
+  "game_id": "space-invaders",
+  "data": {
+    "world": {
+      "physics": "Space physics with zero gravity. Laser bullets travel in straight lines at high speed. Aliens move in formation patterns.",
+      "visualStyle": "Retro space battle scene with dark cosmic background, bright laser effects, and classic alien formations.",
+      "visualType": "retro",
+      "worldDescripiton": "A dark space battlefield with stars in the background, alien invaders descending in formation, and intense laser combat."
+    },
+    "player": {
+      "render": "A sleek space fighter ship with angular design, metallic hull, and glowing cyan energy cores.",
+      "controls": [
+        {
+          "action": "move",
+          "inputModality": "keyboard"
+        },
+        {
+          "action": "shoot",
+          "inputModality": "keyboard"
+        }
+      ],
+      "emissions": {
+        "render": "Bright cyan laser beams that shoot rapidly upward, creating intense light trails and explosive impacts."
+      }
+    },
+    "objects": [
+      {
+        "name": "AlienInvader",
+        "behavior": "Moves in tight formation patterns, descending slowly toward Earth while occasionally shifting horizontally.",
+        "metadata": {
+          "opacity": 1,
+          "scale": 1.7,
+          "color": "#00FFFF",
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "interactionType": "destroy",
+        "interactionDescription": "Explodes with bright flashes when hit by laser bullets, awarding points and clearing the threat."
+      },
+      {
+        "name": "AlienCommander",
+        "behavior": "Leads alien formations with more aggressive movement patterns and higher resilience.",
+        "metadata": {
+          "opacity": 1,
+          "scale": 2.0,
+          "color": "#FF0000",
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "interactionType": "destroy",
+        "interactionDescription": "Requires multiple hits to destroy, explodes dramatically with bonus points when defeated."
+      }
+    ],
+    "possibleNext": [
+      {
+        "Operation": "next",
+        "change": "Face faster alien waves"
+      },
+      {
+        "Operation": "next",
+        "change": "Defend against boss mothership"
+      },
+      {
+        "Operation": "next",
+        "change": "Survive asteroid field assault"
+      }
+    ]
+  }
+}

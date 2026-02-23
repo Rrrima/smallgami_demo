@@ -1,0 +1,54 @@
+You need to design a Doodle Jump–style game (infinite vertical climb) given the user provided aseet list:
+The game invovles the player, platforms, colletables and the world, guided by the narrative and visual style
+You task is either to design the initial game description or to update the game description with the user update input, 
+if making updates, make sure you maintian conuity and integrate updates in a meaningful way
+
+1. Understand user input:
+User operation: 
+___user_operation___
+
+Current game asset list: 
+___asset_list___
+
+previous states of game description:
+___previous_game_description___
+
+
+2. Generate Game Mechanism Description:
+ Initial mechanism generation (cold start; no previous_state):
+   a. Role mapping:
+      - PLAYER: prefer an asset tagged "player". If none, pick the most “character-like” object (animal/creature/toy) with strong affordance for movement.
+      - WORLD: prefer an asset tagged "world". If none, choose the richest “worlds” scene; the world should reflect where the story take place.
+   b. Platforms: extract plausible platform archetypes from object/world assets, the platform will be something the player jump on, should by default using static object rather than characters, unless the user explicitly specify 
+      - soft/bouncy (blankets/cushions), static (sofa/desk), moving/rotating (bike pedals), disappearing (clouds), etc.; 
+      - a plush toy, a dinosour, a cat, or something that should serve SHOULD NOT be the flatform!!!! but be colletable as npc
+   c. Collectables: prefer edible or iconic small items (e.g., cake slices, hats, badges); the collectables can also be npcs. where when user jump into them, they are have conversation
+   d. Narrative: prefer the events described in the assets that tagged 'narrative'. give short transition + current story that ties chosen assets together; the next story should be creative and surprising! but will still be able to implement with the same doodle jump game style;
+For the above descriptions, you do not need to describe the visual style, everything related to visual style should go to 'visual_style' friendly
+
+When updating the scene:
+1. DO NOT use portals! use natural events narrative to drive the scene
+2. the user operation must be refelcted! but also make sure there are certain aspect blend from the previous game description 
+3. in the previous game descrition, pay attention to user's past operations, make sure they are respected if still relevant!
+4. make minimal changes to the assets to reflect the user's desired update. But make sure the narrative make sense, and the objects are consistent and go along with the world and narrative; flag the asset that needs to be updated in the need_update attribute
+5. new asset always need update
+6. for the initial scene, every asset's need_update is true
+7. YOU must change the world every time to reflect the scene change given the user requested udpate!
+8. keep the visual style as previous game description unless you are explicitly asked to!!!
+9. keep something from the previous game, use narrative creatvity to make them coherent, the asset need to be updated should be no more than 3!!!!
+10. at least one object from past game should be brought in to the current game, think about creative ways to bridge the two scenes. 
+for examples, the past scene may have 'straw hat' as an object, in the current scene, if the user bring a plush toy dinosaur as an asset, you could let the dinosaur wear this straw hat!
+11. no more than 3 "need_update: true"
+
+Guidelines: 
+1. Keep outputs specific and actionable
+2. Try to keep the story with the user's asset list, If user provides a lot, choose the most relevant, and think about keep the others in the next scene
+3. when generate updated scenes, try to integrate new things that have not been integrated in the previous descriptions
+4. try to give user reasonable surprises
+5. make sure the game is non-violent
+6. Use id from the assets list items as the asset_ref where it is used.
+7. the user operation must be refelcted! and make sure the objects are cohesive with the world and narrative,
+8. You do not need to always generate things from the asset list, if it's needed, use your own creativity, if it's not in the asset, use N/A in the asset_ref
+9. The player should not change unless user's operation indicates the player should change, however, you can give player different decorations. 
+   for example, do not suddenly change the player from a dinosour to a rabbit, but you can change a happy dinosour to a sad dinosour, or give it an umbrella if it rains in the world.
+10. "visual style" must inherent previous game unless user specifies the visual style or the style tags assigned to certain asset, if visual style changed, every assets need to be updated.

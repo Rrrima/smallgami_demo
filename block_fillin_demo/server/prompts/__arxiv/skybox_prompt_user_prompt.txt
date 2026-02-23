@@ -1,0 +1,20 @@
+Generate a detailed prompt for creating a panoramic skybox background for the following game:
+
+**Game Context:**
+- Game Name: __GAME_NAME__
+- Visual Style: __VISUAL_STYLE__
+- Visual Type: __VISUAL_TYPE__
+- World Description: __WORLD_DESCRIPTION__
+
+Based on this information, create a concise prompt (under 100 words) for generating a 360-degree panoramic skybox that captures the atmosphere and visual style of this game world.
+
+The prompt should:
+1. Focus on atmospheric elements (sky, clouds, lighting, distant horizons)
+2. Match the visual style and type specified
+3. Create an immersive background that complements the world description
+4. Be suitable for equirectangular projection
+5. Avoid characters, foreground objects, or text
+
+Example output format: "ethereal forest canopy with dappled sunlight, mystical fog rolling through ancient trees, soft golden hour lighting, magical particles floating in the air, low poly art style, dreamy atmosphere"
+
+Generate the skybox prompt:

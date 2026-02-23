@@ -1,0 +1,22 @@
+OBJECT TYPE: __OBJECT_TYPE__
+OBJECT DESCRIPTION: __OBJECT_DESCRIPTION__
+VISUAL STYLE: __VISUAL_STYLE__
+WORLD CONTEXT: __WORLD_CONTEXT__
+
+TASK: Generate a concise 3D asset generation prompt for this object.
+
+REQUIREMENTS:
+1. Create a prompt under 15 words that clearly describes the 3D model needed
+2. Include the visual style to ensure consistency with the game world
+3. Focus on static visual appearance, not behaviors or animations
+4. Ensure the prompt will generate a model suitable for a game environment
+5. Include key distinguishing visual features from the object description
+6. (Important) you prompt should not yield too complex shapes
+
+EXAMPLES:
+- Object: "magical bubble launcher" + Low Poly style → "magical bubble launcher device, low poly style, crystal blue materials"
+- Object: "friendly forest fairy" + Cartoon style → "cute forest fairy character, cartoon style, green dress, tiny wings"
+- Object: "ancient stone platform" + Claymation style → "ancient stone platform, claymation style, moss covered, weathered"
+
+OUTPUT FORMAT:
+Generate only the 3D asset prompt text - no additional explanation or formatting.

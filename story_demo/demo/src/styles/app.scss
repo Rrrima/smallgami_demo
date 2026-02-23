@@ -1,0 +1,280 @@
+// Children's storybook layout
+// Left page: narrative + 2x2 cards | Spine | Right page: game canvas
+
+$paper: #f7f7f7;
+$white: #fff;
+$ink: #333;
+$ink-light: #aaa;
+$border: #333;
+$border-w: 2.5px;
+
+$spacing-sm: 6px;
+$spacing-md: 8px;
+$spacing-lg: 12px;
+$spacing-xl: 16px;
+
+.app-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #e8e4df;
+  overflow: hidden;
+}
+
+.book-wrapper {
+  width: 90vw;
+  max-width: 1400px;
+  height: 85vh;
+  max-height: 900px;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+
+.storybook {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.left-page {
+  flex: 1;
+  background: $paper;
+  border: $border-w solid $border;
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset -8px 0 12px -6px rgba(0, 0, 0, 0.06);
+  filter: url(#sketch);
+}
+
+.book-spine {
+  width: 12px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.03) 30%,
+    rgba(0, 0, 0, 0.0) 50%,
+    rgba(0, 0, 0, 0.03) 70%,
+    rgba(0, 0, 0, 0.08)
+  );
+  border-top: $border-w solid $border;
+  border-bottom: $border-w solid $border;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.12);
+    transform: translateX(-50%);
+  }
+}
+
+.right-page {
+  flex: 1;
+  background: $paper;
+  border: $border-w solid $border;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 8px 0 12px -6px rgba(0, 0, 0, 0.06);
+  padding: 48px 20px 20px;
+}
+
+// Game container — square, centered on right page
+.game-container {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 6/5;
+  max-height: 600px;
+  overflow: visible;
+  position: relative;
+  box-sizing: border-box;
+  border: 3.5px solid $border;
+  border-radius: 2px;
+  filter: url(#sketch-heavy);
+
+  .game-over-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .game-over-text {
+      font-family: 'Patrick Hand', 'Caveat', cursive;
+      font-size: 28px;
+      font-weight: 700;
+      color: $ink;
+      margin-bottom: $spacing-sm;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .game-over-score {
+      font-family: 'Patrick Hand', 'Caveat', cursive;
+      font-size: 18px;
+      font-weight: 500;
+      color: $ink;
+      margin-bottom: $spacing-lg;
+    }
+    .game-over-restart-button {
+      background: $white;
+      color: $ink;
+      border: $border-w solid $border;
+      border-radius: 2px;
+      padding: $spacing-md $spacing-xl;
+      font-family: 'Patrick Hand', 'Caveat', cursive;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      filter: url(#sketch);
+      transition: background 0.15s ease;
+      &:hover {
+        background: $paper;
+      }
+    }
+  }
+
+  // Move controls above the game canvas onto the right page header area
+  .game-controls-container {
+    position: absolute;
+    top: -38px;
+    left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    z-index: 10;
+
+    .game-control-button {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1.5px solid $border;
+      border-radius: 2px;
+      cursor: pointer;
+      color: $ink;
+      transition: background 0.2s ease;
+      filter: url(#sketch);
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+    }
+  }
+
+  // Move game data (score, lives) above the game canvas
+  .gamedata-container {
+    position: absolute;
+    top: -38px;
+    right: 10px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    min-width: 60px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    font-family: 'Patrick Hand', 'Caveat', cursive;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $ink;
+    background: transparent;
+    border: 1.5px solid $border;
+    filter: url(#sketch);
+
+    .gamedata-lives,
+    .gamedata-score {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      justify-content: center;
+      align-items: center;
+    }
+    .gamedata-score-value {
+      font-weight: 700;
+    }
+    .gamedata-lives-value {
+      font-weight: 700;
+    }
+  }
+}
+
+// "What changed?" caption above cards on non-narrative pages
+.change-caption {
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 500;
+  color: $ink;
+  text-align: center;
+  letter-spacing: 0.5px;
+  opacity: 0.45;
+  padding: 0 0 4px;
+  flex-shrink: 0;
+}
+
+// Page number on right page
+.right-page-number {
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  font-size: 14px;
+  color: $ink-light;
+  opacity: 0.6;
+}
+
+// Thin scrollbar
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.25);
+  }
+}

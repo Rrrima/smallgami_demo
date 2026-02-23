@@ -1,0 +1,271 @@
+Generate a detailed aliens/objects configuration for a space invader-style game based on the following context:
+
+**Game Context:**
+- Game Name: __GAME_NAME__
+- Game ID: __GAME_ID__
+- Narrative Theme: __NARRATIVE_THEME__
+
+**World Information:**
+- Visual Style: __VISUAL_STYLE__
+- Visual Type: __VISUAL_TYPE__
+- World Description: __WORLD_DESCRIPTION__
+
+**Objects to Configure:**
+__OBJECTS_LIST__
+
+Based on this context, generate a complete GameAlienConfig with the following considerations:
+
+1. **Theme Configuration**:
+   - Name and description should reflect the narrative and world setting
+   - Should connect to the overall story being told
+
+2. **Collision Behavior**:
+   - Choose appropriate behavior (destroy/reduceOpacity/pokemonInteraction) based on object interaction descriptions
+   - For reduceOpacity: set reasonable opacity reduction amounts and visual effects
+   - For pokemonInteraction: include dialogue messages that fit the narrative
+
+3. **Formation & Movement**:
+   - Select movement patterns that match object behaviors
+   - For freeSwim: set appropriate speeds and wander areas
+   - For oscillation: choose amplitudes and frequencies that look natural
+   - Set boundaries that work with space invader gameplay
+
+4. **Animation Configuration**:
+   - Choose idle animations (bob/pulse/rotate/undulate) that fit each object type
+
+5. **Object Types**:
+   - Map each object from the high-level DSL to appropriate alien types
+   = the key of the dictionary should be the name of alien in the highlevel dsl
+   - Set lives, score values, and scales that create interesting gameplay. .
+   - Use appropriate materials that match the visual style
+   - The base scale should be around 6-15!!!!!!!!
+
+
+Ensure the configuration creates engaging object behavior that matches the narrative context and provides balanced gameplay challenge.
+
+example:
+this is an alient config for space invader game:
+ "aliens": {
+    "theme": {
+      "name": "aliens",
+      "description": "Classic space invaders in military formation"
+    },
+    "collisionBehavior": {
+      "onBulletHit": "destroy"
+    },
+    "movement": {
+      "pattern": "formation"
+    },
+    "animation": {
+      "idleAnimation": {
+        "enabled": true,
+        "type": "bob",
+        "speed": 0.02,
+        "intensity": 0.3
+      }
+    },
+    "types": {
+      "alien1": {
+        "lives": 1,
+        "scoreValue": 10,
+        "scale": {
+          "base": 10,
+          "reduction": 0.14,
+          "variation": {
+            "enabled": true,
+            "range": 0.1,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "pulse",
+            "speed": 1.0,
+            "intensity": 0
+          }
+        },
+        "material": {
+          "type": "none"
+        }
+      },
+      "alien2": {
+        "lives": 0,
+        "scoreValue": 20,
+        "scale": {
+          "base": 1.7,
+          "reduction": 0.14,
+          "variation": {
+            "enabled": true,
+            "range": 0.08,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "pulse",
+            "speed": 0.8,
+            "intensity": 0.08
+          }
+        },
+        "material": {
+          "type": "none"
+        }
+      },
+      "alien3": {
+        "lives": 0,
+        "scoreValue": 30,
+        "scale": {
+          "base": 1.7,
+          "reduction": 0.14,
+          "variation": {
+            "enabled": true,
+            "range": 0.12,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "pulse",
+            "speed": 1.2,
+            "intensity": 0.12
+          }
+        },
+        "material": {
+          "type": "none"
+        }
+      }
+    }
+  },
+
+  this is for another game about fish pop bubbles to save its friends
+  "aliens": {
+    "collisionBehavior": {
+      "onBulletHit": "reduceOpacity",
+      "dialogue": {
+        "messages": [
+          "Fish: Oh no! The aliens are coming!",
+          "Fish: Help me pop the bubbles!",
+          "Fish: The aliens are trying to eat us!"
+        ],
+        "likelyHood": 0.6
+      }
+    },
+    "movement": {
+      "pattern": "freeSwim"
+    },
+    "animation": {
+      "idleAnimation": {
+        "enabled": true,
+        "type": "undulate",
+        "speed": 0.015,
+        "intensity": 0.8
+      }
+    },
+    "types": {
+      "fish": {
+        "lives": 0,
+        "scoreValue": 15,
+        "scale": {
+          "base": 8,
+          "reduction": 0.1,
+          "variation": {
+            "enabled": true,
+            "range": 0.25,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "pulse",
+            "speed": 2.5,
+            "intensity": 0.15
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.8,
+              "g": 0.5,
+              "b": 0.2
+            },
+            "emissiveColor": {
+              "r": 0.2,
+              "g": 0.3,
+              "b": 0.4
+            },
+            "alpha": 0.95
+          }
+        },
+        "movementModifier": 1.2
+      },
+      "seahorse": {
+        "lives": 1,
+        "scoreValue": 25,
+        "scale": {
+          "base": 10,
+          "reduction": 0.1,
+          "variation": {
+            "enabled": true,
+            "range": 0.2,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "wobble",
+            "speed": 1.2,
+            "intensity": 0.12
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.6,
+              "g": 0.8,
+              "b": 0.4
+            },
+            "emissiveColor": {
+              "r": 0.1,
+              "g": 0.4,
+              "b": 0.2
+            },
+            "alpha": 0.95
+          }
+        },
+        "movementModifier": 0.9
+      },
+      "jellyfish": {
+        "lives": 0,
+        "scoreValue": 35,
+        "scale": {
+          "base": 9,
+          "reduction": 0.1,
+          "variation": {
+            "enabled": true,
+            "range": 0.15,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": true,
+            "type": "breathe",
+            "speed": 0.7,
+            "intensity": 0.3
+          }
+        },
+        "material": {
+          "type": "standard",
+          "standard": {
+            "diffuseColor": {
+              "r": 0.5,
+              "g": 0.3,
+              "b": 0.9
+            },
+            "emissiveColor": {
+              "r": 0.3,
+              "g": 0.2,
+              "b": 0.6
+            },
+            "alpha": 0.95
+          }
+        },
+        "movementModifier": 0.8
+      }
+    }
+  },

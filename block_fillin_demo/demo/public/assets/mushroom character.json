@@ -1,0 +1,278 @@
+{
+  "name": "Cute Mushroom Character",
+  "description": "Adorable mushroom character with big cap and small body",
+  "parts": [
+    {
+      "type": "softbox",
+      "name": "cap",
+      "softboxOptions": {
+        "width": 1.1,
+        "height": 1,
+        "depth": 1.1,
+        "radius": 0.5,
+        "heightTop": 0.8,
+        "heightBottom": 0.4,
+        "stretch": true,
+        "arcSegments": 10
+      },
+      "material": {
+        "albedoColor": [0.95, 0.5, 0.4],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 1.35, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "spot_1",
+      "sphereOptions": {
+        "diameter": 0.35,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [0.98, 0.96, 0.93],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [-0.25, 2, 0.3],
+        "rotation": [0, 0.4, 0],
+        "scale": [1.2, 0.4, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "spot_2",
+      "sphereOptions": {
+        "diameter": 0.3,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [0.98, 0.96, 0.93],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [-0.45, 1.6, 0.55],
+        "rotation": [0, 0, 0],
+        "scale": [1.1, 0.4, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "spot_3",
+      "sphereOptions": {
+        "diameter": 0.28,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [0.98, 0.96, 0.93],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0.15, 1.65, 0.6],
+        "rotation": [0, 0, 0],
+        "scale": [1, 0.4, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "spot_4",
+      "sphereOptions": {
+        "diameter": 0.18,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [0.98, 0.96, 0.93],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0.55, 1.7, 0.25],
+        "rotation": [0, 0, 0],
+        "scale": [1, 0.4, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "spot_5",
+      "sphereOptions": {
+        "diameter": 0.4,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [0.98, 0.96, 0.93],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0.4, 2.05, -0.1],
+        "rotation": [0, 0, 0],
+        "scale": [1.3, 0.4, 1.1]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "body",
+      "softboxOptions": {
+        "width": 0.4,
+        "height": 0.45,
+        "depth": 0.35,
+        "radius": 0.5,
+        "stretch": true,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [0.98, 0.95, 0.9],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0, 0.6, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_left",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [0.1, 0.1, 0.1],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [-0.18, 0.75, 0.38],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "eye_right",
+      "sphereOptions": {
+        "diameter": 0.15,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [0.1, 0.1, 0.1],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0.18, 0.75, 0.38],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "arm_left",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.25,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 6
+      },
+      "material": {
+        "albedoColor": [0.98, 0.95, 0.9],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [-0.48, 0.65, 0],
+        "rotation": [0, 0, -0.3],
+        "scale": [1, 1, 1]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "arm_right",
+      "softboxOptions": {
+        "width": 0.18,
+        "height": 0.25,
+        "depth": 0.15,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 6
+      },
+      "material": {
+        "albedoColor": [0.98, 0.95, 0.9],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0.48, 0.65, 0],
+        "rotation": [0, 0, 0.3],
+        "scale": [1, 1, 1]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "foot_left",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.15,
+        "depth": 0.28,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 6
+      },
+      "material": {
+        "albedoColor": [0.98, 0.95, 0.9],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [-0.25, 0.08, 0.12],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "foot_right",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.15,
+        "depth": 0.28,
+        "radius": 0.12,
+        "stretch": true,
+        "arcSegments": 6
+      },
+      "material": {
+        "albedoColor": [0.98, 0.95, 0.9],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "transform": {
+        "position": [0.25, 0.08, 0.12],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [0, -1, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  }
+}

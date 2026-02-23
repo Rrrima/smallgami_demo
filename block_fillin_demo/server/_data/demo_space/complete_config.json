@@ -1,0 +1,214 @@
+{
+  "id": "space-invaders",
+  "name": "Space Invaders",
+  "camera": "fixed",
+  "assets": {
+    "models": {
+      "player": "Player_2.glb",
+      "aliens": ["Alien_1.glb", "Alien_2.glb", "Alien_3.glb"]
+    },
+    "sounds": {
+      "ambient": "/assets/sounds/ambient-space.wav",
+      "lazer": "/assets/sounds/player-bullet-sfx.wav",
+      "alienMove": "/assets/sounds/alien-move-sfx.wav",
+      "alienExplosion": "/assets/sounds/alien-explosion-sfx.wav"
+    }
+  },
+  "player": {
+    "movement": {
+      "speed": 1.0,
+      "momentum": {
+        "acceleration": 0.2,
+        "friction": 1.4,
+        "maxVelocity": 2.0
+      },
+      "smoothing": 0.8
+    },
+    "bullets": {
+      "speed": 1.25,
+      "maxCount": 50,
+      "cooldown": 100,
+      "shape": {
+        "width": 0.7,
+        "height": 4,
+        "depth": 1
+      },
+      "maxDistance": 120,
+      "color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "opacity": 1.0
+    },
+    "physics": {
+      "mass": 1.0,
+      "restitution": 0.1,
+      "damping": 0.98
+    },
+    "visual": {
+      "scale": 0.05,
+      "rotationEffect": 1.0,
+      "bobbing": true,
+      "material": "none",
+      "color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "glow": {
+        "r": 0.1,
+        "g": 0.3,
+        "b": 0.5
+      }
+    }
+  },
+  "aliens": {
+    "theme": {
+      "name": "aliens",
+      "description": "Classic space invaders in military formation"
+    },
+    "collisionBehavior": {
+      "onBulletHit": "destroy"
+    },
+    "movement": {
+      "pattern": "formation"
+    },
+    "animation": {
+      "idleAnimation": {
+        "enabled": true,
+        "type": "bob",
+        "speed": 0.02,
+        "intensity": 0.3
+      }
+    },
+    "types": {
+      "alien1": {
+        "lives": 1,
+        "scoreValue": 10,
+        "scale": {
+          "base": 1.7,
+          "reduction": 0.14,
+          "variation": {
+            "enabled": true,
+            "range": 0.1,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "pulse",
+            "speed": 1.0,
+            "intensity": 0
+          }
+        },
+        "material": {
+          "type": "none"
+        }
+      },
+      "alien2": {
+        "lives": 0,
+        "scoreValue": 20,
+        "scale": {
+          "base": 1.7,
+          "reduction": 0.14,
+          "variation": {
+            "enabled": true,
+            "range": 0.08,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "pulse",
+            "speed": 0.8,
+            "intensity": 0.08
+          }
+        },
+        "material": {
+          "type": "none"
+        }
+      },
+      "alien3": {
+        "lives": 0,
+        "scoreValue": 30,
+        "scale": {
+          "base": 1.7,
+          "reduction": 0.14,
+          "variation": {
+            "enabled": true,
+            "range": 0.12,
+            "type": "individual"
+          },
+          "animation": {
+            "enabled": false,
+            "type": "pulse",
+            "speed": 1.2,
+            "intensity": 0.12
+          }
+        },
+        "material": {
+          "type": "none"
+        }
+      }
+    }
+  },
+  "starfield": {
+    "maxStars": 100,
+    "ratioOfBlinkers": 0.3,
+    "positioning": {
+      "minY": -50,
+      "maxY": 100,
+      "z": 10
+    },
+    "size": {
+      "min": 0.1,
+      "max": 0.6
+    },
+    "colors": [
+      [1, 1, 0, 1],
+      [0, 1, 0, 1],
+      [1, 0, 0, 1],
+      [1, 0, 1, 1],
+      [1, 1, 1, 1]
+    ],
+    "movement": {
+      "pattern": "scroll",
+      "direction": "down",
+      "speed": 0.1
+    },
+    "blinking": {
+      "minInterval": 500,
+      "maxInterval": 2500
+    },
+    "texture": {
+      "path": "/assets/images/star.png",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      }
+    },
+    "theme": {
+      "particleType": "stars",
+      "name": "Space Battle"
+    }
+  },
+  "atmosphere": {
+    "background": {
+      "type": "clearColor",
+      "clearColor": [0.05, 0.05, 0.15, 1]
+    },
+    "fog": {
+      "enabled": true,
+      "color": [0.95, 0.05, 0.15],
+      "start": 100,
+      "end": 1000,
+      "mode": "linear"
+    },
+    "lighting": {
+      "intensity": 1,
+      "direction": [0, 1, 0],
+      "position": [0, 50, 0],
+      "diffuse": [1, 1, 1],
+      "specular": [1, 1, 1]
+    }
+  }
+}

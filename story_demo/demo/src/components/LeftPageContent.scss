@@ -1,0 +1,143 @@
+$ink: #333;
+$ink-light: #aaa;
+$border: #333;
+$border-w: 2px;
+
+.left-page-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 20px 24px 12px;
+
+  .story-header {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .story-selector {
+      select {
+        font-family: 'Patrick Hand', 'Caveat', cursive;
+        font-size: 18px;
+        font-weight: 500;
+        color: $ink;
+        background: transparent;
+        border: none;
+        border-bottom: $border-w solid $border;
+        padding: 4px 24px 4px 8px;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 4px center;
+        transition: opacity 0.2s ease;
+        text-align: center;
+
+        &:hover {
+          opacity: 0.6;
+        }
+
+        option {
+          font-family: 'Barlow', sans-serif;
+          font-size: 13px;
+          background: white;
+          color: $ink;
+          padding: 8px;
+        }
+      }
+    }
+  }
+
+  .page-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0 8px;
+  }
+
+  .narrative-sentence {
+    font-family: 'Patrick Hand', 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 500;
+    color: $ink;
+    line-height: 1.7;
+    text-align: center;
+
+    .narrative-text {
+      line-height: 1.7;
+    }
+
+    .placeholder-text {
+      color: $ink-light;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .narrative-slot {
+      padding: 1px 6px;
+      border-radius: 2px;
+      background: rgba(0, 0, 0, 0.03);
+      border: none;
+      border-bottom: $border-w solid $border;
+      font-weight: 600;
+      color: $ink;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      white-space: nowrap;
+
+      &:hover,
+      &.highlighted {
+        background: rgba(0, 0, 0, 0.07);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .page-textarea {
+    width: 100%;
+    min-height: 60px;
+    max-height: 200px;
+    padding: 0;
+    font-family: 'Patrick Hand', 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 500;
+    color: $ink;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    line-height: 1.7;
+    text-align: center;
+
+    &::placeholder {
+      color: $ink-light;
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+
+  .page-display {
+    font-family: 'Patrick Hand', 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 500;
+    color: $ink;
+    line-height: 1.7;
+    cursor: text;
+    text-align: center;
+    min-height: 32px;
+
+    .placeholder-text {
+      color: $ink-light;
+      font-style: italic;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+  }
+}

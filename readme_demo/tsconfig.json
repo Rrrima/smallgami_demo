@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@smallgami/engine": ["../../smallGami/src/index.ts"],
+      "react": ["./node_modules/@types/react/index.d.ts"],
+      "react/*": ["./node_modules/@types/react/*"],
+      "@babylonjs/core": ["./node_modules/@babylonjs/core/index.d.ts"],
+      "@babylonjs/core/*": ["./node_modules/@babylonjs/core/*"],
+      "@babylonjs/havok": ["./node_modules/@babylonjs/havok/HavokPhysics.d.ts"],
+      "zustand": ["./node_modules/zustand/index.d.ts"],
+      "zustand/*": ["./node_modules/zustand/*"],
+      "gsap": ["./node_modules/gsap/types/index.d.ts"],
+      "gsap/*": ["./node_modules/gsap/types/*"],
+      "lucide-react": ["./node_modules/lucide-react/dist/lucide-react.d.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

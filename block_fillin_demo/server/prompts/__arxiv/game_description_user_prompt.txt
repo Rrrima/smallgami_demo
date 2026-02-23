@@ -1,0 +1,40 @@
+Design a doodle jump style game based on the following user-provided dimensions:
+
+Overall context 
+{context_elements}
+
+Player Elements:
+{player_elements}
+
+World Elements:
+{world_elements}
+
+Style Elements:
+{style_elements}
+
+Object Elements:
+{object_elements}
+These elements (if any) will informa the design of the platforms the colletables!!
+
+Narrative Elements:
+{narrative_elements}
+
+
+Create a comprehensive game description that includes:
+0. First, think about what is the player, what is the world, what are the platforms and collctables (choose from the scene described in the object elements)
+1. Try to integreate all the elements the user wants in each dimension, feel free to come up new element is what user provided is not enough 
+2. the story description should be simple, in a format of I am _____, I am jumping on _____, collecting _____ to _____
+3. the player should be a single character that is suitable to be in a jumping game with the above narrative, you should separate it with the decorations and environment described in the player related image reference.
+4. when describe the player, make sure it is consistent with the story description 
+5. the style description should be informative, this will be append to the player, world and object visual description to generate an asset image
+6. the player character_visual description should be clear, you do not need to describe visua style, because we wil use a global visual style to do it. The motion descirpiton should be concise and information, considering the world and player itself
+7. the world description should be detailed and will be used to send to a stable diffusion model to generate a skybox background
+8. Platform types that fit the theme and provide interesting gameplay mechanics, no more than 2 types of platforms
+9. Collectables that enhance the story and provide meaningful player progression, no more than 2 types of colletables
+10. Both the platforms and the collectables should be informed by the object elements, if limited object elements are provided, try to infer from the player, world and the overall story.
+11. New events should be achieved with small, natural progressions (like moving to a new area, slight ability changes, or environmental shifts), it should be described in a engaging about concise way like, informal language, like you are talking to the player, no more than 2
+12. think about an event when the user fail (i.e., jump off the platform), instead of a game over, use this event to shape the story and move to a new scene, for example, you could fall into a new world.
+13. DO NOT!! use words like 'try again', 'new advantrue', those are vague and not informative!!!
+14. be aware of the overall context, if some parts of the game is not well specifiied in other element, make use of the overall context.
+
+Ensure all elements work together to create a cohesive doodle jump experience that stays true to the core jumping mechanics while incorporating the user's creative vision.

@@ -1,0 +1,29 @@
+GAME CONTEXT:
+Visual Style: __VISUAL_STYLE__
+World Description: __WORLD_DESCRIPTION__
+Narrative Description: __NARRATIVE_THEME__
+
+SOUND TYPE: __SOUND_TYPE__
+SOUND CONTEXT: __SOUND_CONTEXT__
+
+TASK: Generate a concise audio generation prompt for this game sound.
+
+REQUIREMENTS:
+1. Create a prompt under 20 words that clearly describes the desired sound
+2. Match the visual style and narrative theme of the game
+3. Use appropriate audio terminology and descriptors
+4. Consider the technical requirements for the sound type
+
+SOUND TYPE SPECIFICATIONS:
+- EMISSION: 1-second sound effect for player action (shooting/emitting). Should be satisfying and match the emission type.
+- COLLISION: 1-second impact sound when emission hits this specific object. Should reflect the object's material and interaction.
+- AMBIENT: Background atmospheric sound that loops seamlessly. Should be non-distracting and match the world mood.
+
+EXAMPLES:
+- Emission (bubble game): "magical bubble pop, soft whoosh, underwater effect"
+- Collision (crystal): "gentle crystal chime, ethereal ring, magical sparkle"
+- Ambient (ocean): "calm underwater ambience, gentle currents, peaceful depths"
+
+OUTPUT FORMAT:
+Generate only the audio prompt text - no additional explanation or formatting.
+

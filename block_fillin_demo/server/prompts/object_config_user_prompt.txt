@@ -1,0 +1,28 @@
+The user wants to modify a game object with the following request:
+
+"____USER_MESSAGE____"
+
+## Game Mechanism:
+____MECHANISM____
+
+## World Context:
+____WORLD_DESCRIPTION____
+
+## Current Object Configuration:
+____OBJECT_CONFIG____
+
+Please modify the object configuration based on the user's request. Remember:
+- **DO NOT change the "id" field under any circumstances**
+- **CRITICAL**: Respect mechanism constraints! For "christmas" and "running_christmas":
+  * If object id is "box1", it MUST remain a hazard (onPlayerCollision.player = "die")
+  * If object id is "box2", it MUST remain a collectible (onPlayerCollision.player = "score")
+  * You can change appearance, size, speed, name - but NOT the core role
+- Update visual properties (name, size) to match the user's description
+- Adjust physics (speed, motion) to fit the described behavior
+- Ensure collision behaviors match BOTH the mechanism constraints AND object's role
+- Keep the configuration consistent with the world's theme and style
+- **CRITICAL**: Use correct collision config structures:
+  * onPlayerCollision: {"player": "...", "object": "..."} - NO "projectile" field!
+  * onProjectileCollision: {"projectile": "...", "object": "..."} - NO "player" field!
+
+Return the complete modified configuration and a summary of changes.

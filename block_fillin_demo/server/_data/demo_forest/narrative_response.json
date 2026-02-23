@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-08-13T15:56:34.096898",
+  "user_prompt": "take me to the enchanted forest",
+  "existing_narrative": [
+    "Deep in the enchanted forest, mystical fairies dance among ancient trees. As a young magical girl, you must explore this wondrous realm and befriend the forest spirits with your glowing wand."
+  ],
+  "game_id": "demo_forest",
+  "gpt_response": {
+    "mechanism_sentence": "I am a magical girl, and I must explore the enchanted forest and befriend the mystical fairies.",
+    "narrative_text": "Strange clues hide in this enchanted meadow. Send gentle sparkles to guide the wandering animals to safety, but watch out—some playful sprites may try to lead them astray!",
+    "name": "Enchanted Forest Adventure",
+    "game_id": "demo_forest"
+  }
+}

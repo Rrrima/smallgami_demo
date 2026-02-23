@@ -1,0 +1,818 @@
+{
+  "name": "Cute Succulent in Pot",
+  "description": "Adorable layered succulent with rounded leaves in terracotta pot",
+  "parts": [
+    {
+      "type": "cylinder",
+      "name": "pot",
+      "cylinderOptions": {
+        "height": 0.5,
+        "diameterTop": 1,
+        "diameterBottom": 0.7,
+        "tessellation": 20,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.88,
+          0.6,
+          0.45
+        ],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0.08,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "pot_rim",
+      "cylinderOptions": {
+        "height": 0.08,
+        "diameterTop": 1.05,
+        "diameterBottom": 1.03,
+        "tessellation": 20,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.88,
+          0.6,
+          0.45
+        ],
+        "metallic": 0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0.38,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "soil",
+      "cylinderOptions": {
+        "height": 0.05,
+        "diameterTop": 0.9,
+        "diameterBottom": 0.9,
+        "tessellation": 16,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.35,
+          0.5,
+          0.4
+        ],
+        "metallic": 0,
+        "roughness": 0.95
+      },
+      "transform": {
+        "position": [
+          0,
+          0.58,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_1",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.45,
+          0.65,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.62,
+          0.35
+        ],
+        "rotation": [
+          -0.2,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_2",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.45,
+          0.65,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0.3,
+          0.62,
+          0.17
+        ],
+        "rotation": [
+          -0.2,
+          1.047,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_3",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.45,
+          0.65,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0.3,
+          0.62,
+          -0.17
+        ],
+        "rotation": [
+          -0.2,
+          2.094,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_4",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.45,
+          0.65,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.62,
+          -0.35
+        ],
+        "rotation": [
+          -0.2,
+          3.14,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_5",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.45,
+          0.65,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.3,
+          0.62,
+          -0.17
+        ],
+        "rotation": [
+          -0.2,
+          4.188,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_bottom_6",
+      "softboxOptions": {
+        "width": 0.25,
+        "height": 0.08,
+        "depth": 0.4,
+        "radius": 0.2,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.45,
+          0.65,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.3,
+          0.62,
+          0.17
+        ],
+        "rotation": [
+          -0.2,
+          5.236,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_1",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.55,
+          0.75,
+          0.6
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.78,
+          0.22
+        ],
+        "rotation": [
+          -0.4,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_2",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.55,
+          0.75,
+          0.6
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0.21,
+          0.78,
+          0.11
+        ],
+        "rotation": [
+          -0.4,
+          1.256,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_3",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.55,
+          0.75,
+          0.6
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0.13,
+          0.78,
+          -0.18
+        ],
+        "rotation": [
+          -0.4,
+          2.512,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_4",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.55,
+          0.75,
+          0.6
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.13,
+          0.78,
+          -0.18
+        ],
+        "rotation": [
+          -0.4,
+          3.768,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_mid_5",
+      "softboxOptions": {
+        "width": 0.2,
+        "height": 0.1,
+        "depth": 0.35,
+        "radius": 0.18,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.55,
+          0.75,
+          0.6
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.21,
+          0.78,
+          0.11
+        ],
+        "rotation": [
+          -0.4,
+          5.024,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_top_1",
+      "softboxOptions": {
+        "width": 0.16,
+        "height": 0.12,
+        "depth": 0.28,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.65,
+          0.82,
+          0.7
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.95,
+          0.12
+        ],
+        "rotation": [
+          -0.6,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_top_2",
+      "softboxOptions": {
+        "width": 0.16,
+        "height": 0.12,
+        "depth": 0.28,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.65,
+          0.82,
+          0.7
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0.12,
+          0.95,
+          0
+        ],
+        "rotation": [
+          -0.6,
+          1.57,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_top_3",
+      "softboxOptions": {
+        "width": 0.16,
+        "height": 0.12,
+        "depth": 0.28,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.65,
+          0.82,
+          0.7
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.95,
+          -0.12
+        ],
+        "rotation": [
+          -0.6,
+          3.14,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "leaf_top_4",
+      "softboxOptions": {
+        "width": 0.16,
+        "height": 0.12,
+        "depth": 0.28,
+        "radius": 0.15,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.65,
+          0.82,
+          0.7
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.12,
+          0.95,
+          0
+        ],
+        "rotation": [
+          -0.6,
+          4.71,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "bud_1",
+      "softboxOptions": {
+        "width": 0.1,
+        "height": 0.08,
+        "depth": 0.18,
+        "radius": 0.1,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.85,
+          0.75
+        ],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [
+          0,
+          1.08,
+          0.06
+        ],
+        "rotation": [
+          -0.8,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "bud_2",
+      "softboxOptions": {
+        "width": 0.1,
+        "height": 0.08,
+        "depth": 0.18,
+        "radius": 0.1,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.85,
+          0.75
+        ],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [
+          0.05,
+          1.08,
+          -0.03
+        ],
+        "rotation": [
+          -0.8,
+          2.09,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type": "softbox",
+      "name": "bud_3",
+      "softboxOptions": {
+        "width": 0.1,
+        "height": 0.08,
+        "depth": 0.18,
+        "radius": 0.1,
+        "stretch": true,
+        "arcSegments": 4
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.85,
+          0.75
+        ],
+        "metallic": 0,
+        "roughness": 0.75
+      },
+      "transform": {
+        "position": [
+          -0.05,
+          1.08,
+          -0.03
+        ],
+        "rotation": [
+          -0.8,
+          4.19,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [
+      0,
+      -2,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  }
+}

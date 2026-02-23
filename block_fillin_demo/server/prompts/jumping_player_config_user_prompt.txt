@@ -1,0 +1,28 @@
+Generate a detailed player configuration for a jumping/platformer game based on the following context:
+
+**Game Description:**
+{game_description}
+
+**Player Character:**
+- Character Visual: {player_visual}
+- Motion Style: {motion_style}
+- Story: {player_story}
+- Goal: {player_goal}
+
+**Visual Style:** {visual_style}
+
+Based on this context, generate a complete PlayerConfig with the following considerations:
+
+1. **Physics Settings**: 
+   - Gravity should feel natural but allow for fun platforming (typically 15-25)
+   - Jump power should allow reaching platforms with satisfying arc (typically 8-15)
+   - Move speed should match the character type and feel responsive (typically 5-12)
+   - Max velocity Y should prevent excessive falling speed (typically 15-25)
+   - Friction should provide good control without being too slippery (0.1-0.3)
+
+2. **Jump Animation Settings**:
+   - Jump animation duration should be snappy but visible (100-300ms)
+   - Jump squish scale should provide satisfying feedback (0.7-0.9)
+   - Jump stretch scale should emphasize the jump action (1.1-1.4)
+
+Ensure all values create engaging platformer gameplay that matches the character's story and visual style. The physics should feel responsive and fun while supporting the narrative context.

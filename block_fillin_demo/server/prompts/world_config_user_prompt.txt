@@ -1,0 +1,75 @@
+The user wants to modify the game world configuration.
+
+User Request: ____USER_MESSAGE____
+
+Current World Configuration:
+____WORLD_CONFIG____
+
+Based on the user's request, modify the world configuration appropriately. 
+
+## Examples of Modifications:
+
+**Lighting:**
+- "Make it brighter" → Increase HemisphericLight.intensity (e.g., 0.7 to 1.2), DirectionalLight.intensity
+- "Make it darker" → Reduce all light intensities (e.g., hemispheric 0.7→0.3, directional 0.4→0.2)
+- "Warmer lighting" → Adjust colors to warm tones like [1, 0.85, 0.7]
+- "Cooler/mysterious" → Cool colors like [0.6, 0.7, 1.0], reduce intensity
+
+**Camera:**
+- "Top-down view" → cameraType: 'birdeye'
+- "2D side view" → cameraType: 'ortho' or 'action'
+- "Zoom in" → cameraRadiusDelta: -20 (negative = closer)
+- "Tilt camera down" → cameraBetaDelta: 10 (in degrees)
+- "Rotate camera left" → cameraAlphaDelta: -30 (in degrees)
+
+**Atmosphere:**
+- "Add fog" → fog.enabled: true, mode: 'exponential', density: 0.05
+- "Heavy fog" → fog.density: 0.08-0.1 (exponential mode) - NEVER exceed 0.1 for visibility!
+- "Light mist" → fog.mode: 'linear', start: 0, end: 800
+- "Remove fog" → fog.enabled: false
+- **CRITICAL**: For exponential/exponential2 fog modes, density MUST be ≤0.1 for good visibility. Values above 0.1 make the scene too dense.
+
+**Particles:**
+- "Add stars" → particles with pattern: 'oscillate', movement.speed: 0.05, colors: [[1,1,1,0.8]]
+- "Add snow" → pattern: 'scroll', direction: 'down', speed: 0.3, colors: [[1,1,1,0.9]]
+- "Add fireflies" → pattern: 'oscillate', ratioOfBlinkers: 0.8, blinking intervals: 800-2000ms
+- "Floating bubbles" → pattern: 'float', drift: {horizontal: 0.02, vertical: 0.03}
+- "More particles" → Increase maxStars (10→60)
+
+**Physics & Ground:**
+- "Stronger gravity" → gravityMultiplier: 2.0-3.0
+- "Floaty feeling" → gravityMultiplier: 0.5-0.8
+- "Hide ground" → hasGround: false
+- "Lower ground" → ground.posY: -10 (more negative = lower)
+
+**Combined Examples:**
+- "Mysterious underwater scene" → Cool lighting, fog (density 0.5), particles (float pattern, blue tint)
+- "Snowy mountain" → Cool bright lighting, fog (light), particles (scroll down, white)
+- "Magical forest" → Warm dim lighting, particles (oscillate for fireflies), slight fog
+
+IMPORTANT: 
+- Return a JSON object with TWO fields:
+  1. **worldConfig**: The COMPLETE WorldConfig JSON with ALL fields
+  2. **summary**: A brief 2-3 sentence explanation of what you changed
+- Only modify worldConfig fields relevant to the user's request
+- Keep all other worldConfig fields UNCHANGED from the current configuration
+- Ensure values are in valid ranges:
+  - Light intensity: 0.05-2.0
+  - Colors: 0.0-1.0 (RGB can exceed 1 for extra intensity)
+  - Gravity: 0.3-5.0 (typical: 1.3)
+  - Camera deltas: reasonable angles/distances
+  - Particle speed: 0.01-2.0
+  - Fog density (exponential/exponential2): 0.01-0.1 (MUST be ≤0.1 for visibility!)
+  - Fog density (linear mode): use start/end instead
+- Maintain exact JSON structure matching WorldConfigChangeResponse schema
+
+Example response format:
+```json
+{
+  "worldConfig": { ...complete world config... },
+  "summary": "I reduced all light intensities by about 50% to make the scene darker and added exponential fog with moderate density for a more mysterious atmosphere."
+}
+```
+
+Return the response as valid JSON.
+

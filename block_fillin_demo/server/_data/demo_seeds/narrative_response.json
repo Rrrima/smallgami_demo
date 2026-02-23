@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-08-15T03:23:55.888864",
+  "user_prompt": "load forest",
+  "existing_narrative": [
+    "Alert! Alien fleets in formation descend from the void. You are Earth's final defense - destroy the invaders before they breach our atmosphere and conquer humanity.",
+    "A magical fish calls for your help! Use your bubble powers to make ocean creatures invisible before the aliens spot them. Save the seahorses and jellyfish by popping protective bubbles around them."
+  ],
+  "game_id": "9963bf31-e3a5-41c4-8371-fdbd5bbbf89e",
+  "gpt_response": {
+    "mechanism_sentence": "I am an elf, I send seeds to make the forest bloom.",
+    "narrative_text": "Welcome to the Whispering Forest! As a forest elf, your task is to restore life to the land. Use your magical pouch of forest seeds to guide the growth of new plants and flowers, avoiding the mischievous sprites that try to scatter your seeds in the wrong places. The forest's future is in your hands!",
+    "name": "Forest Bloom",
+    "game_id": "9963bf31-e3a5-41c4-8371-fdbd5bbbf89e"
+  }
+}

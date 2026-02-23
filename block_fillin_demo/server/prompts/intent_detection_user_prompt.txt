@@ -1,0 +1,34 @@
+Analyze the following user message and determine the intent:
+
+User Message: {user_message}
+
+Classify this as either:
+- "chat": The user wants to have a conversation, ask questions, or discuss game design
+- "generate_asset": The user wants to create or generate specific game assets, 3D objects, or visual elements
+- "change_configuration": The user wants to modify the game world configuration (lighting, gravity, camera, fog, skybox, particles, ground settings, etc.)
+
+Consider "generate_asset" if the user:
+- Asks to create/make/generate specific objects or models
+- Describes visual elements they want to see
+- Requests 3D assets or game objects
+- Wants to update the existing asset in the chat history
+- Asks you to make specific changes to the asset
+
+Consider "change_configuration" if the user:
+- Wants to change lighting (make it brighter, darker, change colors)
+- Wants to adjust gravity or physics properties
+- Wants to modify camera settings (perspective, position, angle)
+- Wants to add/remove/modify fog effects
+- Wants to change the skybox or background
+- Wants to adjust particles (stars, snow, etc.)
+- Wants to modify ground properties
+- Asks to make the world/environment different
+
+Consider "chat" if the user:
+- Asks questions about how things work (but not as a complaint about why things don't work the way they want!)
+- Wants suggestions or ideas
+- Discusses game design concepts
+- Seeks help or clarification
+
+Respond with your classification
+

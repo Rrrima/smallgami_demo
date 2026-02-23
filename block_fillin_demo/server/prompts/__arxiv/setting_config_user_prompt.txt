@@ -1,0 +1,15 @@
+Given a high-level GameDSL specification, generate a GameSettingConfig object with all necessary world, player, and object parameters WITHOUT positions and sizes.
+
+The GameSettingConfig should follow what's described in the schema. Focus on creating the fundamental game mechanics, physics, materials, and visual properties.
+
+**Rules:**
+- Everything is in the lowpoly world, so make sure you make the style lowpoly!
+- Use plausible physics values: e.g., gravity around (0, -9.8, 0), friction between 0.3–0.8, mass values appropriate for object types
+- Material colors should match the tone of the `render` descriptions (e.g., "glowing blue" → use appropriate blue color from the available palette)
+- Physics parameters should be realistic: platforms should be heavy and stable, collectibles should be light, enemies should have moderate mass
+- Do NOT include object positions or sizes - these will be handled separately in the layout configuration
+- Each object should have a "number" field indicating how many instances of that object type should be placed
+- Ensure all physics parameters are consistent with the object types and game mechanics
+
+**Input DSL:**
+__DSL__ 

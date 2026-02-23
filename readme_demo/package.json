@@ -1,0 +1,36 @@
+{
+  "name": "smallgami-readme-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@babylonjs/core": "^8.15.1",
+    "@babylonjs/havok": "^1.3.10",
+    "@babylonjs/loaders": "^8.15.1",
+    "@smallgami/engine": "file:../../smallGami",
+    "d3-force": "^3.0.0",
+    "gsap": "^3.13.0",
+    "lucide-react": "^0.523.0",
+    "prismjs": "^1.30.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-simple-code-editor": "^0.14.1",
+    "zustand": "^5.0.6"
+  },
+  "devDependencies": {
+    "@types/d3-force": "^3.0.10",
+    "@types/node": "^20",
+    "@types/prismjs": "^1.26.5",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.3.4",
+    "sass": "^1.89.2",
+    "typescript": "^5.9.3",
+    "vite": "^6.0.3"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  }
+}

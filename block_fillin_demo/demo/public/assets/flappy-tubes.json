@@ -1,0 +1,49 @@
+{
+  "name": "Flappy Bird Tube",
+  "description": "Single green tube/pipe from Flappy Bird game",
+  "parts": [
+    {
+      "type": "cylinder",
+      "name": "tube",
+      "cylinderOptions": {
+        "height": 3.0,
+        "diameterTop": 0.8,
+        "diameterBottom": 0.8,
+        "tessellation": 12
+      },
+      "material": {
+        "albedoColor": [0.2, 0.8, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.7
+      },
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "cap",
+      "cylinderOptions": {
+        "height": 0.1,
+        "diameterTop": 0.9,
+        "diameterBottom": 0.8,
+        "tessellation": 12
+      },
+      "material": {
+        "albedoColor": [0.15, 0.6, 0.15],
+        "metallic": 0.0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, -1.55, 0],
+        "rotation": [0, 0, 0]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [0, 0.8, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1.0, 1.0, 1.0]
+  }
+}

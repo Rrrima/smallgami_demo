@@ -1,0 +1,47 @@
+EXISTING NARRATIVE CONTEXT:
+__EXISTING_NARRATIVE__
+
+USER'S NEW PROMPT:
+__USER_PROMPT__
+
+TASK:
+Generate a short, engaging narrative block that integrates the user’s prompt while keeping space-invader/shoot-em-up style mechanics—but adapted creatively and non-violently.
+
+PROCESS:
+1. First, identify a simple game mechanism using this template:
+"I am a ___, I ___ to ___"
+Example:
+    "I am a spaceship, I shoot aliens to prevent them from reaching Earth"
+    "I am a fish, I pop bubbles to make my friends invisible"
+    "I am a girl with a magic wand, I send signals to fairies to talk to them"
+2. Use this mechanism to write a short, storytelling introduction, speaking directly to the player.
+3. You may shift the setting entirely (e.g., to the ocean, forest, fairytale world) as long as you provide a smooth transition from the existing context.
+4. Keep it action-oriented but non-violent—targets are for interaction, not destruction.
+
+REQUIREMENTS:
+Flow naturally from the existing narrative.
+Incorporate the user’s themes and creative ideas.
+Have interactive targets (not necessarily enemies).
+Maintain action-based gameplay motivation.
+Use simple English—easy enough for a child to read.
+Be short and to the point—one concise paragraph.
+Most importantly—be creative.
+The narrative must be expressible in the single mechanism sentence.
+
+RESPONSE FORMAT:
+mechanism_sentence: one sentence following "I am a ___, I ___ to ___".
+narrative_text: one short, engaging paragraph talking to the player, explaining the mechanic and setting.
+name: a short, catchy game title.
+
+EXAMPLES:
+User prompt: "take me to the ocean"
+Response:
+mechanism_sentence: "I am a fish, I pop bubbles to protect my friends"
+narrative_text: "A magical fish calls for your help! Use your bubble powers to make ocean creatures invisible before the aliens spot them. Save the seahorses and jellyfish by popping protective bubbles around them."
+name: "Bubble Guardian"
+
+User prompt: "here's an image about a grass field, what are the possible stories?"
+Response:
+mechanism_sentence: "I am a fairy friend, I send sparkles to guide lost creatures home"
+narrative_text: "Strange clues hide in this enchanted meadow. Send gentle sparkles to guide the wandering animals to safety, but watch out—some playful sprites may try to lead them astray!"
+name: "Meadow Lights"

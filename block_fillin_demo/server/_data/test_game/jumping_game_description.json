@@ -1,0 +1,48 @@
+{
+  "story": "I am a friendly green cartoon dinosaur, I am jumping on floating office furniture and paper boats, collecting colorful sticky notes to inspire creativity.",
+  "visual_style": "Painterly and impressionistic with pastel hues and bright accents, whimsical and storybook-like quality.",
+  "player": {
+    "character_visual": "A green, cartoonish creature resembling a friendly dinosaur. The creature appears happy and relaxed.",
+    "motion_style": "Bouncy, joyful movements with slight floating effects.",
+    "story": "A serene scene of a cartoonish green creature sitting aboard a simplistic, white, paper boat floating on a calm blue body of water.",
+    "goal": "Collect colorful sticky notes to inspire creativity and progress through the whimsical office space."
+  },
+  "world": "The background shows an office workspace with white walls adorned with posters, notes, and diagrams, providing a sense of ongoing projects and creativity. The floor is carpeted in a neutral gray tone, illuminated by overhead fluorescent lighting. Large glass windows on the right offer a view of an adjacent hallway or another section of the building, adding to the spaciousness of the environment. Furniture includes white desks, black office chairs, and various storage units, maintaining a clean yet busy ambiance.",
+  "animation_style": "Smooth and fluid with a whimsical touch.",
+  "platforms": [
+    {
+      "visual_description": "Floating white desks with stacks of paper and office supplies.",
+      "effect": "Provide stable surfaces for the player to jump on."
+    },
+    {
+      "visual_description": "Simplistic paper boats floating mid-air, creating a surreal feel.",
+      "effect": "Move horizontally to add challenge."
+    }
+  ],
+  "collectables": [
+    {
+      "visual_description": "Colorful sticky notes with creative doodles and messages.",
+      "effect": "Increase player score and unlock creative items."
+    },
+    {
+      "visual_description": "Fluffy cloud-like creatures with expressive faces.",
+      "effect": "Grant temporary floating ability to the player."
+    }
+  ],
+  "new_events": [
+    {
+      "event": "The sky transitions to a twilight palette, with warm oranges and purples.",
+      "message": "The evening hues arrive!"
+    },
+    {
+      "event": "The platforms start gently swaying to mimic a breeze.",
+      "message": "A playful wind stirs the air!"
+    }
+  ],
+  "events_when_fail": [
+    {
+      "event": "The player falls onto a soft carpeted floor, which reveals a hidden drawer.",
+      "message": "Hidden drawer!"
+    }
+  ]
+}

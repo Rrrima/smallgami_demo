@@ -1,0 +1,25 @@
+NARRATIVE CONTEXT:
+__NARRATIVE_BLOCK__
+
+The high level mechanism of this game is: __MECHANISM_SENTENCE__
+
+TASK: Generate a complete Game2DSL specification that implements this narrative and highlevel mechanism  as a mini-game. The game mechanic should be based on the concept of emission: the player (or another entity) can emit or launch something toward a target, obstacle, or environment. The emitted object can have many thematic forms (e.g., bullet, bubble, magic spark, seed, food, paint splash) and can produce varied effects (damage, capture, transformation, growth, decoration, healing, unlocking).
+
+REQUIREMENTS:
+1. Design a world that matches the narrative setting and visual style
+2. Define a player with appropriate appearance and emission abilities 
+3. Create 1-2 objects that support the narrative and provide gameplay variety
+4. Ensure all objects have clear behaviors and collision responses, it should be simple enough to implement but also able to communicate the narrative
+5. Generate possible story continuations that maintain the space invader mechanics
+6. Make the game completable in 15-30 seconds with clear objectives
+
+GAME DESIGN SPECIFICATIONS:
+- Player emissions should be thematically appropriate (bubbles, spells, beams, etc.)
+- There should be no more than 2 types of object, keep the object simple while be able to deliver the narrative
+- Collision effects should be creative but clear (healing, transformation, protection, etc.)
+- Visual style should be cohesive and family-friendly
+- Controls should be simple keyboard/mouse inputs
+- Objects should have varied behaviors (moving patterns, reactions, etc.)
+
+OUTPUT FORMAT:
+Generate a complete JSON object following the Game2DSL schema structure with all required fields populated.

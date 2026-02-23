@@ -1,0 +1,160 @@
+{
+  "name": "Watermelon",
+  "description": "A juicy watermelon with green rind, stripes, and seeds",
+  "parts": [
+    {
+      "type": "softbox",
+      "name": "watermelonBody",
+      "softboxOptions": {
+        "width": 1.0,
+        "height": 0.9,
+        "depth": 0.9,
+        "heightTop": 0.6,
+        "heightBottom": 0.8,
+        "radius": 0.4,
+        "arcSegments": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.5, 0.1],
+        "metallic": 0.0,
+        "roughness": 0.7
+      },
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "stripe1",
+      "cylinderOptions": {
+        "height": 1.2,
+        "diameterTop": 0.03,
+        "diameterBottom": 0.03,
+        "tessellation": 6
+      },
+      "material": {
+        "albedoColor": [0.0, 0.4, 0.0],
+        "metallic": 0.0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0.15, 0, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "stripe2",
+      "cylinderOptions": {
+        "height": 1.2,
+        "diameterTop": 0.03,
+        "diameterBottom": 0.03,
+        "tessellation": 6
+      },
+      "material": {
+        "albedoColor": [0.0, 0.4, 0.0],
+        "metallic": 0.0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [-0.15, 0, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "stripe3",
+      "cylinderOptions": {
+        "height": 1.2,
+        "diameterTop": 0.03,
+        "diameterBottom": 0.03,
+        "tessellation": 6
+      },
+      "material": {
+        "albedoColor": [0.0, 0.4, 0.0],
+        "metallic": 0.0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 0, 0.2],
+        "rotation": [0, 1.571, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "seed1",
+      "sphereOptions": {
+        "diameter": 0.03,
+        "segments": 6
+      },
+      "material": {
+        "albedoColor": [0.0, 0.0, 0.0],
+        "metallic": 0.0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0.2, 0.2, 0.2],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "seed2",
+      "sphereOptions": {
+        "diameter": 0.03,
+        "segments": 6
+      },
+      "material": {
+        "albedoColor": [0.0, 0.0, 0.0],
+        "metallic": 0.0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [-0.15, -0.1, 0.25],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "seed3",
+      "sphereOptions": {
+        "diameter": 0.03,
+        "segments": 6
+      },
+      "material": {
+        "albedoColor": [0.0, 0.0, 0.0],
+        "metallic": 0.0,
+        "roughness": 0.9
+      },
+      "transform": {
+        "position": [0.1, -0.2, -0.2],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "stem",
+      "cylinderOptions": {
+        "height": 0.4,
+        "diameterTop": 0.08,
+        "diameterBottom": 0.06,
+        "tessellation": 6
+      },
+      "material": {
+        "albedoColor": [0.4, 0.25, 0.1],
+        "metallic": 0.0,
+        "roughness": 0.8
+      },
+      "transform": {
+        "position": [0, 0.6, 0],
+        "rotation": [0, 0, 0]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [0, 0.8, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1.0, 1.0, 1.0]
+  }
+}

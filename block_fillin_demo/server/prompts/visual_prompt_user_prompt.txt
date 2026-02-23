@@ -1,0 +1,22 @@
+ 
+Help me determine which image generation model to use and give me the prompt for using the model to generate required game assets.
+We need to generate a ___TYPE___
+the description of this asset is ___VISUAL___
+the style should be ___STYLE___
+here are some potential reference image descriptions for generating this asset, provided in the form of "reference id: reference description"
+___REFERENCE___
+
+First, determine whether the asset image should be genterated based on the one of the refenerence image
+- If so, use GPT image editing as model; choose one that should be referred, in the refence by providing the reference id, and use GPT image edit function to generate the asset, give me the prompt, for negative_prompt just give N/A
+- If no image should be refered (nothing related to what's being described, or no reference), use SD as model; respond with N/A for the refence image, we will use stable diffusion model to generate the asset, give me the prompt and negative prompt
+
+guidelines:
+- for image send to gpt for edit, the prompt should not specify the file id, only speicify how to edit, what to focus, what to modify and the style.
+- for image send to sd to generate, make sure your prompt can yield best result for a stable difussion model
+- for platforms, it should be horizontal shaped assets, so the player can jump on, no background
+- for colletable types, it will be something on top of the platform, it should look like a game collectable, it can be an object or an npc, no background,
+- for both platform and collectables, your prompt should result in ONE single object with desired style, don't make it too complicated! for exmaple, a leaf, a cloud, a cute creature. only one object!!!
+- for player type, your prompt should result a single player character for the game with desired style, don't make it too complicated!
+- make sure the player, collectables and platforms have clear background.
+- MAKE SURE YOUR PROMPT FOR DEFINING COLLECTABLES, PLATFORMS AND PLAYERS IS DESCRIBING ONE SINGLE OBJECT!!
+- make sure the player, collectables and platform has clear background that separate from the edge of the obejct, so we can remove the backgroun without affecting the object itself.

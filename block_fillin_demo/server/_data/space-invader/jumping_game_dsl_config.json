@@ -1,0 +1,130 @@
+{
+  "world": {
+    "lightDirection": {
+      "x": 0.5,
+      "y": -1.0,
+      "z": 0.5
+    },
+    "lightColor": {
+      "r": 1.0,
+      "g": 0.95,
+      "b": 0.8
+    },
+    "lightIntensity": 0.8
+  },
+  "player": {
+    "gravity": 20.0,
+    "jumpPower": 12.0,
+    "moveSpeed": 8.0,
+    "maxVelocityY": 18.0,
+    "friction": 0.25,
+    "jumpAnimationDuration": 200.0,
+    "jumpSquishScale": 0.85,
+    "jumpStretchScale": 1.3
+  },
+  "objects": {
+    "platforms": [
+      {
+        "name": "Office Desk 1",
+        "id": "desk_01",
+        "size": {
+          "x": 3.0,
+          "y": 0.5,
+          "z": 2.0
+        },
+        "moveRange": {
+          "x": 0.0,
+          "y": 0.5,
+          "z": 0.0
+        },
+        "moveSpeed": 1.0,
+        "disappearDuration": 0.0,
+        "disappearDelay": 0.0,
+        "bouncePowerMultiplier": 1.5
+      },
+      {
+        "name": "Office Desk 2",
+        "id": "desk_02",
+        "size": {
+          "x": 2.5,
+          "y": 0.5,
+          "z": 2.5
+        },
+        "moveRange": {
+          "x": 1.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "moveSpeed": 1.2,
+        "disappearDuration": 3.0,
+        "disappearDelay": 2.0,
+        "bouncePowerMultiplier": 1.8
+      },
+      {
+        "name": "Office Desk 3",
+        "id": "desk_03",
+        "size": {
+          "x": 4.0,
+          "y": 0.5,
+          "z": 2.0
+        },
+        "moveRange": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 1.0
+        },
+        "moveSpeed": 0.8,
+        "disappearDuration": 0.0,
+        "disappearDelay": 0.0,
+        "bouncePowerMultiplier": 1.2
+      }
+    ],
+    "collectables": [
+      {
+        "name": "Tennis Ball A",
+        "id": "ball_a",
+        "size": 0.5,
+        "floatAmplitude": 0.2,
+        "floatFrequency": 1.5,
+        "emissiveIntensity": 1.2,
+        "effect": [
+          {
+            "name": "Score Boost",
+            "target": "player",
+            "property": "score",
+            "value": 10.0,
+            "duration": 0.0
+          },
+          {
+            "name": "Reveal Secret",
+            "target": "world",
+            "property": "secrets",
+            "value": 1.0,
+            "duration": 0.0
+          }
+        ],
+        "systemMessage": "A cheerful tennis ball!",
+        "chanceToTalk": 0.2
+      },
+      {
+        "name": "Tennis Ball B",
+        "id": "ball_b",
+        "size": 0.6,
+        "floatAmplitude": 0.25,
+        "floatFrequency": 1.8,
+        "emissiveIntensity": 1.5,
+        "effect": [
+          {
+            "name": "Score Boost",
+            "target": "player",
+            "property": "score",
+            "value": 15.0,
+            "duration": 0.0
+          }
+        ],
+        "systemMessage": "Another bouncy find!",
+        "chanceToTalk": 0.3
+      }
+    ]
+  }
+}

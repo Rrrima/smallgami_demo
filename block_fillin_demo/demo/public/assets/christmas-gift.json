@@ -1,0 +1,160 @@
+{
+  "name": "Christmas Gift",
+  "description": "A wrapped Christmas gift box with ribbon and bow",
+  "parts": [
+    {
+      "type": "box",
+      "name": "giftBox",
+      "boxOptions": {
+        "width": 1.2,
+        "height": 0.8,
+        "depth": 0.9
+      },
+      "material": {
+        "albedoColor": [0.9, 0.2, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.6
+      },
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "ribbonVertical",
+      "cylinderOptions": {
+        "height": 1.0,
+        "diameterTop": 0.08,
+        "diameterBottom": 0.08,
+        "tessellation": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.6, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0, 0.1, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "ribbonHorizontal",
+      "cylinderOptions": {
+        "height": 1.4,
+        "diameterTop": 0.06,
+        "diameterBottom": 0.06,
+        "tessellation": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.6, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 1.571]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "ribbonCross1",
+      "cylinderOptions": {
+        "height": 1.4,
+        "diameterTop": 0.06,
+        "diameterBottom": 0.06,
+        "tessellation": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.6, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0.785, 1.571]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "ribbonCross2",
+      "cylinderOptions": {
+        "height": 1.4,
+        "diameterTop": 0.06,
+        "diameterBottom": 0.06,
+        "tessellation": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.6, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, -0.785, 1.571]
+      }
+    },
+    {
+      "type": "sphere",
+      "name": "bowCenter",
+      "sphereOptions": {
+        "diameter": 0.2,
+        "segments": 8
+      },
+      "material": {
+        "albedoColor": [0.1, 0.6, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0, 0.5, 0],
+        "rotation": [0, 0, 0]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "bowLoop1",
+      "cylinderOptions": {
+        "height": 0.3,
+        "diameterTop": 0.08,
+        "diameterBottom": 0.08,
+        "tessellation": 6
+      },
+      "material": {
+        "albedoColor": [0.1, 0.6, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [0.15, 0.45, 0],
+        "rotation": [0, 0, 1.047]
+      }
+    },
+    {
+      "type": "cylinder",
+      "name": "bowLoop2",
+      "cylinderOptions": {
+        "height": 0.3,
+        "diameterTop": 0.08,
+        "diameterBottom": 0.08,
+        "tessellation": 6
+      },
+      "material": {
+        "albedoColor": [0.1, 0.6, 0.2],
+        "metallic": 0.0,
+        "roughness": 0.3
+      },
+      "transform": {
+        "position": [-0.15, 0.45, 0],
+        "rotation": [0, 0, -1.047]
+      }
+    }
+  ],
+  "overallTransform": {
+    "position": [0, 0.8, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1.0, 1.0, 1.0]
+  }
+}

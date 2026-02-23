@@ -1,0 +1,233 @@
+{
+  "id": "flappy_bird",
+  "name": "flappy_bird",
+  "mechanism": "flappy_bird",
+  "lives": 1,
+  "assets": {
+    "models": {
+      "player": "",
+      "box1": "",
+      "box2": "",
+      "score": ""
+    },
+    "sounds": {},
+    "skybox": "",
+    "ground": ""
+  },
+  "player": {
+    "size": 5,
+    "jumpPower": 45,
+    "moveSpeed": 30,
+    "description": "a bird",
+    "maxVelocityY": 0.8,
+    "friction": 7,
+    "mass": 10,
+    "restitution": 0.4,
+    "stability": 0.6,
+    "jumpAnimationDuration": 500,
+    "jumpSquishScale": 0.9,
+    "jumpStretchScale": 1.2,
+    "jumpOnlyOnGround": false,
+    "walkingStyle": "normal",
+    "walkingJumpHeight": 3,
+    "walkingJumpDuration": 0.4,
+    "bullets": {
+      "speed": 0.6,
+      "maxCount": 40,
+      "cooldown": 120,
+      "shape": {
+        "width": 1,
+        "height": 1,
+        "depth": 1
+      },
+      "maxDistance": 110,
+      "color": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "opacity": 0.9
+    },
+    "startPosition": {
+      "x": 0,
+      "y": 4,
+      "z": 0
+    }
+  },
+  "controls": {
+    "moveLeft": [""],
+    "moveRight": [""],
+    "moveUp": [""],
+    "moveDown": [""],
+    "jump": [" "],
+    "squeezeToJump": [""],
+    "fireBullet": [""],
+    "bulletLeft": [""],
+    "bulletRight": [""]
+  },
+  "world": {
+    "gravityMultiplier": 1,
+    "description": "the sky",
+    "hasGround": false,
+    "cameraType": "ortho",
+    "cameraFovScale": 1,
+    "cameraTargetDelta": [0, 0, 0],
+    "cameraAlphaDelta": 0,
+    "cameraBetaDelta": 0,
+    "cameraRadiusDelta": 0,
+    "HemisphericLight": {
+      "intensity": 0.8,
+      "color": [1, 1, 1],
+      "direction": [1, 0.5, 0.2]
+    },
+    "DirectionalLight": {
+      "intensity": 0.5,
+      "color": [1, 1, 1],
+      "direction": [-1.4, -0.85, 1]
+    },
+    "BottomLight": {
+      "intensity": 0.1,
+      "color": [1, 1, 1],
+      "direction": [1, 0.2, 0]
+    },
+    "skyboxType": "box",
+    "particles": {
+      "maxStars": 0,
+      "ratioOfBlinkers": 0,
+      "size": {
+        "min": 0,
+        "max": 0
+      },
+      "colors": [[0.7, 0.7, 0.7, 0.5]],
+      "movement": {
+        "pattern": "scroll",
+        "direction": "left",
+        "speed": 0.6,
+        "oscillation": {
+          "amplitude": 1.5,
+          "frequency": 0.05
+        }
+      },
+      "blinking": {
+        "minInterval": 800,
+        "maxInterval": 2000
+      }
+    },
+    "fog": {
+      "enabled": true,
+      "color": [0.7, 0.7, 0.7],
+      "start": 0,
+      "end": 700,
+      "mode": "linear"
+    }
+  },
+  "objects": [
+    {
+      "name": "tube",
+      "id": "box1",
+      "size": {
+        "x": 10,
+        "y": 50,
+        "z": 10
+      },
+      "onPlayerCollision": {
+        "player": "die",
+        "object": "none"
+      },
+      "onProjectileCollision": {
+        "object": "dispose",
+        "projectile": "dispose"
+      },
+      "onGroundCollision": "none",
+      "initialSpeed": {
+        "x": -30,
+        "y": 0,
+        "z": 0
+      },
+      "motionType": 1
+    },
+    {
+      "name": "tube",
+      "id": "box2",
+      "size": {
+        "x": 10,
+        "y": 50,
+        "z": 10
+      },
+      "onPlayerCollision": {
+        "player": "die",
+        "object": "none"
+      },
+      "onProjectileCollision": {
+        "object": "dispose",
+        "projectile": "dispose"
+      },
+      "onGroundCollision": "none",
+      "initialSpeed": {
+        "x": -30,
+        "y": 0,
+        "z": 0
+      },
+      "motionType": 1
+    },
+    {
+      "name": "score",
+      "id": "score",
+      "size": {
+        "x": 0,
+        "y": 30,
+        "z": 20
+      },
+      "onPlayerCollision": {
+        "player": "score",
+        "object": "dispose"
+      },
+      "onProjectileCollision": {
+        "object": "dispose",
+        "projectile": "dispose"
+      },
+      "onGroundCollision": "none",
+      "initialSpeed": {
+        "x": -30,
+        "y": 0,
+        "z": 0
+      },
+      "motionType": 1,
+      "score": 1
+    }
+  ],
+  "spawn": [
+    {
+      "spawnTrigger": "timer",
+      "spawnTriggerTime": 1500,
+      "spawnXrange": [50, 50],
+      "spawnZrange": [-15, -15],
+      "spawnYrange": [15, 15],
+      "spawnOffset": {
+        "box1": {
+          "x": 0,
+          "y": 40,
+          "z": 0
+        },
+        "box2": {
+          "x": 0,
+          "y": -30,
+          "z": 0
+        },
+        "score": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "spawnLikelihood": {
+        "box1": 1,
+        "box2": 1,
+        "score": 1
+      },
+      "scaleRangeX": [1, 1],
+      "scaleRangeY": [1, 1],
+      "scaleRangeZ": [3, 3]
+    }
+  ]
+}

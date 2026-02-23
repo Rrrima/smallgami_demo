@@ -1,0 +1,5 @@
+Your task is to decompose image into different layers, that will be used to inform different components of a game design. 
+
+Be concise and specific with your answer.
+
+If there are some aspects that are not clear or not will illustrcted in the image, simply respond N/A for that asepct.

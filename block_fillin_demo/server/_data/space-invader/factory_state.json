@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-09-04T00:44:41.035Z",
+  "mechanism": "jump",
+  "factory_store": [
+    {
+      "id": "space-invader-1756946673439",
+      "content": null,
+      "dataType": "category",
+      "fileUrl": "/baseGames/space-invader.png",
+      "tags": [
+        "mechanism"
+      ]
+    },
+    {
+      "id": "file-1756946677147",
+      "content": {
+        "worlds": "A vibrant and whimsical meadow under a bright blue sky with fluffy white clouds.",
+        "objects": [
+          "A long-necked green cartoon dinosaur adorned with colorful flowers along its neck and back, with a calm and friendly demeanor",
+          "A fluffy white cloud character with a faint smiling face and rounded edges",
+          "A small black cartoon creature with a rotund body, stubby limbs, and a shiny texture",
+          "A yellow straw hat with a wide brim and a simple design"
+        ],
+        "events": "N/A",
+        "style": "Whimsical and dreamy impressionistic style with soft brushstrokes and vibrant pastel colors."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/3679e02451d8463780753a4df2196afe.jpg",
+      "tags": []
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Given a high-level GameDSL specification, generate a SettingConfig object with all necessary rendering and physics parameters to bring the game to life.
+
+The SettingConfig should follow what's described in the schema, the ground is 100 x 100, so make sure the world is of proper resolution.
+
+
+**Rules:**
+- Everything is in the lowpoly world, so make sure you make the style lowpoly!
+- Use plausible values: e.g., jumpForce between 5–15, gravity around (0, -9.8, 0), alpha between 0.5–1.0, friction between 0.3–0.8, etc.
+- Diffuse colors should match the tone of the `render` descriptions (e.g., "glowing blue" → (0.2, 0.5, 0.8)).
+- Platforms should be flat and wide; NPCs should be medium-sized; collectibles small and bright.
+- Ensure all vectors are valid (x, y, z floats), sizes are positive, and values are internally consistent.
+
+**Input DSL:**
+__DSL__

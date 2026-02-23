@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-08-13T15:56:34.096898",
+  "user_prompt": "take me to the ocean",
+  "existing_narrative": [
+    "Alert! Alien fleets in formation descend from the void. You are Earth's final defense - destroy the invaders before they breach our atmosphere and conquer humanity."
+  ],
+  "game_id": "demo_ocean",
+  "gpt_response": {
+    "mechanism_sentence": "I am a fish, I pop bubbles to protect my friends.",
+    "narrative_text": "A magical fish calls for your help! Use your bubble powers to make ocean creatures invisible before the aliens spot them. Save the seahorses and jellyfish by popping protective bubbles around them.",
+    "name": "Bubble Guardian",
+    "game_id": "demo_ocean"
+  }
+}

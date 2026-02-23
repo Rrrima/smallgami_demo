@@ -1,0 +1,584 @@
+// Light minimalist theme
+$bg-primary: #ffffff69;
+$bg-secondary: #f8f9fa;
+$bg-tertiary: #f1f3f5;
+$text-primary: #1a1a1a;
+$text-secondary: #6c757d;
+$accent: #007aff;
+$accent-hover: #0051d5;
+$border: #e9ecef;
+$bg-accent: #007bff3b;
+
+$spacing-xs: 4px;
+$spacing-sm: 6px;
+$spacing-md: 8px;
+$spacing-lg: 12px;
+$spacing-xl: 16px;
+
+$radius-sm: 4px;
+$radius-md: 6px;
+
+.dsl-editor-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .dsl-header {
+    padding: $spacing-lg;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .dsl-header-title {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+    }
+
+    .game-name {
+      font-weight: 500;
+      text-transform: capitalize;
+      background: $bg-secondary;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $radius-sm;
+      color: $text-primary;
+    }
+    .game-id {
+      color: $text-secondary;
+    }
+
+    .docs-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: $spacing-sm;
+      background: transparent;
+      border: none;
+      color: $text-secondary;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border-radius: $radius-sm;
+
+      &:hover {
+        color: $accent;
+        background: rgba($accent, 0.08);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .dsl-tabs {
+    display: flex;
+    gap: $spacing-xs;
+    padding: $spacing-md $spacing-lg;
+    border-bottom: 1px solid $border;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .dsl-tab {
+      padding: $spacing-sm $spacing-md;
+      background: transparent;
+      border: none;
+      color: $text-secondary;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+
+      &:hover {
+        color: $text-primary;
+        background: $bg-tertiary;
+      }
+
+      &.active {
+        color: $accent;
+        background: rgba($accent, 0.08);
+      }
+    }
+  }
+
+  .dsl-content {
+    flex: 1;
+    padding: $spacing-lg;
+    min-height: 0;
+    overflow-y: auto; // Scroll the container, not the editor
+    pointer-events: auto;
+    position: relative;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    .dsl-code-editor {
+      width: 100%;
+      min-height: 100%; // Use min-height instead of height
+
+      box-sizing: border-box;
+      counter-reset: line;
+      position: relative;
+      border-radius: $radius-sm;
+      transition: background 0.3s ease-in-out; // Container wrapper inside editor
+      & > div {
+        position: relative;
+        min-height: 100%;
+      }
+
+      .dsl-textarea,
+      .dsl-pre {
+        font-family:
+          'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace !important;
+        font-size: 13px !important;
+        line-height: 21px !important; // Explicit pixel value for consistency
+        color: $text-primary;
+        outline: none !important;
+        white-space: pre !important;
+
+        // word-wrap: normal !important;
+        // overflow-wrap: normal !important;
+        // word-break: normal !important;
+        tab-size: 2;
+        letter-spacing: 0 !important;
+      }
+
+      .dsl-textarea {
+        background: transparent !important;
+        resize: none !important;
+        padding: 12px 12px 12px 30px !important;
+        caret-color: $text-primary !important;
+        box-sizing: border-box !important;
+
+        &::placeholder {
+          color: $text-secondary;
+          opacity: 0.6;
+        }
+      }
+
+      .dsl-pre {
+        position: relative;
+        padding: 12px 12px 12px 30px !important;
+        pointer-events: none;
+        background: transparent !important;
+        box-sizing: border-box !important;
+
+        // Line numbers
+        .token-line {
+          position: relative;
+
+          &::before {
+            content: counter(line);
+            counter-increment: line;
+            font-family: monospace !important;
+            position: absolute;
+            left: -36px;
+            width: 28px;
+            text-align: right;
+            color: $text-secondary;
+            opacity: 0.5;
+            font-size: 11px;
+            line-height: 21px;
+            user-select: none;
+            pointer-events: none;
+          }
+        }
+      }
+
+      // JSON Syntax highlighting
+      .token {
+        &.property {
+          color: #0762d1; // Property names (blue)
+          font-weight: 600;
+        }
+
+        &.string {
+          color: #535353; // String values (dark blue)
+        }
+
+        &.number {
+          color: #116329; // Numbers (green)
+        }
+
+        &.boolean {
+          color: #8250df; // Booleans (purple)
+        }
+
+        &.null {
+          color: #cf222e; // Null (red)
+        }
+
+        &.punctuation {
+          color: #24292f; // Brackets, colons, commas (dark)
+          opacity: 0.7;
+        }
+
+        &.operator {
+          color: #cf222e;
+          background: transparent;
+
+          font-weight: 800;
+        }
+      }
+    }
+
+    .dsl-code-editor:hover {
+      background: $bg-tertiary;
+      opacity: 1;
+    }
+  }
+
+  .dsl-actions {
+    display: flex;
+    gap: $spacing-sm;
+    padding: $spacing-lg;
+    justify-content: flex-end;
+
+    .dsl-btn {
+      padding: $spacing-sm $spacing-lg;
+      border: none;
+      background: transparent;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+
+      &.secondary {
+        color: $text-secondary;
+
+        &:hover {
+          color: $text-primary;
+          background: rgba($text-primary, 0.03);
+        }
+      }
+
+      &.primary {
+        color: $accent;
+
+        &:hover {
+          background: rgba($accent, 0.08);
+        }
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Save Dialog Modal
+.save-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+.save-dialog {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  animation: slideUp 0.2s ease;
+
+  h3 {
+    margin: 0;
+    padding: $spacing-xl;
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-primary;
+    border-bottom: 1px solid $border;
+  }
+
+  .save-dialog-content {
+    padding: $spacing-xl;
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: $text-secondary;
+      margin-bottom: $spacing-md;
+    }
+
+    .filename-input-group {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      margin-bottom: $spacing-xl;
+
+      input {
+        flex: 1;
+        padding: $spacing-md $spacing-lg;
+        border: 1px solid $border;
+        border-radius: $radius-md;
+        font-size: 14px;
+        color: $text-primary;
+        outline: none;
+        transition: all 0.15s ease;
+
+        &:focus {
+          border-color: $accent;
+          box-shadow: 0 0 0 3px rgba($accent, 0.1);
+        }
+
+        &::placeholder {
+          color: $text-secondary;
+          opacity: 0.6;
+        }
+      }
+
+      .file-extension {
+        font-size: 14px;
+        color: $text-secondary;
+        font-weight: 500;
+      }
+    }
+
+    .save-location-info {
+      background: $bg-tertiary;
+      padding: $spacing-lg;
+      border-radius: $radius-md;
+      font-size: 12px;
+
+      p {
+        margin: 0;
+        padding: $spacing-xs 0;
+        color: $text-secondary;
+
+        strong {
+          color: $text-primary;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .save-dialog-actions {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-xl;
+    justify-content: flex-end;
+    border-top: 1px solid $border;
+
+    .dialog-btn {
+      padding: $spacing-md $spacing-xl;
+      border: none;
+      border-radius: $radius-md;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &.cancel {
+        background: transparent;
+        color: $text-secondary;
+
+        &:hover:not(:disabled) {
+          background: $bg-tertiary;
+          color: $text-primary;
+        }
+      }
+
+      &.secondary {
+        background: $bg-secondary;
+        color: $text-primary;
+        border: 1px solid $border;
+
+        &:hover:not(:disabled) {
+          background: $bg-tertiary;
+        }
+      }
+
+      &.primary {
+        background: $accent;
+        color: white;
+
+        &:hover:not(:disabled) {
+          background: $accent-hover;
+        }
+      }
+
+      &:active:not(:disabled) {
+        transform: scale(0.98);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Upload Dialog Specific Styles
+.upload-dialog {
+  max-width: 600px;
+
+  .upload-options {
+    margin-bottom: $spacing-xl;
+    padding-bottom: $spacing-xl;
+    border-bottom: 1px solid $border;
+
+    .upload-option-btn {
+      width: 100%;
+      padding: $spacing-lg;
+      background: $accent;
+      color: white;
+      border: none;
+      border-radius: $radius-md;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+
+      &:hover {
+        background: $accent-hover;
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+
+  .config-files-section {
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: $text-secondary;
+      margin-bottom: $spacing-lg;
+    }
+
+    .loading-message,
+    .no-files-message {
+      text-align: center;
+      padding: $spacing-xl;
+      color: $text-secondary;
+      font-size: 13px;
+      background: $bg-tertiary;
+      border-radius: $radius-md;
+    }
+
+    .config-files-list {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid $border;
+      border-radius: $radius-md;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      .config-file-item {
+        width: 100%;
+        padding: $spacing-lg;
+        background: white;
+        border: none;
+        border-bottom: 1px solid $border;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover:not(:disabled) {
+          background: $bg-secondary;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .file-info {
+          .file-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: $text-primary;
+            margin-bottom: 4px;
+          }
+
+          .file-meta {
+            font-size: 12px;
+            color: $text-secondary;
+          }
+        }
+      }
+    }
+  }
+}

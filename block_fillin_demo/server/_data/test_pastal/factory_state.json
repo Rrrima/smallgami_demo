@@ -1,0 +1,44 @@
+{
+  "timestamp": "2025-09-04T01:01:56.899Z",
+  "mechanism": "jump",
+  "factory_store": [
+    {
+      "id": "doodle-jump-1756947705787",
+      "content": null,
+      "dataType": "category",
+      "fileUrl": "/baseGames/doodle-jump.png",
+      "tags": ["mechanism"]
+    },
+    {
+      "id": "file-1756947712623",
+      "content": {
+        "worlds": "A whimsical, pastel field with flowers, colorful clouds, and a dreamy sky.",
+        "objects": [
+          "A long-necked blue dinosaur adorned with colorful flowers and a yellow smiley face badge",
+          "A fluffy white cloud with a smiling face",
+          "A small black rabbit-like creature with glossy fur",
+          "A yellow straw hat with a wide brim"
+        ],
+        "events": "N/A",
+        "style": "Whimsical impressionistic painting with vibrant pastel colors and soft, textured brushstrokes."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/2873b7fdd192428bb1fe86da1c277483.jpg",
+      "tags": []
+    },
+    {
+      "id": "file-1756881061680",
+      "content": {
+        "worlds": "Indoor setting with a tufted fabric headboard and a bed.",
+        "objects": [
+          "A green plush dinosaur toy with a rounded body, stubby arms and legs, a light yellow belly patch with a green rectangular design, yellow circular feet pads, and a large yellow triangular horn with white spikes."
+        ],
+        "events": "N/A",
+        "style": "Soft light, realist photographic style."
+      },
+      "dataType": "image",
+      "fileUrl": "http://localhost:8000/files/_data/test_game/979a04d3844842fbb9fb29211cd70001.jpg",
+      "tags": ["object"]
+    }
+  ]
+}

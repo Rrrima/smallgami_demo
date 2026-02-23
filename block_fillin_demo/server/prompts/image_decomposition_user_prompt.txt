@@ -1,0 +1,72 @@
+Decompose an input image into four concise dimensions in JSON:
+
+- "worlds": short description of the background or setting (do not list objects).  
+- "objects": list of object that is suitable to be a player of the game. Each entry should describe exactly one object, self-contained. Do not overlap objects or split one object into parts. Do not include background elements unless they are the main object.  
+- "events": concise description of what is happening, if no specific thing is happening (i.e., no clear narrative), simply response with N/A
+- "style": short description of the visual style, using phrases, if it resemble a specific art style, mention it  
+
+Rules:  
+- Be specific (e.g., "green plush dinosaur") instead of vague terms like "creature" or "object".  
+- Each object description should be self-contained to generate the object alone as an image asset. For exmaple, A hat, a sticy note, instead of 'a collection so sticky notes' 
+- If there is only one main object, return a single entry in the "objects" list.  
+- You do not need to list out all the objects in the image, only the interesting ones that is suitable to be extracted out as a game player or a game assets that the player can interact with
+- DO NOT mention the motion of the objects or the environmnt of the object. 
+for example, instead of 'A large white paper boat with sharp folds, floating on the water.', give me 'A large white paper boat with sharp folds'
+instead of 'A green cartoon dinosaur with a simple rounded body, small circular eyes, a friendly smile, and front legs resting on the edge of the boat.', give me 'A green cartoon dinosaur with a simple rounded body, small circular eyes'
+
+---
+
+### Example 1  
+**Input Image:** A photo of a green plush dinosaur toy sitting on a bed  
+**Expected JSON Output:**  
+{
+  "worlds": "Indoor bedroom setting with a neutral background.",
+  "objects": [
+    "A green plush dinosaur toy with a rounded body, small arms, stubby legs, a light yellow belly patch, a large yellow triangular horn with white spikes, and round yellow feet pads"
+  ],
+  "events": "N/A",
+  "style": "Soft light, realist photographic style."
+}
+
+### Example 2  
+**Input Image:** a doodle of a UFO beaming up a cloud-shape creature 
+**Expected JSON Output:**  
+{
+  "worlds": "N/A",
+  "objects": [
+    "A small blue flying saucer with a dome top and a red antenna",
+    "A fluffy white cloud with two black dot eyes and a round shape",
+  ],
+  "events": "The saucer is beaming up the cloud with its yellow light.",
+  "style": "Minimalist doodle illustration with soft pastel crayon texture."
+}
+
+### Example 3  
+**Input Image:** a handrawn illustration of a slice of strawberry cake
+**Expected JSON Output:**  
+{
+  "worlds": "N/A",
+  "objects": [
+    "A rolled cake slice with a golden brown outer layer, light cream-colored inner spirals, topped with a dollop of light beige whipped cream and a ripe red strawberry with green leaves and yellow seeds."
+  ],
+  "events": "N/A",
+  "style": "Flat vector-style illustration with bold outlines and smooth color fills."
+}
+
+### Example 4  
+**Input Image:** a simple of a illustration of a green cartoon dinosaur resting on the edge of the boat.
+**Expected JSON Output:**  
+{
+  "worlds": "N/A",
+  "objects": [
+    "A green cartoon dinosaur with a simple rounded body, small circular eyes, a friendly smile"
+    "A large white paper boat with sharp folds"
+  ],
+  "events": "The green dinosaur is riding in the white paper boat, which is floating on the water.",
+  "style": ""Minimalist, korean line-friends style cartoon illustration with clean lines and flat colors"
+}
+
+
+---
+
+Now decompose the provided image into the same JSON format.

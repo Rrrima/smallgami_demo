@@ -1,0 +1,105 @@
+{
+  "world": {
+    "lightDirection": {
+      "x": -0.3,
+      "y": -1.0,
+      "z": -0.5
+    },
+    "lightColor": {
+      "r": 0.95,
+      "g": 0.92,
+      "b": 0.85
+    },
+    "lightIntensity": 0.8
+  },
+  "player": {
+    "gravity": 18.0,
+    "jumpPower": 12.0,
+    "moveSpeed": 8.0,
+    "maxVelocityY": 20.0,
+    "friction": 0.2,
+    "jumpAnimationDuration": 250.0,
+    "jumpSquishScale": 0.8,
+    "jumpStretchScale": 1.3
+  },
+  "objects": {
+    "platforms": [
+      {
+        "name": "Ergonomic Office Chair",
+        "id": "platform1",
+        "size": {
+          "x": 1.5,
+          "y": 0.5,
+          "z": 1.5
+        },
+        "moveRange": {
+          "x": 0.0,
+          "y": 0.5,
+          "z": 0.0
+        },
+        "moveSpeed": 1.5,
+        "disappearDuration": 0.0,
+        "disappearDelay": 0.0,
+        "bouncePowerMultiplier": 1.2
+      },
+      {
+        "name": "Stylish Office Table",
+        "id": "platform2",
+        "size": {
+          "x": 3.0,
+          "y": 0.3,
+          "z": 2.0
+        },
+        "moveRange": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "moveSpeed": 0.0,
+        "disappearDuration": 0.0,
+        "disappearDelay": 0.0,
+        "bouncePowerMultiplier": 1.0
+      }
+    ],
+    "collectables": [
+      {
+        "name": "Small Dog Treat",
+        "id": "collectable1",
+        "size": 0.5,
+        "floatAmplitude": 0.2,
+        "floatFrequency": 1.0,
+        "emissiveIntensity": 1.5,
+        "effect": [
+          {
+            "name": "Energy Boost",
+            "target": "player",
+            "property": "energy",
+            "value": 10.0,
+            "duration": 0.0
+          }
+        ],
+        "systemMessage": "You feel invigorated!",
+        "chanceToTalk": 0.2
+      },
+      {
+        "name": "Colorful Sticky Note",
+        "id": "collectable2",
+        "size": 0.7,
+        "floatAmplitude": 0.3,
+        "floatFrequency": 0.8,
+        "emissiveIntensity": 1.8,
+        "effect": [
+          {
+            "name": "Reveal Hidden Path",
+            "target": "world",
+            "property": "visibility",
+            "value": 1.0,
+            "duration": 5.0
+          }
+        ],
+        "systemMessage": "A hidden path is revealed!",
+        "chanceToTalk": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "description": "A stylized Christmas tree with a star on top, made from basic geometric shapes.",
+  "name": "ChristmasTree",
+  "overallTransform": null,
+  "parts": [
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.3,
+        "diameterTop": 0.2,
+        "height": 3.5,
+        "tessellation": 16,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.4,
+          0.2,
+          0.1
+        ],
+        "metallic": 0.1,
+        "roughness": 0.7
+      },
+      "name": "Trunk",
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "cylinder"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 2,
+        "diameterTop": 0,
+        "height": 2.5,
+        "tessellation": 32,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0,
+          0.5,
+          0
+        ],
+        "metallic": 0.1,
+        "roughness": 0.6
+      },
+      "name": "LowerBranchLayer",
+      "transform": {
+        "position": [
+          0,
+          1.5,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "cylinder"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 1.5,
+        "diameterTop": 0,
+        "height": 2,
+        "tessellation": 32,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0,
+          0.6,
+          0
+        ],
+        "metallic": 0.1,
+        "roughness": 0.6
+      },
+      "name": "MiddleBranchLayer",
+      "transform": {
+        "position": [
+          0,
+          2.75,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "cylinder"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 1,
+        "diameterTop": 0,
+        "height": 1.5,
+        "tessellation": 32,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0,
+          0.7,
+          0
+        ],
+        "metallic": 0.1,
+        "roughness": 0.6
+      },
+      "name": "UpperBranchLayer",
+      "transform": {
+        "position": [
+          0,
+          3.75,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "cylinder"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          1,
+          0,
+          0
+        ],
+        "metallic": 0.2,
+        "roughness": 0.3
+      },
+      "name": "Ornament1",
+      "sphereOptions": {
+        "diameter": 0.2,
+        "segments": 16,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0.5,
+          2.5,
+          0.5
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0,
+          0,
+          1
+        ],
+        "metallic": 0.2,
+        "roughness": 0.3
+      },
+      "name": "Ornament2",
+      "sphereOptions": {
+        "diameter": 0.2,
+        "segments": 16,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          -0.5,
+          3,
+          0.5
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          1,
+          1,
+          0
+        ],
+        "metallic": 0.2,
+        "roughness": 0.3
+      },
+      "name": "Ornament3",
+      "sphereOptions": {
+        "diameter": 0.2,
+        "segments": 16,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0.5,
+          3.5,
+          -0.5
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          1,
+          1,
+          0
+        ],
+        "metallic": 0.5,
+        "roughness": 0.2
+      },
+      "name": "Star",
+      "sphereOptions": {
+        "diameter": 0.5,
+        "segments": 16,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0,
+          4.5,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.5,
+        "diameterTop": 0.5,
+        "height": 0.1,
+        "tessellation": 16,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          1,
+          1,
+          0
+        ],
+        "metallic": 0.5,
+        "roughness": 0.2
+      },
+      "name": "StarBase",
+      "transform": {
+        "position": [
+          0,
+          4.3,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "cylinder"
+    }
+  ]
+}

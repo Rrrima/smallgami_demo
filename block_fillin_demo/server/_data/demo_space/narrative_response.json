@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-08-13T15:56:34.096898",
+  "user_prompt": "take me to the ocean",
+  "existing_narrative": [
+    "Alert! Alien fleets in formation descend from the void. You are Earth's final defense - destroy the invaders before they breach our atmosphere and conquer humanity."
+  ],
+  "game_id": "demo_space",
+  "gpt_response": {
+    "mechanism_sentence": "I am a space ship, and I must shoot every alien before it reaches Earth.",
+    "narrative_text": "Alert! Alien fleets in formation descend from the void. You are Earth's final defense - destroy the invaders before they breach our atmosphere and conquer humanity.",
+    "name": "Space Invaders Defense",
+    "game_id": "demo_space"
+  }
+}

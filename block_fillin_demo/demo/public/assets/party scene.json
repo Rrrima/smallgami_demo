@@ -1,0 +1,1016 @@
+{
+  "description": "Underwater party scene with disco ball, confetti, and festive decorations",
+  "name": "Deep Ocean Party Scene",
+  "overallTransform": null,
+  "parts": [
+    {
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.9,
+          0.95
+        ],
+        "metallic": 0.95,
+        "roughness": 0.1
+      },
+      "name": "disco_ball_core",
+      "sphereOptions": {
+        "diameter": 1.2,
+        "segments": 16,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0,
+          3.5,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "sphere"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.02,
+        "height": 0.15,
+        "size": null,
+        "width": 0.15
+      },
+      "material": {
+        "albedoColor": [
+          1,
+          0.2,
+          0.8
+        ],
+        "metallic": 0.98,
+        "roughness": 0.05
+      },
+      "name": "disco_tile_1",
+      "transform": {
+        "position": [
+          0,
+          3.5,
+          0.62
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.02,
+        "height": 0.15,
+        "size": null,
+        "width": 0.15
+      },
+      "material": {
+        "albedoColor": [
+          0.2,
+          0.8,
+          1
+        ],
+        "metallic": 0.98,
+        "roughness": 0.05
+      },
+      "name": "disco_tile_2",
+      "transform": {
+        "position": [
+          0.62,
+          3.5,
+          0
+        ],
+        "rotation": [
+          0,
+          1.57,
+          0
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.02,
+        "height": 0.15,
+        "size": null,
+        "width": 0.15
+      },
+      "material": {
+        "albedoColor": [
+          1,
+          0.9,
+          0.2
+        ],
+        "metallic": 0.98,
+        "roughness": 0.05
+      },
+      "name": "disco_tile_3",
+      "transform": {
+        "position": [
+          0,
+          3.5,
+          -0.62
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.02,
+        "height": 0.15,
+        "size": null,
+        "width": 0.15
+      },
+      "material": {
+        "albedoColor": [
+          0.4,
+          1,
+          0.4
+        ],
+        "metallic": 0.98,
+        "roughness": 0.05
+      },
+      "name": "disco_tile_4",
+      "transform": {
+        "position": [
+          -0.62,
+          3.5,
+          0
+        ],
+        "rotation": [
+          0,
+          1.57,
+          0
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.05,
+        "diameterTop": 0.05,
+        "height": 1,
+        "tessellation": 12,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.7,
+          0.75
+        ],
+        "metallic": 0.8,
+        "roughness": 0.3
+      },
+      "name": "disco_chain",
+      "transform": {
+        "position": [
+          0,
+          4.5,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          1,
+          0.3,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.2
+      },
+      "name": "balloon_1",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.35,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.45,
+        "heightBottom": 0.4,
+        "heightTop": 0.5,
+        "radius": 0.3,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.35,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          -2.5,
+          2.8,
+          -1.5
+        ],
+        "rotation": [
+          0.1,
+          0,
+          -0.15
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.02,
+        "diameterTop": 0.02,
+        "height": 1.5,
+        "tessellation": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "name": "balloon_string_1",
+      "transform": {
+        "position": [
+          -2.5,
+          2,
+          -1.5
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.3,
+          0.8,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.2
+      },
+      "name": "balloon_2",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.4,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.5,
+        "heightBottom": 0.45,
+        "heightTop": 0.55,
+        "radius": 0.35,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.4,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          2.2,
+          3.2,
+          -1.8
+        ],
+        "rotation": [
+          -0.1,
+          0,
+          0.2
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.02,
+        "diameterTop": 0.02,
+        "height": 2,
+        "tessellation": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "name": "balloon_string_2",
+      "transform": {
+        "position": [
+          2.2,
+          2.1,
+          -1.8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          1,
+          0.9,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.2
+      },
+      "name": "balloon_3",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.38,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.48,
+        "heightBottom": 0.43,
+        "heightTop": 0.53,
+        "radius": 0.33,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.38,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          1.8,
+          2.5,
+          2
+        ],
+        "rotation": [
+          0.15,
+          0,
+          0.1
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.02,
+        "diameterTop": 0.02,
+        "height": 1.2,
+        "tessellation": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "name": "balloon_string_3",
+      "transform": {
+        "position": [
+          1.8,
+          1.8,
+          2
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.01,
+        "height": 0.12,
+        "size": null,
+        "width": 0.08
+      },
+      "material": {
+        "albedoColor": [
+          1,
+          0.2,
+          0.6
+        ],
+        "metallic": 0.6,
+        "roughness": 0.3
+      },
+      "name": "confetti_1",
+      "transform": {
+        "position": [
+          -1.2,
+          2.8,
+          0.5
+        ],
+        "rotation": [
+          0.8,
+          0.5,
+          1.2
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.01,
+        "height": 0.1,
+        "size": null,
+        "width": 0.1
+      },
+      "material": {
+        "albedoColor": [
+          0.3,
+          0.9,
+          1
+        ],
+        "metallic": 0.6,
+        "roughness": 0.3
+      },
+      "name": "confetti_2",
+      "transform": {
+        "position": [
+          0.8,
+          2.5,
+          -0.8
+        ],
+        "rotation": [
+          1.5,
+          0.3,
+          0.9
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.01,
+        "height": 0.15,
+        "size": null,
+        "width": 0.06
+      },
+      "material": {
+        "albedoColor": [
+          1,
+          0.8,
+          0.2
+        ],
+        "metallic": 0.6,
+        "roughness": 0.3
+      },
+      "name": "confetti_3",
+      "transform": {
+        "position": [
+          1.5,
+          3,
+          0.3
+        ],
+        "rotation": [
+          0.4,
+          1.8,
+          0.6
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.01,
+        "height": 0.09,
+        "size": null,
+        "width": 0.09
+      },
+      "material": {
+        "albedoColor": [
+          0.5,
+          1,
+          0.4
+        ],
+        "metallic": 0.6,
+        "roughness": 0.3
+      },
+      "name": "confetti_4",
+      "transform": {
+        "position": [
+          -0.5,
+          2.2,
+          1.2
+        ],
+        "rotation": [
+          2.1,
+          0.7,
+          1.4
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "boxOptions": {
+        "depth": 0.01,
+        "height": 0.13,
+        "size": null,
+        "width": 0.07
+      },
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.4,
+          1
+        ],
+        "metallic": 0.6,
+        "roughness": 0.3
+      },
+      "name": "confetti_5",
+      "transform": {
+        "position": [
+          0.3,
+          2.7,
+          -1.5
+        ],
+        "rotation": [
+          1.1,
+          1.3,
+          0.2
+        ],
+        "scale": null
+      },
+      "type": "box"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          1,
+          0.3,
+          0.5
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "name": "banner_flag_1",
+      "softboxOptions": {
+        "arcSegments": 3,
+        "depth": 0.02,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.5,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.05,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": false,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.4,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          -3,
+          4.2,
+          0
+        ],
+        "rotation": [
+          0,
+          0.3,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.3,
+          0.8,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "name": "banner_flag_2",
+      "softboxOptions": {
+        "arcSegments": 3,
+        "depth": 0.02,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.5,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.05,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": false,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.4,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          -1.5,
+          4,
+          0.2
+        ],
+        "rotation": [
+          0,
+          -0.2,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          1,
+          0.9,
+          0.2
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "name": "banner_flag_3",
+      "softboxOptions": {
+        "arcSegments": 3,
+        "depth": 0.02,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.5,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.05,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": false,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.4,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          0,
+          3.8,
+          0
+        ],
+        "rotation": [
+          0,
+          0.1,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.5,
+          1,
+          0.4
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "name": "banner_flag_4",
+      "softboxOptions": {
+        "arcSegments": 3,
+        "depth": 0.02,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.5,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.05,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": false,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.4,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          1.5,
+          4,
+          -0.2
+        ],
+        "rotation": [
+          0,
+          -0.3,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.9,
+          0.4,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "name": "banner_flag_5",
+      "softboxOptions": {
+        "arcSegments": 3,
+        "depth": 0.02,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.5,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.05,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": false,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.4,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          3,
+          4.2,
+          0
+        ],
+        "rotation": [
+          0,
+          0.2,
+          0
+        ],
+        "scale": null
+      },
+      "type": "softbox"
+    },
+    {
+      "cylinderOptions": {
+        "diameterBottom": 0.03,
+        "diameterTop": 0.03,
+        "height": 6.5,
+        "tessellation": 8,
+        "sideOrientation": 0
+      },
+      "material": {
+        "albedoColor": [
+          0.3,
+          0.3,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.8
+      },
+      "name": "banner_string",
+      "transform": {
+        "position": [
+          0,
+          4,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          1.57
+        ],
+        "scale": null
+      },
+      "type": "cylinder"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.8,
+          0.95,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.05
+      },
+      "name": "bubble_1",
+      "sphereOptions": {
+        "diameter": 0.3,
+        "segments": 12,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          -1.8,
+          1.5,
+          1.2
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1.1,
+          1
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.8,
+          0.95,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.05
+      },
+      "name": "bubble_2",
+      "sphereOptions": {
+        "diameter": 0.4,
+        "segments": 12,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          2.5,
+          1.8,
+          0.8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.1,
+          1,
+          1
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.8,
+          0.95,
+          1
+        ],
+        "metallic": 0,
+        "roughness": 0.05
+      },
+      "name": "bubble_3",
+      "sphereOptions": {
+        "diameter": 0.25,
+        "segments": 12,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0.5,
+          1.2,
+          -2
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": null
+      },
+      "type": "sphere"
+    }
+  ]
+}

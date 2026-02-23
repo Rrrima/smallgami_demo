@@ -1,0 +1,245 @@
+@use 'sass:color';
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+// Black & white paper
+$ink: #333;
+$ink-light: #aaa;
+$border: #333;
+$border-w: 2px;
+
+$spacing-xs: 4px;
+$spacing-sm: 6px;
+$spacing-md: 8px;
+$spacing-lg: 12px;
+$spacing-xl: 16px;
+
+.story-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $spacing-xl $spacing-xl $spacing-xl 24px;
+
+  .story-header {
+    margin-bottom: $spacing-xl;
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-lg;
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      color: $ink;
+
+      h2 {
+        font-family: 'Caveat', cursive;
+        font-size: 28px;
+        font-weight: 700;
+        color: $ink;
+        margin: 0;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+
+    .story-selector {
+      flex-shrink: 0;
+
+      select {
+        font-family: 'Caveat', cursive;
+        font-size: 16px;
+        font-weight: 500;
+        color: $ink;
+        background: transparent;
+        border: none;
+        border-bottom: $border-w solid $border;
+        padding: 4px 20px 4px 8px;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 4px center;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+          opacity: 0.6;
+        }
+
+        option {
+          font-family: 'Barlow', sans-serif;
+          font-size: 13px;
+          background: white;
+          color: $ink;
+          padding: 8px;
+        }
+      }
+    }
+  }
+
+  .ruled-paper {
+    flex: 1;
+    overflow-y: auto;
+    padding-left: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sentences-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-right: $spacing-sm;
+  }
+
+  .sentence-row {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-md;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 14px 0;
+    min-height: 44px;
+
+    .sentence-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .delete-sentence-btn {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: $ink-light;
+      cursor: pointer;
+      border-radius: 2px;
+      opacity: 0;
+      transition: all 0.15s ease;
+      margin-top: 2px;
+
+      &:hover {
+        color: $ink;
+        background: rgba(0, 0, 0, 0.04);
+      }
+    }
+
+    &:hover .delete-sentence-btn {
+      opacity: 0.7;
+    }
+  }
+
+  .narrative-sentence {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 500;
+    color: $ink;
+    line-height: 1.6;
+
+    .narrative-text {
+      line-height: 1.6;
+    }
+
+    .placeholder-text {
+      color: $ink-light;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .narrative-slot {
+      padding: 1px 6px;
+      border-radius: 2px;
+      background: rgba(0, 0, 0, 0.03);
+      border: none;
+      border-bottom: $border-w solid $border;
+      font-weight: 600;
+      color: $ink;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      white-space: nowrap;
+
+      &:hover,
+      &.highlighted {
+        background: rgba(0, 0, 0, 0.07);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .sentence-textarea {
+    width: 100%;
+    min-height: 36px;
+    padding: 0;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    font-weight: 500;
+    color: $ink;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    line-height: 1.6;
+
+    &::placeholder {
+      color: $ink-light;
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+
+  .sentence-display {
+    padding: 0;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    font-weight: 500;
+    color: $ink;
+    line-height: 1.6;
+    cursor: text;
+    min-height: 32px;
+
+    .placeholder-text {
+      color: $ink-light;
+      font-style: italic;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+  }
+
+  .add-sentence-btn {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-md 0;
+    margin-top: $spacing-sm;
+    background: transparent;
+    border: none;
+    color: $ink-light;
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    opacity: 0.5;
+
+    &:hover {
+      color: $ink;
+      opacity: 1;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

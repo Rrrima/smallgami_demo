@@ -1,0 +1,357 @@
+{
+  "description": "Adorable round bear with soft features",
+  "name": "Cute Bear Character",
+  "overallTransform": null,
+  "parts": [
+    {
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "name": "body",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.5,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.7,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.4,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.6,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          0,
+          0.7,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "name": "head",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.45,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.5,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.35,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.5,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          0,
+          1.55,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "name": "ear_left",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.15,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.18,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.12,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.18,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          -0.4,
+          1.95,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.3
+        ]
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.7,
+          0.5,
+          0.35
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "name": "ear_right",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.15,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.18,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.12,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.18,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          0.4,
+          1.95,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0.3
+        ]
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.85,
+          0.7,
+          0.55
+        ],
+        "metallic": 0,
+        "roughness": 0.85
+      },
+      "name": "snout",
+      "softboxOptions": {
+        "arcSegments": 4,
+        "depth": 0.18,
+        "depthBack": null,
+        "depthFront": null,
+        "height": 0.2,
+        "heightBottom": null,
+        "heightTop": null,
+        "radius": 0.15,
+        "radiusX": null,
+        "radiusXNeg": null,
+        "radiusXPos": null,
+        "radiusY": null,
+        "radiusYNeg": null,
+        "radiusYPos": null,
+        "radiusZ": null,
+        "radiusZNeg": null,
+        "radiusZPos": null,
+        "size": null,
+        "stretch": true,
+        "stretchX": null,
+        "stretchY": null,
+        "stretchZ": null,
+        "width": 0.25,
+        "widthLeft": null,
+        "widthRight": null
+      },
+      "transform": {
+        "position": [
+          0,
+          1.4,
+          0.45
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "softbox"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.15,
+          0.1,
+          0.08
+        ],
+        "metallic": 0,
+        "roughness": 0.7
+      },
+      "name": "nose",
+      "sphereOptions": {
+        "diameter": 0.12,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0,
+          1.42,
+          0.6
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "eye_left",
+      "sphereOptions": {
+        "diameter": 0.1,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          -0.18,
+          1.6,
+          0.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "sphere"
+    },
+    {
+      "material": {
+        "albedoColor": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "metallic": 0,
+        "roughness": 0.3
+      },
+      "name": "eye_right",
+      "sphereOptions": {
+        "diameter": 0.1,
+        "segments": 8,
+        "sideOrientation": 0
+      },
+      "transform": {
+        "position": [
+          0.18,
+          1.6,
+          0.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "type": "sphere"
+    }
+  ]
+}
