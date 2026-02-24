@@ -1,10 +1,10 @@
 import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { sharedPublicPlugin } from '../../shared/viteSharedPublic.js';
+import { sharedPublicPlugin } from '../shared/viteSharedPublic.js';
 
 // Resolves bare imports (e.g. "gsap") made from engine source files using
-// demo's own node_modules, since the engine package has no node_modules of its own.
+// this demo's node_modules, since the engine has no node_modules of its own.
 function engineDepsPlugin(): Plugin {
   return {
     name: 'vite-plugin-engine-deps',
@@ -23,18 +23,16 @@ function engineDepsPlugin(): Plugin {
   };
 }
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [engineDepsPlugin(), react(), sharedPublicPlugin('../../shared/public')],
+  plugins: [engineDepsPlugin(), react(), sharedPublicPlugin('../shared/public')],
   assetsInclude: ['**/*.wasm'],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@smallgami/engine': path.resolve(__dirname, '../../../smallGami/src/index.ts'),
+      '@smallgami/engine': path.resolve(__dirname, '../../smallGami/src/index.ts'),
     },
   },
   server: {
-    port: 3000,
+    port: 3001,
     open: true,
     headers: {
       'Cross-Origin-Embedder-Policy': 'require-corp',

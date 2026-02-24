@@ -17,6 +17,7 @@ import {
   sendChangePropagation,
   interpretMedia,
 } from '../api/chatApi';
+import { generateCohesiveTheme } from '../api/llmApi';
 import { useGameStore, mechanisms, getCurrentMechanismConfig } from '@smallgami/engine';
 import DrawingPad from './DrawingPad';
 import './StickyBlocks.scss';
@@ -82,9 +83,9 @@ export default function StickyBlocks({
       content: ['', ''],
     },
     {
-      id: 'mechanism',
-      title: 'Mechanism',
-      content: '',
+      id: 'style',
+      title: 'Style',
+      content: 'ghibli',
     },
   ]);
 
@@ -108,6 +109,7 @@ export default function StickyBlocks({
   };
 
   const mechanismOptions = [
+    { value: 'cr_persimon_a', label: 'Catcher' },
     { value: 'christmas', label: 'Dodge & Catch' },
     { value: 'running_christmas', label: 'Run & Catch' },
     { value: 'flappy_bird', label: 'Flappy Bird' },
@@ -157,7 +159,7 @@ export default function StickyBlocks({
     setEditingId(null);
     const block = blocks.find(block => block.id === id);
 
-    if (id !== 'mechanism' && block) {
+    if (id !== 'mechanism' && id !== 'style' && block) {
       // Only send if content has changed
       if (contentToString(block.content) !== originalContent) {
         // If "change everything" is enabled, ask backend what else should change
@@ -503,7 +505,7 @@ export default function StickyBlocks({
   const handleUpload = async (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
 
-    if (id === 'mechanism') return;
+    if (id === 'mechanism' || id === 'style') return;
 
     // Create a file input element
     const input = document.createElement('input');
@@ -673,7 +675,7 @@ export default function StickyBlocks({
 
   const handleDraw = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (id === 'mechanism') return;
+    if (id === 'mechanism' || id === 'style') return;
 
     setDrawingBlockId(id);
     setDrawingModalOpen(true);
@@ -1406,72 +1408,69 @@ export default function StickyBlocks({
     e.stopPropagation();
     const block = blocks.find(block => block.id === id);
 
-    if (id !== 'mechanism' && block) {
-      // If "Change Everything" is enabled, skip individual generation and go straight to propagation
-      if (isChangeEverythingEnabled) {
-        console.log(
-          '🔗 Change Everything enabled - triggering cohesive generation...'
-        );
-        const oldContent = contentToString(block.content);
-        await triggerChangePropagation(
+    if (id !== 'mechanism' && id !== 'style' && block) {
+      try {
+        // Set all blocks to generating state (animation)
+        setGeneratingBlocks(new Set(['player', 'world', 'object']));
+
+        const mechanismConfigForAI = getCurrentMechanismConfig(gameConfig, gameId);
+
+        // Build current block info including object slots from mechanism config
+        const objectKeys = mechanismConfigForAI
+          ? Object.keys(mechanismConfigForAI.objects)
+          : [];
+        const currentBlockInfos = [
+          { id: 'player', content: contentToString(blocks.find(b => b.id === 'player')?.content || '') },
+          { id: 'world', content: contentToString(blocks.find(b => b.id === 'world')?.content || '') },
+          ...objectKeys.map((key, index) => ({
+            id: key,
+            content: gameConfig?.objects?.[index]?.name || '',
+          })),
+        ];
+
+        const themeData = await generateCohesiveTheme(
           id,
-          contentToString(block.content),
-          oldContent
+          currentBlockInfos,
+          mechanismConfigForAI
         );
-      } else {
-        // Generate only this block
-        try {
-          // Set loading state
-          addGeneratingBlock(id);
 
-          const mechanismConfigForAI = getCurrentMechanismConfig(gameConfig, gameId);
-          const response = await sendBlockGenerate(
-            id as 'player' | 'world' | 'object',
-            'randomize',
-            contentToString(block.content),
-            id === 'player' ? playerConfig : undefined,
-            id === 'world' ? worldConfig : undefined,
-            id === 'world'
-              ? contentToString(
-                  blocks.find(b => b.id === 'player')?.content || ''
-                )
-              : undefined,
-            id === 'object' && gameConfig?.objects?.[currentObjectIndex]
-              ? gameConfig.objects[currentObjectIndex]
-              : undefined,
-            id === 'object'
-              ? contentToString(
-                  blocks.find(b => b.id === 'world')?.content || ''
-                )
-              : undefined,
-            id === 'object' && gameConfig?.spawn ? gameConfig.spawn : undefined,
-            id === 'object' ? gameId : undefined,
-            id === 'object' ? mechanismConfigForAI || undefined : undefined
-          );
-          console.log('Backend response:', response);
+        console.log('🎨 AI Theme Generated:', themeData);
 
-          // Handle player block response
-          if (id === 'player' && response.success && response.data) {
-            await handlePlayerGenerationResponse(response.data);
-          }
-
-          // Handle world block response
-          if (id === 'world' && response.success && response.data) {
-            await handleWorldGenerationResponse(response.data);
-          }
-
-          // Handle object block response
-          if (id === 'object' && response.success && response.data) {
-            await handleObjectGenerationResponse(response.data);
-          }
-
-          // Clear loading state
-          removeGeneratingBlock(id);
-        } catch (error) {
-          console.error('Error generating with AI:', error);
-          // Clear loading state on error
-          removeGeneratingBlock(id);
+        // Build narrative slots from response
+        const themeDataRecord = themeData as Record<string, any>;
+        const slots: Record<string, string> = {
+          player: themeData.player,
+          world: themeData.world,
+        };
+        if (mechanismConfigForAI) {
+          Object.keys(mechanismConfigForAI.objects).forEach(key => {
+            if (themeDataRecord[key]) {
+              slots[key] = themeDataRecord[key];
+            }
+          });
         }
+        setNarrativeSlots(slots);
+
+        // Update block contents
+        setBlocks(prev =>
+          prev.map(b => {
+            if (b.id === 'player') return { ...b, content: themeData.player };
+            if (b.id === 'world') return { ...b, content: themeData.world };
+            if (b.id === 'object' && mechanismConfigForAI) {
+              const objContent = Object.keys(mechanismConfigForAI.objects).map(
+                key => themeDataRecord[key] || ''
+              );
+              return { ...b, content: objContent };
+            }
+            return b;
+          })
+        );
+
+        // Clear generating state
+        setGeneratingBlocks(new Set());
+      } catch (error) {
+        console.error('Error generating with AI:', error);
+        setGeneratingBlocks(new Set());
       }
     }
   };
@@ -1862,12 +1861,44 @@ export default function StickyBlocks({
                       )}
                     </div>
                   )}
-                  {block.id === 'mechanism'
-                    ? mechanismOptions.find(
-                        opt => opt.value === (block.content as string)
-                      )?.label || block.content
-                    : contentToString(block.content) ||
-                      'Double click to edit...'}
+                  {block.id === 'mechanism' ? (
+                    mechanismOptions.find(
+                      opt => opt.value === (block.content as string)
+                    )?.label || block.content
+                  ) : block.id === 'style' ? (
+                    contentToString(block.content) || 'Double click to edit...'
+                  ) : (() => {
+                    let assetPath: string | undefined;
+                    if (block.id === 'player') {
+                      assetPath = gameConfig?.assets?.models?.player as string | undefined;
+                    } else if (block.id === 'world') {
+                      assetPath = gameConfig?.assets?.skybox as string | undefined;
+                    } else if (block.id === 'object' && gameConfig?.objects?.[currentObjectIndex]) {
+                      const objectId = String(gameConfig.objects[currentObjectIndex].id);
+                      assetPath = gameConfig?.assets?.models?.[objectId] as string | undefined;
+                    }
+
+                    // Strip cache-buster for display but keep for src
+                    if (assetPath) {
+                      const imgSrc = assetPath.startsWith('/assets/') || assetPath.startsWith('http')
+                        ? assetPath
+                        : `/assets/${assetPath}`;
+                      return (
+                        <>
+                          <img
+                            src={imgSrc}
+                            alt={contentToString(block.content)}
+                            className='block-asset-image'
+                            onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                          />
+                          <div className='block-asset-label'>
+                            {contentToString(block.content) || 'Double click to edit...'}
+                          </div>
+                        </>
+                      );
+                    }
+                    return contentToString(block.content) || 'Double click to edit...';
+                  })()}
                 </div>
               )}
             </StickyBlock>

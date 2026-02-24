@@ -38,6 +38,61 @@ $spacing-xl: 16px;
   position: relative;
 }
 
+.book-bookmarks {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: -1;
+
+  // Inactive bookmarks: only a small edge peeks out
+  .book-bookmark {
+    transform: translateX(-14px);
+    transition: transform 0.25s ease, background 0.15s ease;
+  }
+
+  // On region hover, all expand
+  &:hover .book-bookmark {
+    transform: translateX(-100%);
+  }
+
+  // Active bookmark is always expanded
+  .book-bookmark.active {
+    transform: translateX(-100%);
+  }
+}
+
+.book-bookmark {
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  font-size: 14px;
+  font-weight: 600;
+  color: $ink;
+  background: $paper;
+  border: $border-w solid $border;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: right;
+  outline: none;
+  filter: url(#sketch);
+
+  &:hover {
+    background: darken($paper, 4%);
+  }
+
+  &.active {
+    background: $paper;
+    font-weight: 700;
+    border-right: 2px solid $paper;
+    margin-right: -2px;
+    z-index: 1;
+  }
+}
+
 .storybook {
   display: flex;
   width: 100%;
@@ -61,6 +116,18 @@ $spacing-xl: 16px;
   position: relative;
   box-shadow: inset -8px 0 12px -6px rgba(0, 0, 0, 0.06);
   filter: url(#sketch);
+}
+
+.mechanism-caption {
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: $ink-light;
+  text-align: center;
+  padding: 12px 0 0;
+  flex-shrink: 0;
 }
 
 .book-spine {

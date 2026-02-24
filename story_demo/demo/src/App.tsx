@@ -15,6 +15,22 @@ import { useEffect, useState, useCallback } from 'react';
 import { useGameStore, Game } from '@smallgami/engine';
 import gameStore from './config/gameStore';
 
+const storyLabels: Record<string, string> = {
+  cr_persimon_a: 'Bear & Persimmons',
+  christmas: 'Christmas',
+  flappy_bird: 'Flappy Bird',
+  platform_forest: 'Forest Platformer',
+  running_christmas: 'Christmas Runner',
+};
+
+const mechanismLabels: Record<string, string> = {
+  cr_persimon_a: 'Catcher',
+  christmas: 'Dodge & Catch',
+  running_christmas: 'Run & Catch',
+  flappy_bird: 'Flappy Bird',
+  platform_forest: 'Platformer',
+};
+
 interface Page {
   id: string;
   text: string;
@@ -22,7 +38,7 @@ interface Page {
 }
 
 function App() {
-  const [gameId, setGameId] = useState('christmas');
+  const [gameId, setGameId] = useState('cr_persimon_a');
   const [configLoaded, setConfigLoaded] = useState(false);
   const [narrativeSlots, setNarrativeSlots] = useState<Record<string, string>>(
     {}
@@ -96,6 +112,10 @@ function App() {
     setPages(prev => prev.map(p => (p.id === id ? { ...p, text } : p)));
   }, []);
 
+  const handleSlotChange = useCallback((key: string, value: string) => {
+    setNarrativeSlots(prev => ({ ...prev, [key]: value }));
+  }, []);
+
   // Story change resets pages
   const handleStoryChange = useCallback((newGameId: string) => {
     setGameId(newGameId);
@@ -108,9 +128,23 @@ function App() {
   return (
     <div className='app-container'>
       <div className='book-wrapper'>
+        {/* Bookmarks — mechanism selector tabs on the left edge */}
+        <div className='book-bookmarks'>
+          {Object.keys(gameStore).map(id => (
+            <button
+              key={id}
+              className={`book-bookmark ${gameId === id ? 'active' : ''}`}
+              onClick={() => handleStoryChange(id)}
+            >
+              {storyLabels[id] || id}
+            </button>
+          ))}
+        </div>
+
         <div className='storybook'>
           {/* Left Page — narrative / text + cards */}
           <div className='left-page'>
+            <div className='mechanism-caption'>{mechanismLabels[gameId] || gameId}</div>
             <LeftPageContent
               page={activePage}
               narrativeSlots={narrativeSlots}
@@ -119,10 +153,10 @@ function App() {
               currentObjectIndex={currentObjectIndex}
               setCurrentObjectIndex={setCurrentObjectIndex}
               gameId={gameId}
-              setGameId={handleStoryChange}
               editingId={editingId}
               setEditingId={setEditingId}
               onPageTextChange={handlePageTextChange}
+              onSlotChange={handleSlotChange}
             />
 
             {!activePage?.isNarrative && (

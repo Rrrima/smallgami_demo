@@ -8,3 +8,6 @@ build/
 .env
 *.log
 
+**/public/assets/
+**/public/texture/
+shared/public/

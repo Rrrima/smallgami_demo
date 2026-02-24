@@ -1,0 +1,608 @@
+$text-primary:   #1d1d1f;
+$text-secondary: #6e6e73;
+
+// ── Outer container ───────────────────────────────────────────────────────────
+
+.gallery-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  // genUiWorkshop-style background: muted blue-grey gradient
+  background: linear-gradient(145deg, #e8edf4 0%, #eef2f7 50%, #e9eef5 100%);
+}
+
+// ── Cross-fade layers (both views always mounted) ─────────────────────────────
+
+.view-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.97);
+  transition:
+    opacity   0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+}
+
+// ── Morph transition overrides ─────────────────────────────────────────────────
+//
+// While `.is-morphing` is set on the gallery root:
+//   • View layers swap instantly (no opacity/scale crossfade) — ghost overlay
+//     provides the visual continuity instead.
+//   • Individual morph-tagged elements are hidden so only ghosts are visible.
+
+.gallery-root.is-morphing {
+  // Hide both view layers entirely — the fixed-position ghost overlay provides
+  // all visual continuity. When is-morphing is removed the active layer fades
+  // back in (0.35s transition) which naturally crossfades with the departing ghosts.
+  .view-layer {
+    opacity: 0 !important;
+    transform: scale(1) !important;
+    transition: none !important;
+    pointer-events: none !important;
+  }
+}
+
+// ── View toggle ───────────────────────────────────────────────────────────────
+
+.view-toggle {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+  user-select: none;
+
+  svg { flex-shrink: 0; opacity: 0.7; }
+
+  &:hover {
+    color: $text-primary;
+    svg { opacity: 1; }
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.78);
+    color: $text-primary;
+    box-shadow:
+      0 1px 6px rgba(0, 0, 0, 0.10),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    svg { opacity: 1; }
+  }
+}
+
+// ── Root node (smallgami — centre of the graph) ───────────────────────────────
+
+.root-hub {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 10px 26px;
+  border-radius: 999px;
+  background: rgba(29, 29, 31, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 6px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+  cursor: grab;
+  user-select: none;
+  transition: opacity 0.15s ease, box-shadow 0.18s ease;
+
+  &:active { cursor: grabbing; }
+
+  &:hover {
+    box-shadow:
+      0 10px 36px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+}
+
+
+// ── Type hub node (category level, graph only) ────────────────────────────────
+//
+// Pill-shaped label anchored at the centroid of its primitive children.
+// Uses the same liquid-glass recipe as other nodes but larger and bolder.
+
+.type-hub {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid var(--c-border);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c);
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+  user-select: none;
+  cursor: grab;
+  transition: opacity 0.15s ease, box-shadow 0.18s ease;
+
+  &:hover {
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.13),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+  &:active { cursor: grabbing; }
+}
+
+// ── Graph view root ────────────────────────────────────────────────────────────
+
+.graph-root {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+  user-select: none;
+  overflow: hidden;
+
+  &:active { cursor: grabbing; }
+}
+
+// ── Transformed canvas (pan + zoom target) ────────────────────────────────────
+
+.graph-canvas {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+// ── SVG edge layer ────────────────────────────────────────────────────────────
+
+.graph-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+// ── Cluster hub (non-interactive label) ───────────────────────────────────────
+
+.cluster-hub {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 9px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid var(--c-border);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c);
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+  pointer-events: none;
+  user-select: none;
+}
+
+// ── Game node (draggable + clickable) ─────────────────────────────────────────
+
+.game-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 118px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  font-family: 'Barlow', sans-serif;
+  transition:
+    box-shadow   0.18s ease,
+    background   0.18s ease,
+    border-color 0.18s ease,
+    transform    0.18s ease,
+    opacity      0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.78);
+    transform: translate(-50%, calc(-50% - 4px));
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    border-color: var(--c-border);
+  }
+
+  &:active {
+    transform: translate(-50%, calc(-50% - 1px));
+  }
+
+  .card-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-primary;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .card-sub {
+    font-size: 10px;
+    color: $text-secondary;
+    font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+}
+
+// ── Info tooltip (liquid glass) ───────────────────────────────────────────────
+
+.info-trigger {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: var(--c, $text-secondary);
+  opacity: 0;
+  cursor: default;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 2;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  svg {
+    display: block;
+    pointer-events: none;
+  }
+}
+
+// Show info icon only when the parent card/node is hovered
+.grid-card:hover > .info-trigger,
+.game-node:hover > .info-trigger {
+  opacity: 0.5;
+  pointer-events: auto;
+}
+
+.info-tooltip {
+  position: fixed;
+  transform: translateY(-100%);
+  width: 200px;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-family: 'Barlow', sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: $text-primary;
+  letter-spacing: -0.1px;
+  pointer-events: none;
+  white-space: normal;
+  z-index: 99999;
+
+  // Glass highlight line at the top
+  &::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 12px;
+    right: 12px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.95) 30%,
+      rgba(255, 255, 255, 0.95) 70%,
+      transparent
+    );
+    border-radius: 1px;
+  }
+
+  // Arrow pointing down
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 8px;
+    border: 6px solid transparent;
+    border-top-color: rgba(255, 255, 255, 0.55);
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06));
+  }
+}
+
+// In the graph view, style the info button with its own glass background
+.game-node.is-primitive .info-trigger {
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.85);
+  }
+}
+
+.game-node.is-primitive:hover > .info-trigger {
+  opacity: 0.7;
+}
+
+// Ensure the tooltip isn't clipped by the node
+.game-node {
+  overflow: visible;
+}
+
+// ── Primitive (polygon-mode) variant overrides ────────────────────────────────
+//
+// Applied via `.is-primitive` on both `.game-node` and `.grid-card`.
+// Dashed border + reduced opacity signals "no-asset" mode without looking broken.
+
+.game-node.is-primitive,
+.grid-card.is-primitive {
+  border-style: dashed;
+  background: rgba(255, 255, 255, 0.22);
+  opacity: 0.82;
+
+  &:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  .card-sub {
+    font-family: 'Barlow', sans-serif;
+    letter-spacing: 0.4px;
+    color: var(--c);
+    opacity: 0.9;
+  }
+}
+
+// ── Hover-dimmed state ────────────────────────────────────────────────────────
+//
+// Applied to nodes that are NOT connected to the hovered node.
+// Fades them back so the hovered subgraph stands out clearly.
+
+.game-node.is-dimmed,
+.type-hub.is-dimmed,
+.root-hub.is-dimmed {
+  opacity: 0.12 !important;
+  transition: opacity 0.15s ease !important;
+}
+
+// ── Grid view ─────────────────────────────────────────────────────────────────
+
+.grid-view {
+  flex: 1;
+  overflow-y: auto;
+  padding: 80px 48px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.grid-section {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.grid-section-label {
+  font-family: 'Barlow', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: $text-secondary;
+  padding-left: 4px;
+}
+
+.grid-divider {
+  width: 100%;
+  max-width: 900px;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 4px 0;
+}
+
+.grid-flat {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  gap: 14px;
+  justify-content: center;
+  width: 100%;
+
+  &--sm {
+    grid-template-columns: repeat(auto-fill, 100px);
+    gap: 10px;
+  }
+}
+
+// ── Standard card (rendered games) ───────────────────────────────────────────
+
+.grid-card {
+  position: relative;
+  width: 150px;
+  min-height: 130px;
+  padding: 12px 14px 14px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  user-select: none;
+  transition:
+    background   0.18s ease,
+    box-shadow   0.18s ease,
+    border-color 0.18s ease,
+    transform    0.16s ease,
+    opacity      0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: var(--c-border);
+    transform: translateY(-3px);
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.11),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  &:active { transform: translateY(-1px); }
+
+  &.is-highlighted {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: var(--c-border);
+    box-shadow:
+      0 0 0 2px var(--c-border),
+      0 8px 24px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  &.is-dimmed {
+    opacity: 0.28;
+  }
+
+  // ── Small variant (primitive cards) ──────────────────────────────────────────
+
+  &--sm {
+    width: 100px;
+    min-height: 80px;
+    padding: 8px 10px 10px;
+    border-radius: 10px;
+    gap: 4px;
+
+    .card-tag {
+      font-size: 8px;
+      padding: 1px 6px;
+    }
+
+    .card-name {
+      font-size: 10px;
+    }
+  }
+
+  .card-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--c);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--c-border);
+    letter-spacing: 0.1px;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+
+  .card-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-primary;
+    white-space: normal;
+    word-break: break-word;
+    overflow: hidden;
+    letter-spacing: -0.2px;
+    pointer-events: none;
+    max-width: 100%;
+    line-height: 1.3;
+  }
+
+  .card-sub {
+    font-size: 10px;
+    color: $text-secondary;
+    font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+    white-space: normal;
+    word-break: break-word;
+    overflow: hidden;
+    pointer-events: none;
+    max-width: 100%;
+    margin-top: auto;
+  }
+}

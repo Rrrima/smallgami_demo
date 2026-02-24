@@ -10,47 +10,6 @@ $border-w: 2px;
   min-height: 0;
   padding: 20px 24px 12px;
 
-  .story-header {
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .story-selector {
-      select {
-        font-family: 'Patrick Hand', 'Caveat', cursive;
-        font-size: 18px;
-        font-weight: 500;
-        color: $ink;
-        background: transparent;
-        border: none;
-        border-bottom: $border-w solid $border;
-        padding: 4px 24px 4px 8px;
-        cursor: pointer;
-        outline: none;
-        appearance: none;
-        -webkit-appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 4px center;
-        transition: opacity 0.2s ease;
-        text-align: center;
-
-        &:hover {
-          opacity: 0.6;
-        }
-
-        option {
-          font-family: 'Barlow', sans-serif;
-          font-size: 13px;
-          background: white;
-          color: $ink;
-          padding: 8px;
-        }
-      }
-    }
-  }
-
   .page-body {
     flex: 1;
     display: flex;
@@ -68,6 +27,7 @@ $border-w: 2px;
     color: $ink;
     line-height: 1.7;
     text-align: center;
+
 
     .narrative-text {
       line-height: 1.7;
@@ -96,6 +56,27 @@ $border-w: 2px;
       &.highlighted {
         background: rgba(0, 0, 0, 0.07);
         transform: translateY(-1px);
+      }
+    }
+
+    .narrative-slot-input {
+      font-family: 'Patrick Hand', 'Caveat', cursive;
+      font-size: inherit;
+      font-weight: 600;
+      color: $ink;
+      background: rgba(0, 0, 0, 0.03);
+      border: none;
+      border-bottom: $border-w solid $border;
+      border-radius: 2px;
+      padding: 1px 6px;
+      outline: none;
+      cursor: text;
+      text-align: center;
+      transition: all 0.2s ease;
+
+      &:focus {
+        background: rgba(0, 0, 0, 0.07);
+        border-bottom-color: #000;
       }
     }
   }

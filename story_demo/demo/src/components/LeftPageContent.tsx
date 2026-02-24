@@ -1,6 +1,5 @@
 import React from 'react';
 import { useGameStore, getCurrentMechanismConfig } from '@smallgami/engine';
-import gameStore from '../config/gameStore';
 import './LeftPageContent.scss';
 
 interface Page {
@@ -17,18 +16,11 @@ interface LeftPageContentProps {
   currentObjectIndex: number;
   setCurrentObjectIndex: (index: number) => void;
   gameId: string;
-  setGameId: (id: string) => void;
   editingId: string | null;
   setEditingId: (id: string | null) => void;
   onPageTextChange: (id: string, text: string) => void;
+  onSlotChange: (key: string, value: string) => void;
 }
-
-const storyLabels: Record<string, string> = {
-  christmas: 'Christmas Gift Catcher',
-  flappy_bird: 'Flappy Bird',
-  platform_forest: 'Forest Platformer',
-  running_christmas: 'Christmas Runner',
-};
 
 export default function LeftPageContent({
   page,
@@ -38,10 +30,10 @@ export default function LeftPageContent({
   currentObjectIndex,
   setCurrentObjectIndex,
   gameId,
-  setGameId,
   editingId,
   setEditingId,
   onPageTextChange,
+  onSlotChange,
 }: LeftPageContentProps) {
   const gameConfig = useGameStore(state => state.gameConfig);
 
@@ -70,25 +62,27 @@ export default function LeftPageContent({
 
       if (key === 'player') {
         parts.push(
-          <span
+          <input
             key={`${key}-${startIndex}`}
-            className={`narrative-slot ${hoveredId === 'player' ? 'highlighted' : ''}`}
+            className={`narrative-slot narrative-slot-input ${hoveredId === 'player' ? 'highlighted' : ''}`}
+            value={displayValue}
+            onChange={e => onSlotChange(key, e.target.value)}
             onMouseEnter={() => setHoveredId('player')}
             onMouseLeave={() => setHoveredId(null)}
-          >
-            {displayValue}
-          </span>
+            size={Math.max(1, displayValue.length)}
+          />
         );
       } else if (key === 'world') {
         parts.push(
-          <span
+          <input
             key={`${key}-${startIndex}`}
-            className={`narrative-slot ${hoveredId === 'world' ? 'highlighted' : ''}`}
+            className={`narrative-slot narrative-slot-input ${hoveredId === 'world' ? 'highlighted' : ''}`}
+            value={displayValue}
+            onChange={e => onSlotChange(key, e.target.value)}
             onMouseEnter={() => setHoveredId('world')}
             onMouseLeave={() => setHoveredId(null)}
-          >
-            {displayValue}
-          </span>
+            size={Math.max(1, displayValue.length)}
+          />
         );
       } else {
         const objectKeys = Object.keys(mechanismConfig.objects);
@@ -96,17 +90,18 @@ export default function LeftPageContent({
 
         if (objectIndex !== -1) {
           parts.push(
-            <span
+            <input
               key={`${key}-${startIndex}`}
-              className={`narrative-slot ${key} ${hoveredId === 'object' && currentObjectIndex === objectIndex ? 'highlighted' : ''}`}
+              className={`narrative-slot narrative-slot-input ${key} ${hoveredId === 'object' && currentObjectIndex === objectIndex ? 'highlighted' : ''}`}
+              value={displayValue}
+              onChange={e => onSlotChange(key, e.target.value)}
               onMouseEnter={() => {
                 setHoveredId('object');
                 setCurrentObjectIndex(objectIndex);
               }}
               onMouseLeave={() => setHoveredId(null)}
-            >
-              {displayValue}
-            </span>
+              size={Math.max(1, displayValue.length)}
+            />
           );
         }
       }
@@ -133,21 +128,6 @@ export default function LeftPageContent({
 
   return (
     <div className='left-page-content'>
-      <div className='story-header'>
-        <div className='story-selector'>
-          <select
-            value={gameId}
-            onChange={e => setGameId(e.target.value)}
-          >
-            {Object.keys(gameStore).map(id => (
-              <option key={id} value={id}>
-                {storyLabels[id] || id}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
       <div className='page-body'>
         {page.isNarrative ? (
           <div className='narrative-sentence'>

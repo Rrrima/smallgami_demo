@@ -1,0 +1,121 @@
+import type { GameDSLConfig } from '@smallgami/engine';
+
+// Primitive (polygon-mode) — top-down collect-all navigator.
+// Player moves freely in 4 directions across a flat arena with no gravity.
+// Collectibles are scattered; roaming hazards patrol the space.
+// Core mechanic: navigate to every item while avoiding enemies (Pac-Man style).
+const primCollectAll: GameDSLConfig = {
+  id: 'prim_collect_all',
+  name: 'collect_all',
+  mechanism: 'navigator',
+  assets: { models: { player: '', collectible: '', hazard: '' }, skybox: '', ground: '' },
+  player: {
+    description: 'player',
+    size: 5,
+    jumpPower: 0,
+    moveSpeed: 35,
+    friction: 8,
+    mass: 10,
+    restitution: 0,
+    jumpAnimationDuration: 300,
+    jumpSquishScale: 1,
+    jumpStretchScale: 1,
+    jumpOnlyOnGround: true,
+    maxJumpCount: 0,
+    jumpInterval: 500,
+    bullets: {
+      speed: 0,
+      maxCount: 0,
+      cooldown: 99999,
+      shape: { width: 1, height: 1, depth: 1 },
+      maxDistance: 0,
+      color: { r: 1, g: 1, b: 1 },
+      opacity: 0,
+    },
+    startPosition: { x: 0, y: 0, z: 0 },
+  },
+  controls: {
+    moveLeft:      ['arrowleft',  'a'],
+    moveRight:     ['arrowright', 'd'],
+    moveforward:   ['arrowup',   'w'],
+    movebackward:  ['arrowdown', 's'],
+    jump:          [''],
+    squeezeToJump: [''],
+    fireBullet:    [''],
+    bulletLeft:    [''],
+    bulletRight:   [''],
+  },
+  world: {
+    description: 'top-down navigator arena',
+    gravityMultiplier: 0,
+    hasGround: true,
+    ground: { width: 400, height: 1, depth: 400, posY: -5 },
+    cameraType: 'ortho',
+    cameraFovScale: 1,
+    cameraTargetDelta:  [0, 0, 0],
+    cameraAlphaDelta:   0,
+    cameraBetaDelta:    0,
+    cameraRadiusDelta:  0,
+    HemisphericLight: { intensity: 0.7, color: [1, 1, 1],       direction: [0, 1, 0] },
+    DirectionalLight: { intensity: 0.3, color: [0.9, 0.9, 0.9], direction: [0, -1, 0.5] },
+    BottomLight:      { intensity: 0.1, color: [0.9, 0.9, 0.9], direction: [0, 1, 0] },
+    skyboxType: 'sphere',
+    particles: {
+      maxStars: 0,
+      ratioOfBlinkers: 0,
+      size: { min: 0.1, max: 0.3 },
+      colors: [[1, 1, 1, 0.3]],
+      movement: {
+        pattern: 'drift',
+        direction: 'down',
+        speed: 0.05,
+        oscillation: { amplitude: 0.5, frequency: 0.03 },
+      },
+      blinking: { minInterval: 1000, maxInterval: 3000 },
+      texture: { path: '/texture/star.png', dimensions: { width: 128, height: 128 } },
+    },
+    fog: { enabled: false, color: [0.3, 0.3, 0.3], start: 200, end: 800, mode: 'linear' },
+  },
+  objects: [
+    {
+      name: 'collectible',
+      id: 'collectible',
+      size: { x: 3, y: 3, z: 3 } as any,
+      onPlayerCollision:     { player: 'score', object: 'dispose' },
+      onProjectileCollision: { object: 'none', projectile: 'none' },
+      onGroundCollision: 'none',
+      initialSpeed: { x: 0, y: 0, z: 0 } as any,
+      score: 10,
+      motionType: 0,
+      physics: { mass: 0, restitution: 0, friction: 0 },
+    },
+    {
+      name: 'hazard',
+      id: 'hazard',
+      size: { x: 5, y: 5, z: 5 } as any,
+      onPlayerCollision:     { player: 'none', object: 'none' },
+      onProjectileCollision: { object: 'none', projectile: 'none' },
+      onGroundCollision: 'none',
+      initialSpeed: { x: 12, y: 0, z: 8 } as any,
+      motionType: 1,
+      physics: { mass: 0, restitution: 1, friction: 0 },
+    },
+  ],
+  spawn: [
+    // Initial scatter of collectibles across the arena
+    { spawnTrigger: 'once', spawnTriggerTime: 100,  spawnXrange: [-25, 25], spawnZrange: [-25, 25], spawnYrange: [0, 0], spawnLikelihood: { collectible: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    { spawnTrigger: 'once', spawnTriggerTime: 100,  spawnXrange: [-25, 25], spawnZrange: [-25, 25], spawnYrange: [0, 0], spawnLikelihood: { collectible: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    { spawnTrigger: 'once', spawnTriggerTime: 100,  spawnXrange: [-25, 25], spawnZrange: [-25, 25], spawnYrange: [0, 0], spawnLikelihood: { collectible: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    { spawnTrigger: 'once', spawnTriggerTime: 100,  spawnXrange: [-25, 25], spawnZrange: [-25, 25], spawnYrange: [0, 0], spawnLikelihood: { collectible: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    { spawnTrigger: 'once', spawnTriggerTime: 100,  spawnXrange: [-25, 25], spawnZrange: [-25, 25], spawnYrange: [0, 0], spawnLikelihood: { collectible: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    { spawnTrigger: 'once', spawnTriggerTime: 100,  spawnXrange: [-25, 25], spawnZrange: [-25, 25], spawnYrange: [0, 0], spawnLikelihood: { collectible: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    // Continuous collectible respawn
+    { spawnTrigger: 'timer', spawnTriggerTime: 4000, spawnXrange: [-25, 25], spawnZrange: [-25, 25], spawnYrange: [0, 0], spawnLikelihood: { collectible: 0.8 }, scaleRangeX: [0.8, 1.2], scaleRangeY: [0.8, 1.2], scaleRangeZ: [0.8, 1.2] },
+    // Roaming hazards
+    { spawnTrigger: 'once', spawnTriggerTime: 500,  spawnXrange: [-30, -30], spawnZrange: [-10, 10], spawnYrange: [0, 0], spawnLikelihood: { hazard: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    { spawnTrigger: 'once', spawnTriggerTime: 500,  spawnXrange: [30, 30],   spawnZrange: [-10, 10], spawnYrange: [0, 0], spawnLikelihood: { hazard: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+    { spawnTrigger: 'once', spawnTriggerTime: 1500, spawnXrange: [-10, 10],  spawnZrange: [30, 30],  spawnYrange: [0, 0], spawnLikelihood: { hazard: 1 }, scaleRangeX: [1, 1], scaleRangeY: [1, 1], scaleRangeZ: [1, 1] },
+  ],
+};
+
+export default primCollectAll;

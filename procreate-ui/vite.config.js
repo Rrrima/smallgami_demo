@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { sharedPublicPlugin } from '../shared/viteSharedPublic.js'
 
 function engineDepsPlugin() {
   return {
@@ -21,7 +22,7 @@ function engineDepsPlugin() {
 }
 
 export default defineConfig({
-  plugins: [engineDepsPlugin(), react()],
+  plugins: [engineDepsPlugin(), react(), sharedPublicPlugin('../shared/public')],
   assetsInclude: ['**/*.wasm'],
   resolve: {
     alias: {
