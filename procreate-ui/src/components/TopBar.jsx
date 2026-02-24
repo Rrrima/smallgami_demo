@@ -5,7 +5,7 @@ import {
   Layers,
   ChevronDown,
 } from 'lucide-react'
-import { MODELS } from '../services/geminiService'
+import { MODELS } from '../services/generationService'
 
 // eslint-disable-next-line no-unused-vars
 function ToolBtn({ icon: Icon, label, active, onClick }) {

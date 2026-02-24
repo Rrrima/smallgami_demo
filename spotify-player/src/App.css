@@ -1,0 +1,468 @@
+/* ===== Layout ===== */
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.app-content {
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  max-height: 850px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== Now Playing ===== */
+
+.now-playing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+/* ===== Game Feed (TikTok-style stack) ===== */
+
+.game-feed {
+  flex: 1;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.game-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.game-card.next-card {
+  z-index: 1;
+}
+
+.game-card-idle {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-surface);
+  transition: opacity 0.4s ease;
+}
+
+.game-card-caption {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ===== Game View ===== */
+
+.game-view {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-view-live {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+/* ===== Now Playing Info ===== */
+
+.now-playing-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.now-playing-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.now-playing-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.now-playing-artist {
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.now-playing-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.game-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bg-highlight);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.game-dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+.now-playing-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.now-playing-action-btn {
+  width: 32px;
+  height: 32px;
+  color: var(--text-secondary);
+  transition: color 0.15s, transform 0.1s;
+}
+
+.now-playing-action-btn:hover {
+  color: var(--text-primary);
+  transform: scale(1.08);
+}
+
+/* ===== Player Bar ===== */
+
+.player-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.player-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.player-time {
+  font-size: 11px;
+  color: var(--text-subdued);
+  min-width: 34px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-progress-bar-wrapper {
+  flex: 1;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.player-progress-bar-bg {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-highlight);
+  overflow: hidden;
+}
+
+.player-progress-bar-fill {
+  height: 100%;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: width 0.25s linear;
+}
+
+.player-progress-bar-wrapper:hover .player-progress-bar-fill {
+  background: var(--accent);
+}
+
+.player-progress-input {
+  position: absolute;
+  width: 100%;
+  height: 16px;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.player-ctrl-btn {
+  color: var(--text-secondary);
+  transition: color 0.15s, transform 0.1s;
+}
+
+.player-ctrl-btn:hover {
+  color: var(--text-primary);
+}
+
+.player-ctrl-btn.active {
+  color: var(--accent);
+}
+
+.player-ctrl-btn.small {
+  width: 36px;
+  height: 36px;
+}
+
+.player-ctrl-btn.tiny {
+  width: 28px;
+  height: 28px;
+  color: var(--text-subdued);
+}
+
+.player-ctrl-btn.tiny:hover {
+  color: var(--text-primary);
+}
+
+.play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  color: var(--bg) !important;
+  transition: transform 0.1s, background 0.15s;
+}
+
+.play-btn:hover {
+  transform: scale(1.06);
+}
+
+.play-btn:active {
+  transform: scale(0.96);
+}
+
+.player-volume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.player-volume-bar-wrapper {
+  width: 100px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.player-volume-bar-bg {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-highlight);
+  overflow: hidden;
+}
+
+.player-volume-bar-fill {
+  height: 100%;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: width 0.1s;
+}
+
+.player-volume-bar-wrapper:hover .player-volume-bar-fill {
+  background: var(--accent);
+}
+
+.player-volume-input {
+  position: absolute;
+  width: 100%;
+  height: 14px;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 480px) {
+  .app {
+    padding: 10px;
+  }
+
+  .app-content {
+    gap: 12px;
+  }
+
+  .now-playing-title {
+    font-size: 16px;
+  }
+
+  .player-controls {
+    gap: 16px;
+  }
+
+  .play-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .player-volume {
+    display: none;
+  }
+}
+
+/* ===== Game engine styles (required by @smallgami/engine <Game />) ===== */
+
+.game-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-controls-container {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  z-index: 10;
+}
+
+.game-control-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(3px);
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.15s;
+}
+
+.game-control-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.gamedata-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 10px;
+  gap: 3px;
+  border-radius: 10px;
+  min-width: 60px;
+  display: flex;
+  flex-direction: row;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  z-index: 10;
+  color: white;
+  font-size: 13px;
+}
+
+.gamedata-lives,
+.gamedata-score {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.gamedata-score-value {
+  font-weight: 600;
+  color: #ffe598;
+}
+
+.gamedata-lives-value {
+  font-weight: 600;
+  color: #6fa7fc;
+}
+
+.game-over-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(60, 60, 60, 0.3);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 20;
+}
+
+.game-over-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+
+.game-over-score {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.game-over-restart-button {
+  background: black;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+.game-over-restart-button:hover {
+  background: #333;
+}

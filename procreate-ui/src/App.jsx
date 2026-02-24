@@ -5,7 +5,7 @@ import TopBar from './components/TopBar'
 import LeftSidebar from './components/LeftSidebar'
 import LayersPanel from './components/LayersPanel'
 import ColorPicker from './components/ColorPicker'
-import { generateBirdVariations, generateWorldAssets, MODELS } from './services/geminiService'
+import { generateBirdVariations, generateWorldAssets, MODELS } from './services/generationService'
 import './App.css'
 
 let nextLayerId = 4
