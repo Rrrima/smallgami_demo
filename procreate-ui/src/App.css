@@ -4,10 +4,12 @@
   overflow: hidden;
   background-color: #1a1a1a;
   background-image:
-    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 20px 20px;
-  transition: background-color 0.4s ease, background-image 0.4s ease;
+  transition:
+    background-color 0.4s ease,
+    background-image 0.4s ease;
 }
 .app.is-playing {
   background-color: #e7e7e7;
@@ -21,7 +23,9 @@
   right: 0;
   height: 52px;
   z-index: 10;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
 }
 .topbar-area.is-playing {
   transform: translateY(-52px);
@@ -36,7 +40,9 @@
   bottom: 0;
   width: 52px;
   z-index: 10;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
 }
 .sidebar-area.is-playing {
   transform: translateX(-52px);
@@ -59,20 +65,20 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 12px;
   font-weight: 500;
   padding: 6px 16px;
   border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: auto;
 }
 .mode-banner.is-playing {
@@ -80,8 +86,8 @@
   padding: 6px 18px;
 }
 .mode-banner:hover {
-  background: rgba(0,0,0,0.7);
-  border-color: rgba(255,255,255,0.16);
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.16);
 }
 .mode-banner:active {
   transform: translateX(-50%) scale(0.96);
@@ -93,9 +99,9 @@
   font-size: 10px;
   padding: 1px 5px;
   border-radius: 4px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.5);
   margin-left: 2px;
   font-family: system-ui, sans-serif;
 }
@@ -196,7 +202,7 @@
 
 .game-over-score {
   font-size: 14px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .game-over-restart-button {
@@ -219,14 +225,16 @@
   display: inline-block;
   width: 10px;
   height: 10px;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  border-top-color: rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   animation: ai-spin 0.7s linear infinite;
 }
 
 @keyframes ai-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Collapsed results tab — bottom center handle */
@@ -250,7 +258,9 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .results-tab-collapsed:hover {
@@ -314,8 +324,10 @@
   height: 56px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.15);
-  background:
-    repeating-conic-gradient(rgba(255,255,255,0.08) 0% 25%, rgba(255,255,255,0.03) 0% 50%)
+  background: repeating-conic-gradient(
+      rgba(255, 255, 255, 0.08) 0% 25%,
+      rgba(255, 255, 255, 0.03) 0% 50%
+    )
     50% / 12px 12px;
   cursor: pointer;
   padding: 0;
@@ -323,8 +335,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.15s, transform 0.15s;
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
   position: relative;
+}
+
+.ai-results-card.is-committed {
+  border-color: rgba(52, 199, 89, 0.6);
+  box-shadow: 0 0 8px rgba(52, 199, 89, 0.25);
 }
 
 .ai-results-card:hover {
@@ -368,7 +387,9 @@
   justify-content: center;
   padding: 0;
   opacity: 0;
-  transition: opacity 0.15s, background 0.15s;
+  transition:
+    opacity 0.15s,
+    background 0.15s;
   z-index: 2;
 }
 
@@ -460,8 +481,10 @@
   margin: 0 auto 10px;
   border-radius: 8px;
   overflow: hidden;
-  background:
-    repeating-conic-gradient(rgba(255,255,255,0.06) 0% 25%, rgba(255,255,255,0.02) 0% 50%)
+  background: repeating-conic-gradient(
+      rgba(255, 255, 255, 0.06) 0% 25%,
+      rgba(255, 255, 255, 0.02) 0% 50%
+    )
     50% / 8px 8px;
 }
 
@@ -471,17 +494,10 @@
   object-fit: contain;
 }
 
-.ai-info-panel-name {
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 4px;
-}
-
 .ai-info-panel-chars {
-  font-size: 10px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
-  text-align: center;
+  text-align: left;
   margin-bottom: 12px;
   line-height: 1.3;
 }
@@ -499,11 +515,11 @@
 }
 
 .stat-label {
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   color: rgba(255, 255, 255, 0.5);
-  width: 36px;
+  width: 52px;
   flex-shrink: 0;
 }
 
@@ -536,16 +552,18 @@
   border-radius: 9px;
   border: none;
   background: transparent;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: background 0.12s, color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s;
 }
 .upload-ctrl-btn:hover {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: #f2f2f7;
 }
 .upload-ctrl-confirm:hover {
@@ -555,12 +573,79 @@
   color: #ff453a;
 }
 
+/* Floating commit button on canvas */
+.commit-overlay-controls {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  background: rgba(28, 28, 30, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.commit-loading {
+  cursor: wait;
+  color: #0a84ff;
+}
+
+.ai-spinner-small {
+  width: 11px;
+  height: 11px;
+  border: 2px solid rgba(10, 132, 255, 0.3);
+  border-top-color: #0a84ff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Results bar action buttons */
+.results-bar-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.results-bar-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f2f2f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.results-bar-action-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.results-bar-action-btn.is-loading {
+  background: rgba(10, 132, 255, 0.25);
+  color: #0a84ff;
+  cursor: wait;
+}
+
 /* Propagate shimmer animation for loading state */
 .layer-propagating {
   animation: propagate-shimmer 1.5s ease-in-out infinite;
 }
 
 @keyframes propagate-shimmer {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.25; }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }

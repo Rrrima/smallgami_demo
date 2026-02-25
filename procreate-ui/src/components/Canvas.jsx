@@ -1,5 +1,5 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
-import { Check, X } from 'lucide-react'
+import { Check, FlipHorizontal2, ImageUp, Info, Sparkles, X, Trash2 } from 'lucide-react'
 import { Game, useGameStore } from '@smallgami/engine'
 import flappyBirdConfig from '../config/flappyBirdConfig'
 
@@ -27,6 +27,12 @@ export default function Canvas({
   uploadImage,
   onUploadConfirm,
   onUploadCancel,
+  onCommit,
+  committing,
+  committedBird,
+  onBirdDrawingChanged,
+  onShowBirdInfo,
+  onFileChange,
 }) {
   const viewportRef = useRef(null)
   const gameRef = useRef(null)
@@ -73,6 +79,9 @@ export default function Canvas({
   useEffect(() => { opacityRef.current = opacity }, [opacity])
   useEffect(() => { activeLayerIdRef.current = activeLayerId }, [activeLayerId])
   useEffect(() => { layersRef.current = layers }, [layers])
+
+  // File input ref for upload button in overlay controls
+  const fileInputRef = useRef(null)
 
   // Upload overlay state
   const [uploadPos, setUploadPos] = useState({ x: 0, y: 0, scale: 1 })
@@ -125,28 +134,53 @@ export default function Canvas({
 
   // Track active resizing for visual feedback
   const [isResizing, setIsResizing] = useState(false)
-  const resizeTimer = useRef(null)
 
-  // Upload resize via wheel — attached natively to avoid conflicts with viewport wheel
   const uploadOverlayRef = useRef(null)
-  useEffect(() => {
-    const el = uploadOverlayRef.current
-    if (!el) return
-    const onWheel = (e) => {
-      e.preventDefault()
-      e.stopPropagation()
-      const factor = e.deltaY < 0 ? 1.08 : 1 / 1.08
-      setUploadPos(prev => ({
-        ...prev,
-        scale: Math.min(5, Math.max(0.2, prev.scale * factor)),
-      }))
-      setIsResizing(true)
-      clearTimeout(resizeTimer.current)
-      resizeTimer.current = setTimeout(() => setIsResizing(false), 300)
+
+  // Corner-drag resize: distance-ratio from the fixed anchor, aspect ratio locked
+  const startUploadResize = useCallback((e, corner) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const { w, h } = uploadNaturalSize.current
+    const orig = { ...uploadPosRef.current }
+
+    // Anchor = the opposite corner in canvas coords (stays fixed)
+    const anchor = {
+      x: corner.includes('w') ? orig.x + w * orig.scale : orig.x,
+      y: corner.includes('n') ? orig.y + h * orig.scale : orig.y,
     }
-    el.addEventListener('wheel', onWheel, { passive: false })
-    return () => { el.removeEventListener('wheel', onWheel); clearTimeout(resizeTimer.current) }
-  }, [uploadImage])
+
+    // Convert anchor to screen coords once at the start
+    const s0 = scaleRef.current
+    const rect0 = viewportRef.current.getBoundingClientRect()
+    const anchorSX = rect0.left + offsetXRef.current + anchor.x * s0
+    const anchorSY = rect0.top + offsetYRef.current + anchor.y * s0
+
+    const startDist = Math.hypot(e.clientX - anchorSX, e.clientY - anchorSY)
+    if (startDist < 1) return
+    const startScale = orig.scale
+
+    setIsResizing(true)
+
+    const onMove = (ev) => {
+      const dist = Math.hypot(ev.clientX - anchorSX, ev.clientY - anchorSY)
+      const ns = Math.min(5, Math.max(0.05, startScale * (dist / startDist)))
+
+      setUploadPos({
+        x: corner.includes('w') ? anchor.x - w * ns : anchor.x,
+        y: corner.includes('n') ? anchor.y - h * ns : anchor.y,
+        scale: ns,
+      })
+    }
+    const onUp = () => {
+      setIsResizing(false)
+      window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('pointerup', onUp)
+    }
+    window.addEventListener('pointermove', onMove)
+    window.addEventListener('pointerup', onUp)
+  }, [])
 
   const handleUploadCrop = useCallback(() => {
     if (!uploadImgRef.current) return
@@ -281,6 +315,13 @@ export default function Canvas({
         : null
 
       // Clone config and inject the user's drawing as player sprite + propagated assets
+      const pipeAsset = propagatedAssets?.pipe || flappyBirdConfig.assets.models.box1
+      console.log('[Pipe] asset type:', pipeAsset?.substring(0, 30), '| has propagated:', !!propagatedAssets?.pipe)
+      const pipeImg = new Image()
+      pipeImg.onload = () => console.log(`[Pipe] dimensions: ${pipeImg.width}x${pipeImg.height}`)
+      pipeImg.onerror = () => console.log('[Pipe] failed to load image')
+      pipeImg.src = pipeAsset
+
       const modifiedConfig = {
         ...flappyBirdConfig,
         assets: {
@@ -288,8 +329,8 @@ export default function Canvas({
           models: {
             ...flappyBirdConfig.assets.models,
             ...(playerDataUrl ? { player: playerDataUrl, player_jump: playerDataUrl } : {}),
-            box1: propagatedAssets?.pipe || flappyBirdConfig.assets.models.box1,
-            box2: propagatedAssets?.pipe || flappyBirdConfig.assets.models.box2,
+            box1: pipeAsset,
+            box2: pipeAsset,
           },
           skybox: propagatedAssets?.skybox || flappyBirdConfig.assets.skybox,
         },
@@ -381,7 +422,40 @@ export default function Canvas({
         saveSnapshot(id)
         notifyHistory(id)
       },
+      flipBirdArea() {
+        for (const layer of layersRef.current) {
+          if (layer.locked || !layer.visible) continue
+          const canvas = canvasRefs.current[layer.id]
+          if (!canvas) continue
+          const ctx = canvas.getContext('2d')
+          saveSnapshot(layer.id)
+          const region = ctx.getImageData(BIRD_X, BIRD_Y, BIRD_W, BIRD_H)
+          const tmp = document.createElement('canvas')
+          tmp.width = BIRD_W
+          tmp.height = BIRD_H
+          const tCtx = tmp.getContext('2d')
+          tCtx.putImageData(region, 0, 0)
+          ctx.clearRect(BIRD_X, BIRD_Y, BIRD_W, BIRD_H)
+          ctx.save()
+          ctx.translate(BIRD_X + BIRD_W, BIRD_Y)
+          ctx.scale(-1, 1)
+          ctx.drawImage(tmp, 0, 0)
+          ctx.restore()
+          saveSnapshot(layer.id)
+          notifyHistory(layer.id)
+        }
+      },
       drawImageToBirdArea(dataUrl) {
+        for (const layer of layersRef.current) {
+          if (layer.locked) continue
+          const c = canvasRefs.current[layer.id]
+          if (!c) continue
+          saveSnapshot(layer.id)
+          c.getContext('2d').clearRect(0, 0, c.width, c.height)
+          saveSnapshot(layer.id)
+        }
+
+        // Draw the new image onto the active layer
         const id = activeLayerIdRef.current
         const canvas = canvasRefs.current[id]
         if (!canvas) return
@@ -389,8 +463,10 @@ export default function Canvas({
         const ctx = canvas.getContext('2d')
         const img = new Image()
         img.onload = () => {
-          ctx.clearRect(BIRD_X, BIRD_Y, BIRD_W, BIRD_H)
-          ctx.drawImage(img, BIRD_X, BIRD_Y, BIRD_W, BIRD_H)
+          const scale = Math.min(BIRD_W / img.naturalWidth, BIRD_H / img.naturalHeight)
+          const dw = img.naturalWidth * scale
+          const dh = img.naturalHeight * scale
+          ctx.drawImage(img, BIRD_X + (BIRD_W - dw) / 2, BIRD_Y + (BIRD_H - dh) / 2, dw, dh)
           saveSnapshot(id)
           notifyHistory(id)
         }
@@ -454,6 +530,7 @@ export default function Canvas({
 
   const onPointerDown = useCallback((e) => {
     if (isPlaying || uploadImage) return
+    if (e.target.closest('.commit-overlay-controls')) return
     e.preventDefault()
 
     if (e.button === 1 || spaceDown.current) {
@@ -539,7 +616,8 @@ export default function Canvas({
     isDrawing.current = false
     lastPoint.current = null
     notifyHistory(activeLayerIdRef.current)
-  }, [notifyHistory, isPlaying, uploadImage])
+    onBirdDrawingChanged?.()
+  }, [notifyHistory, isPlaying, uploadImage, onBirdDrawingChanged])
 
   const onWheel = useCallback((e) => {
     if (isPlaying || uploadImage) return
@@ -753,6 +831,72 @@ export default function Canvas({
           />
         )}
 
+        {/* Floating clear + upload + commit buttons below bird region */}
+        {!isPlaying && !uploadImage && (
+          <div
+            className="commit-overlay-controls"
+            style={{
+              position: 'absolute',
+              left: BIRD_X + BIRD_W / 2,
+              top: BIRD_Y + BIRD_H + 14,
+              transform: 'translateX(-50%)',
+              zIndex: 10,
+              pointerEvents: 'auto',
+            }}
+          >
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+              onChange={onFileChange}
+            />
+            <button
+              className="upload-ctrl-btn upload-ctrl-cancel"
+              onClick={(e) => { e.stopPropagation(); actionsRef.current?.clearBirdArea(); onBirdDrawingChanged?.() }}
+              title="Clear drawing"
+            >
+              <Trash2 size={12} strokeWidth={2} />
+            </button>
+            <button
+              className="upload-ctrl-btn"
+              onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click() }}
+              title="Upload image"
+            >
+              <ImageUp size={13} strokeWidth={2} />
+            </button>
+            <button
+              className="upload-ctrl-btn"
+              onClick={(e) => { e.stopPropagation(); actionsRef.current?.flipBirdArea(); onBirdDrawingChanged?.() }}
+              title="Flip horizontal"
+            >
+              <FlipHorizontal2 size={13} strokeWidth={2} />
+            </button>
+            {committedBird ? (
+              <button
+                className="upload-ctrl-btn upload-ctrl-confirm"
+                onClick={(e) => { e.stopPropagation(); onShowBirdInfo?.() }}
+                title="Show bird info"
+              >
+                <Info size={13} strokeWidth={2.2} />
+              </button>
+            ) : (
+              <button
+                className={`upload-ctrl-btn ${committing ? 'commit-loading' : 'upload-ctrl-confirm'}`}
+                onClick={(e) => { e.stopPropagation(); onCommit?.() }}
+                disabled={committing}
+                title="Parse bird info"
+              >
+                {committing ? (
+                  <span className="ai-spinner-small" />
+                ) : (
+                  <Sparkles size={13} strokeWidth={2.2} />
+                )}
+              </button>
+            )}
+          </div>
+        )}
+
         {/* Upload image overlay */}
         {uploadImage && !isPlaying && (
           <div
@@ -764,7 +908,7 @@ export default function Canvas({
               cursor: 'grab',
             }}
             onPointerDown={(e) => {
-              if (e.target.closest('.upload-overlay-controls')) return
+              if (e.target.closest('.upload-overlay-controls') || e.target.closest('.upload-resize-handle')) return
               startUploadDrag(e)
             }}
           >
@@ -786,23 +930,69 @@ export default function Canvas({
             }} />
 
             {/* Uploaded image */}
-            <img
-              src={uploadImage}
-              alt="upload"
-              draggable={false}
-              style={{
-                position: 'absolute',
-                left: uploadPos.x,
-                top: uploadPos.y,
-                width: uploadNaturalSize.current.w * uploadPos.scale,
-                height: uploadNaturalSize.current.h * uploadPos.scale,
-                pointerEvents: 'none',
-                zIndex: 1,
-                opacity: isResizing ? 0.45 : 0.85,
-                filter: isResizing ? 'brightness(0.6)' : 'none',
-                transition: 'opacity 0.2s, filter 0.2s',
-              }}
-            />
+            {(() => {
+              const imgW = uploadNaturalSize.current.w * uploadPos.scale
+              const imgH = uploadNaturalSize.current.h * uploadPos.scale
+              const corners = [
+                { key: 'nw', x: uploadPos.x, y: uploadPos.y, cursor: 'nwse-resize' },
+                { key: 'ne', x: uploadPos.x + imgW, y: uploadPos.y, cursor: 'nesw-resize' },
+                { key: 'sw', x: uploadPos.x, y: uploadPos.y + imgH, cursor: 'nesw-resize' },
+                { key: 'se', x: uploadPos.x + imgW, y: uploadPos.y + imgH, cursor: 'nwse-resize' },
+              ]
+              return (
+                <>
+                  <img
+                    src={uploadImage}
+                    alt="upload"
+                    draggable={false}
+                    style={{
+                      position: 'absolute',
+                      left: uploadPos.x,
+                      top: uploadPos.y,
+                      width: imgW,
+                      height: imgH,
+                      pointerEvents: 'none',
+                      zIndex: 1,
+                      opacity: isResizing ? 0.45 : 0.85,
+                      filter: isResizing ? 'brightness(0.6)' : 'none',
+                      transition: 'opacity 0.15s, filter 0.15s',
+                    }}
+                  />
+                  {/* Bounding outline around the image */}
+                  <div style={{
+                    position: 'absolute',
+                    left: uploadPos.x,
+                    top: uploadPos.y,
+                    width: imgW,
+                    height: imgH,
+                    border: '1.5px solid rgba(255,255,255,0.5)',
+                    pointerEvents: 'none',
+                    zIndex: 4,
+                  }} />
+                  {/* Corner resize handles */}
+                  {corners.map(c => (
+                    <div
+                      key={c.key}
+                      className="upload-resize-handle"
+                      style={{
+                        position: 'absolute',
+                        left: c.x - 5,
+                        top: c.y - 5,
+                        width: 10,
+                        height: 10,
+                        background: '#fff',
+                        border: '1.5px solid rgba(0,0,0,0.4)',
+                        borderRadius: 2,
+                        cursor: c.cursor,
+                        zIndex: 5,
+                        pointerEvents: 'auto',
+                      }}
+                      onPointerDown={(e) => startUploadResize(e, c.key)}
+                    />
+                  ))}
+                </>
+              )
+            })()}
 
             {/* Bird region border — on top of image */}
             <div style={{

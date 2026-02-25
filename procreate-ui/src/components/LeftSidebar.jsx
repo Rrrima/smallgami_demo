@@ -1,5 +1,5 @@
 import { useRef, useCallback } from 'react'
-import { Undo2, Redo2, Trash2 } from 'lucide-react'
+import { Undo2, Redo2 } from 'lucide-react'
 
 function VerticalSlider({ value, min, max, onChange }) {
   const trackRef = useRef(null)
@@ -74,7 +74,6 @@ export default function LeftSidebar({
   opacity, setOpacity,
   canUndo, canRedo,
   onUndo, onRedo,
-  onClearBirdArea,
 }) {
   return (
     <div style={{
@@ -156,30 +155,6 @@ export default function LeftSidebar({
           <Redo2 size={18} strokeWidth={2} />
         </button>
       </div>
-
-      {/* Clear bird area */}
-      <button
-        title="Clear player drawing"
-        onClick={onClearBirdArea}
-        style={{
-          width: 34,
-          height: 28,
-          borderRadius: 7,
-          background: 'transparent',
-          color: 'rgba(255,255,255,0.35)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'color 0.12s',
-          border: 'none',
-          cursor: 'pointer',
-          padding: 0,
-          flexShrink: 0,
-        }}
-      >
-        <Trash2 size={16} strokeWidth={2} />
-      </button>
-
     </div>
   )
 }

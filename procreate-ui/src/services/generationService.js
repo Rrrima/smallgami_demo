@@ -4,8 +4,6 @@ import {
   MODELS,
   GEMINI_MODEL_MAP,
   DEFAULT_INFO,
-  DEFAULT_INFO_BY_STYLE,
-  REFINED_INFO,
 } from "./prompts.js";
 
 export { MODELS };
@@ -19,15 +17,13 @@ const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 function dataUrlToInlineData(dataUrl) {
   const [header, b64] = dataUrl.split(",");
-  const mime =
-    header.match(/data:(.*?);/)?.[1] || "image/png";
+  const mime = header.match(/data:(.*?);/)?.[1] || "image/png";
   return { inlineData: { mimeType: mime, data: b64 } };
 }
 
 function dataUrlToFile(dataUrl, filename) {
   const [header, b64] = dataUrl.split(",");
-  const mime =
-    header.match(/data:(.*?);/)?.[1] || "image/png";
+  const mime = header.match(/data:(.*?);/)?.[1] || "image/png";
   const bytes = atob(b64);
   const arr = new Uint8Array(bytes.length);
   for (let i = 0; i < bytes.length; i++) {
@@ -51,19 +47,11 @@ function resizeImage(dataUrl, width, height) {
   });
 }
 
-function getImageAspectRatio(dataUrl) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => resolve(img.width / img.height);
-    img.src = dataUrl;
-  });
-}
-
 // ============================================================
-// BACKGROUND REMOVAL (flood-fill from corners)
+// GREEN-SCREEN REMOVAL + AUTO-CROP
 // ============================================================
 
-function removeBackground(dataUrl) {
+function removeMagentaScreen(dataUrl) {
   return new Promise((resolve) => {
     const img = new Image();
     img.onload = () => {
@@ -73,61 +61,23 @@ function removeBackground(dataUrl) {
       const ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0);
 
-      const imageData = ctx.getImageData(
-        0, 0, canvas.width, canvas.height,
-      );
-      const { data, width, height } = imageData;
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const { data } = imageData;
 
-      const getPixel = (x, y) => {
-        const i = (y * width + x) * 4;
-        return [data[i], data[i + 1], data[i + 2]];
-      };
-      const bgColor = getPixel(0, 0);
-      const tolerance = 60;
-
-      const matches = (x, y) => {
-        const i = (y * width + x) * 4;
-        return (
-          Math.abs(data[i] - bgColor[0]) <= tolerance &&
-          Math.abs(data[i + 1] - bgColor[1]) <= tolerance &&
-          Math.abs(data[i + 2] - bgColor[2]) <= tolerance
-        );
-      };
-
-      const visited = new Uint8Array(width * height);
-      const queue = [];
-
-      const corners = [
-        [0, 0],
-        [width - 1, 0],
-        [0, height - 1],
-        [width - 1, height - 1],
-      ];
-      for (const [cx, cy] of corners) {
-        if (!visited[cy * width + cx] && matches(cx, cy)) {
-          queue.push(cx, cy);
-          visited[cy * width + cx] = 1;
-        }
-      }
-
-      while (queue.length > 0) {
-        const y = queue.pop();
-        const x = queue.pop();
-        data[(y * width + x) * 4 + 3] = 0;
-
-        const neighbors = [
-          [x - 1, y],
-          [x + 1, y],
-          [x, y - 1],
-          [x, y + 1],
-        ];
-        for (const [nx, ny] of neighbors) {
-          if (nx < 0 || nx >= width) continue;
-          if (ny < 0 || ny >= height) continue;
-          const ni = ny * width + nx;
-          if (visited[ni]) continue;
-          visited[ni] = 1;
-          if (matches(nx, ny)) queue.push(nx, ny);
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        // magenta = high R, low G, high B
+        if (r > 120 && b > 120 && g < r * 0.6 && g < b * 0.6) {
+          const dist = Math.sqrt(
+            (r - 255) * (r - 255) + g * g + (b - 255) * (b - 255),
+          );
+          if (dist < 90) {
+            data[i + 3] = 0;
+          } else if (dist < 110) {
+            data[i + 3] = Math.round(((dist - 90) / 20) * data[i + 3]);
+          }
         }
       }
 
@@ -138,17 +88,78 @@ function removeBackground(dataUrl) {
   });
 }
 
+function autoCrop(dataUrl, padding = 2) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      const { data, width, height } = ctx.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height,
+      );
+      let minX = width,
+        minY = height,
+        maxX = 0,
+        maxY = 0;
+
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          if (data[(y * width + x) * 4 + 3] > 10) {
+            if (x < minX) minX = x;
+            if (x > maxX) maxX = x;
+            if (y < minY) minY = y;
+            if (y > maxY) maxY = y;
+          }
+        }
+      }
+
+      if (maxX < minX || maxY < minY) {
+        resolve(dataUrl);
+        return;
+      }
+
+      minX = Math.max(0, minX - padding);
+      minY = Math.max(0, minY - padding);
+      maxX = Math.min(width - 1, maxX + padding);
+      maxY = Math.min(height - 1, maxY + padding);
+
+      const cropW = maxX - minX + 1;
+      const cropH = maxY - minY + 1;
+      const out = document.createElement("canvas");
+      out.width = cropW;
+      out.height = cropH;
+      out
+        .getContext("2d")
+        .drawImage(canvas, minX, minY, cropW, cropH, 0, 0, cropW, cropH);
+      resolve(out.toDataURL("image/png"));
+    };
+    img.src = dataUrl;
+  });
+}
+
+async function cleanAsset(dataUrl) {
+  const noBg = await removeMagentaScreen(dataUrl);
+  return autoCrop(noBg);
+}
+
 // ============================================================
-// INFO PARSING
+// INFO PARSING (for commit)
 // ============================================================
 
 function parseInfo(text, fallbackName) {
   try {
-    const match = text.match(/\{[\s\S]*?"name"[\s\S]*?\}/);
+    const match = text.match(/\{[\s\S]*?"characteristics"[\s\S]*?\}/);
     if (match) {
       const parsed = JSON.parse(match[0]);
       return {
-        name: parsed.name || fallbackName,
+        description: parsed.description || fallbackName,
         characteristics: parsed.characteristics || "",
         speed: Number(parsed.speed) || 50,
         mass: Number(parsed.mass) || 50,
@@ -157,16 +168,9 @@ function parseInfo(text, fallbackName) {
       };
     }
   } catch {
-    // JSON parse failed, use defaults
+    // JSON parse failed
   }
   return { ...DEFAULT_INFO, name: fallbackName };
-}
-
-function defaultInfoForStyle(styleName) {
-  return (
-    DEFAULT_INFO_BY_STYLE[styleName] ||
-    { ...DEFAULT_INFO, name: styleName }
-  );
 }
 
 // ============================================================
@@ -174,8 +178,7 @@ function defaultInfoForStyle(styleName) {
 // ============================================================
 
 async function callGemini(modelId, parts) {
-  const modelName =
-    GEMINI_MODEL_MAP[modelId] || "gemini-2.5-flash-image";
+  const modelName = GEMINI_MODEL_MAP[modelId] || "gemini-2.5-flash-image";
   const url =
     "https://generativelanguage.googleapis.com" +
     `/v1beta/models/${modelName}:generateContent` +
@@ -186,22 +189,17 @@ async function callGemini(modelId, parts) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents: [{ parts }],
-      generationConfig: {
-        responseModalities: ["IMAGE", "TEXT"],
-      },
+      generationConfig: { responseModalities: ["IMAGE", "TEXT"] },
     }),
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(
-      `Gemini API error ${res.status}: ${text}`,
-    );
+    throw new Error(`Gemini API error ${res.status}: ${text}`);
   }
 
   const data = await res.json();
   let image = null;
-  let text = "";
 
   for (const candidate of data.candidates || []) {
     for (const part of candidate.content?.parts || []) {
@@ -209,14 +207,11 @@ async function callGemini(modelId, parts) {
         const { mimeType, data: b64 } = part.inlineData;
         image = `data:${mimeType};base64,${b64}`;
       }
-      if (part.text) text += part.text;
     }
   }
 
-  if (!image) {
-    throw new Error("No image returned from Gemini");
-  }
-  return { image, text };
+  if (!image) throw new Error("No image returned from Gemini");
+  return image;
 }
 
 async function callOpenAI(prompt, sketchDataUrl) {
@@ -228,46 +223,33 @@ async function callOpenAI(prompt, sketchDataUrl) {
     form.append("prompt", prompt);
     form.append("n", "1");
     form.append("size", "1024x1024");
-    form.append(
-      "image[]",
-      dataUrlToFile(sketchDataUrl, "sketch.png"),
-    );
+    form.append("image[]", dataUrlToFile(sketchDataUrl, "sketch.png"));
 
-    res = await fetch(
-      "https://api.openai.com/v1/images/edits",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
-        },
-        body: form,
-      },
-    );
+    res = await fetch("https://api.openai.com/v1/images/edits", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${OPENAI_API_KEY}` },
+      body: form,
+    });
   } else {
-    res = await fetch(
-      "https://api.openai.com/v1/images/generations",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-image-1",
-          prompt,
-          n: 1,
-          size: "1024x1024",
-          quality: "medium",
-        }),
+    res = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
       },
-    );
+      body: JSON.stringify({
+        model: "gpt-image-1",
+        prompt,
+        n: 1,
+        size: "1024x1024",
+        quality: "medium",
+      }),
+    });
   }
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(
-      `OpenAI API error ${res.status}: ${text}`,
-    );
+    throw new Error(`OpenAI API error ${res.status}: ${text}`);
   }
 
   const data = await res.json();
@@ -288,50 +270,80 @@ async function callOpenAI(prompt, sketchDataUrl) {
   throw new Error("No image returned from OpenAI");
 }
 
+async function callGeminiText(parts) {
+  const url =
+    "https://generativelanguage.googleapis.com" +
+    `/v1beta/models/gemini-2.0-flash:generateContent` +
+    `?key=${GEMINI_API_KEY}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ contents: [{ parts }] }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Gemini API error ${res.status}: ${text}`);
+  }
+
+  const data = await res.json();
+  let text = "";
+  for (const candidate of data.candidates || []) {
+    for (const part of candidate.content?.parts || []) {
+      if (part.text) text += part.text;
+    }
+  }
+  return text;
+}
+
+async function callOpenAIChat(prompt, imageDataUrl) {
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "image_url",
+              image_url: { url: imageDataUrl, detail: "low" },
+            },
+            { type: "text", text: prompt },
+          ],
+        },
+      ],
+      max_tokens: 300,
+    }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`OpenAI API error ${res.status}: ${text}`);
+  }
+
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || "";
+}
+
 // ============================================================
-// UNIFIED GENERATION HELPER
+// UNIFIED IMAGE GENERATION
 // ============================================================
 
-async function generateImage(
-  provider, modelId, prompt, referenceDataUrl,
-) {
+async function generateImage(provider, modelId, prompt, referenceDataUrl) {
   if (provider === "openai") {
-    const image = await callOpenAI(
-      prompt, referenceDataUrl,
-    );
-    return { image, text: "" };
+    return callOpenAI(prompt, referenceDataUrl);
   }
 
   const parts = [];
-  if (referenceDataUrl) {
-    parts.push(dataUrlToInlineData(referenceDataUrl));
-  }
+  if (referenceDataUrl) parts.push(dataUrlToInlineData(referenceDataUrl));
   parts.push({ text: prompt });
   return callGemini(modelId, parts);
-}
-
-// ============================================================
-// PROMPT BUILDERS
-// ============================================================
-
-function buildBirdPrompt(style, hasSketch, provider) {
-  if (provider === "openai") {
-    return hasSketch
-      ? PROMPTS.openai.birdFromSketch
-      : PROMPTS.openai.birdGenerate(style.shortDesc);
-  }
-
-  const base =
-    PROMPTS.birdBase(style.desc) +
-    PROMPTS.infoJsonSuffix;
-
-  return hasSketch
-    ? `${PROMPTS.birdFromSketchPrefix}\n\n${base}`
-    : base;
-}
-
-function buildRefinedPrompt() {
-  return PROMPTS.birdRefined + PROMPTS.infoJsonSuffix;
 }
 
 // ============================================================
@@ -340,91 +352,80 @@ function buildRefinedPrompt() {
 
 export async function generateBirdVariations(
   sketchDataUrl,
-  modelId = "gemini-2.0-flash",
+  modelId = "gemini-3-pro",
 ) {
-  const model =
-    MODELS.find((m) => m.id === modelId) || MODELS[0];
+  const model = MODELS.find((m) => m.id === modelId) || MODELS[0];
   const hasSketch = !!sketchDataUrl;
-  const isOpenAI = model.provider === "openai";
 
   const styledPromises = STYLES.map((style) => {
-    const prompt = buildBirdPrompt(
-      style, hasSketch, model.provider,
-    );
+    const base = PROMPTS.birdBase(style.desc);
+    const prompt = hasSketch
+      ? `${PROMPTS.birdFromSketchPrefix}\n\n${base}`
+      : base;
 
-    return generateImage(
-      model.provider, model.id, prompt, sketchDataUrl,
-    ).then(({ image, text }) => ({
-      image,
-      info: isOpenAI
-        ? defaultInfoForStyle(style.label)
-        : parseInfo(text, style.label),
-      label: style.label,
-      _provider: model.provider,
-    }));
+    return generateImage(model.provider, model.id, prompt, sketchDataUrl).then(
+      (image) => ({ image, label: style.label }),
+    );
   });
 
   let refinedPromise = null;
   if (hasSketch) {
-    const prompt = buildRefinedPrompt();
     refinedPromise = generateImage(
-      model.provider, model.id, prompt, sketchDataUrl,
-    ).then(({ image, text }) => ({
-      image,
-      info: isOpenAI
-        ? REFINED_INFO
-        : parseInfo(text, "Refined"),
-      label: "Refined",
-      _provider: model.provider,
-    }));
+      model.provider,
+      model.id,
+      PROMPTS.birdRefined,
+      sketchDataUrl,
+    ).then((image) => ({ image, label: "Refined" }));
   }
 
   const allPromises = refinedPromise
     ? [refinedPromise, ...styledPromises]
     : styledPromises;
+
   const rawResults = await Promise.all(allPromises);
 
   return Promise.all(
     rawResults.map(async (result) => {
-      if (result._provider === "openai") return result;
-      const cleanImage =
-        await removeBackground(result.image);
-      return { ...result, image: cleanImage };
+      const image = await cleanAsset(result.image);
+      return { image, label: result.label };
     }),
   );
+}
+
+export async function generateBirdInfo(
+  sketchDataUrl,
+  modelId = "gemini-2.0-flash",
+) {
+  const model = MODELS.find((m) => m.id === modelId) || MODELS[0];
+  const prompt = PROMPTS.commitInfo;
+
+  let text;
+  if (model.provider === "openai") {
+    text = await callOpenAIChat(prompt, sketchDataUrl);
+  } else {
+    const parts = [dataUrlToInlineData(sketchDataUrl), { text: prompt }];
+    text = await callGeminiText(parts);
+  }
+
+  return parseInfo(text, "My Bird");
 }
 
 export async function generateWorldAssets(
   birdImageDataUrl,
   modelId = "gemini-2.0-flash",
 ) {
-  const model =
-    MODELS.find((m) => m.id === modelId) || MODELS[0];
-  const isOpenAI = model.provider === "openai";
+  const model = MODELS.find((m) => m.id === modelId) || MODELS[0];
 
-  const skyboxPrompt = isOpenAI
-    ? PROMPTS.openai.skybox
-    : PROMPTS.gemini.skybox;
-  const pipePrompt = isOpenAI
-    ? PROMPTS.openai.pipe
-    : PROMPTS.gemini.pipe;
-
-  const [skyboxResult, pipeResult] = await Promise.all([
-    generateImage(
-      model.provider, model.id,
-      skyboxPrompt, birdImageDataUrl,
-    ),
-    generateImage(
-      model.provider, model.id,
-      pipePrompt, birdImageDataUrl,
-    ),
+  const [skyboxImage, rawPipeImage] = await Promise.all([
+    generateImage(model.provider, model.id, PROMPTS.skybox, birdImageDataUrl),
+    generateImage(model.provider, model.id, PROMPTS.pipe, birdImageDataUrl),
   ]);
 
-  const skybox = await resizeImage(
-    skyboxResult.image, 1536, 1024,
-  );
-  const pipe = pipeResult.image;
-  const pipeAspectRatio = await getImageAspectRatio(pipe);
+  const skybox = await resizeImage(skyboxImage, 1536, 1024);
+  const cleanedPipe = await cleanAsset(rawPipeImage);
+  const PIPE_W = 52;
+  const PIPE_H = 320;
+  const pipeImage = await resizeImage(cleanedPipe, PIPE_W, PIPE_H);
 
-  return { skybox, pipe, pipeAspectRatio };
+  return { skybox, pipe: pipeImage, pipeAspectRatio: PIPE_W / PIPE_H };
 }
