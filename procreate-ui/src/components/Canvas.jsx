@@ -87,6 +87,7 @@ export default function Canvas({
   const [uploadPos, setUploadPos] = useState({ x: 0, y: 0, scale: 1 })
   const uploadImgRef = useRef(null)
   const uploadNaturalSize = useRef({ w: 0, h: 0 })
+  const [naturalSize, setNaturalSize] = useState({ w: 0, h: 0 })
   const uploadPosRef = useRef(uploadPos)
   useEffect(() => { uploadPosRef.current = uploadPos }, [uploadPos])
 
@@ -97,6 +98,7 @@ export default function Canvas({
     img.onload = () => {
       uploadImgRef.current = img
       uploadNaturalSize.current = { w: img.naturalWidth, h: img.naturalHeight }
+      setNaturalSize({ w: img.naturalWidth, h: img.naturalHeight })
       const fitScale = Math.min(BIRD_W / img.naturalWidth, BIRD_H / img.naturalHeight)
       setUploadPos({
         x: BIRD_X + (BIRD_W - img.naturalWidth * fitScale) / 2,
@@ -931,8 +933,8 @@ export default function Canvas({
 
             {/* Uploaded image */}
             {(() => {
-              const imgW = uploadNaturalSize.current.w * uploadPos.scale
-              const imgH = uploadNaturalSize.current.h * uploadPos.scale
+              const imgW = naturalSize.w * uploadPos.scale
+              const imgH = naturalSize.h * uploadPos.scale
               const corners = [
                 { key: 'nw', x: uploadPos.x, y: uploadPos.y, cursor: 'nwse-resize' },
                 { key: 'ne', x: uploadPos.x + imgW, y: uploadPos.y, cursor: 'nesw-resize' },

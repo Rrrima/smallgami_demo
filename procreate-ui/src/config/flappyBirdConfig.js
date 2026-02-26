@@ -7,11 +7,11 @@ const flappyBirdConfig = {
   lives: 1,
   assets: {
     models: {
-      player: "yellowbird-downflap.png",
-      box1: "pipe-green.png",
-      box2: "pipe-green.png",
+      player: "bird.png",
+      box1: "pipe.png",
+      box2: "pipe.png",
       score: "",
-      player_jump: "yellowbird-upflap.png",
+      // player_jump: "yellowbird-upflap.png",
     },
     sounds: {
       jump: { file: "wing.wav", volume: 1 },
@@ -19,7 +19,7 @@ const flappyBirdConfig = {
       collision_player_box1: { file: "hit.wav", volume: 1 },
       collision_player_score: { file: "point.wav", volume: 1 },
     },
-    skybox: "flappybird_bg.png",
+    skybox: "skybox.png",
     ground: "",
   },
   player: {
@@ -35,7 +35,10 @@ const flappyBirdConfig = {
     jumpStretchScale: 1.2,
     jumpOnlyOnGround: false,
     walkingStyle: "normal",
-    jumpingStyle: "rotate",
+    // jumpingStyle: "rotate",
+    jumpingConfig: {
+      rotation: [0, 0, Math.PI / 6],
+    },
     // initialRotation: [0, 0, -Math.PI / 8],
     bullets: {
       speed: 0.6,
@@ -63,8 +66,8 @@ const flappyBirdConfig = {
     description: "the sky",
     hasGround: false,
     cameraType: "ortho",
-    orthoHeight: 230,
-    orthoWidth: 320,
+    orthoHeight: 220,
+    orthoWidth: 300,
     cameraFovScale: 1,
     cameraTargetDelta: [0, 0, 0],
     cameraAlphaDelta: 0,
@@ -116,7 +119,7 @@ const flappyBirdConfig = {
     {
       name: "tube",
       id: "box1",
-      size: new Vector3(140, 140, 10),
+      size: new Vector3(30, 120, 10),
       onPlayerCollision: { player: "die", object: "none" },
       onProjectileCollision: { object: "dispose", projectile: "dispose" },
       onGroundCollision: "none",
@@ -127,7 +130,7 @@ const flappyBirdConfig = {
     {
       name: "tube",
       id: "box2",
-      size: new Vector3(140, 140, 10),
+      size: new Vector3(30, 120, 10),
       onPlayerCollision: { player: "die", object: "none" },
       onProjectileCollision: { object: "dispose", projectile: "dispose" },
       onGroundCollision: "none",
@@ -155,9 +158,9 @@ const flappyBirdConfig = {
       spawnZrange: [-15, -15],
       spawnYrange: [40, 55],
       spawnOffset: {
-        box1: new Vector3(0, 60, 0),
+        box1: new Vector3(0, 40, 0),
         box2: new Vector3(0, -120, 0),
-        score: new Vector3(0, -30, 0),
+        score: new Vector3(0, -40, 0),
       },
       spawnLikelihood: { box1: 1, box2: 1, score: 1 },
       scaleRangeX: [1, 1],

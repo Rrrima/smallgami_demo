@@ -25,7 +25,7 @@ ART STYLE: ${styleDesc}
 
 Output ONLY the image. No text, no labels, no watermarks.`,
 
-  birdFromSketchPrefix: `Here is the user's input reference for you to generate, first understand what it is and then try to design this into a player character sprite for a flappy bird game. It does not have to be a bird. For exmaple if the user input is a human, consider use the head picture of the human and add some body parts to it to make it could fly. If it's other animals or plants consider add a pair of wings to it or parachute to it to make it could fly. Be creative but the content should be suitable for kids so avoid any adult content.`,
+  birdFromSketchPrefix: `Here is the user's input reference for you to generate, first understand what it is and then try to design this into a player character sprite for a flappy bird game. It does not have to be a bird. For exmaple if the user input is a human, consider use the head picture of the human and add the body and with the flyer posture. If the reference object is other animals or plants consider add a pair of wings to it or parachute, or some other props to it to make it could fly. If the reference object already seem to have the flying ability, just make it a little more cute and playful in flying posture.Be creative but the content should be suitable for kids so avoid any adult content.`,
 
   birdRefined: `Here is the user's player character reference for a flappy bird game. Keep the exact same design, colors, shape, and art style — do NOT change or reinterpret anything.  If the user's input is a human, consider wrap it with a circle bounding box to make it looks like a profile picture on a social media platform.
 
